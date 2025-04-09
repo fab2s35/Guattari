@@ -1,0 +1,24 @@
+/* Header.css */
+
+.header-custom {
+    background-color: #923922 !important;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 10;
+  }
+  
+  .header-custom .header-brand,
+  .header-custom .nav-link {
+    color: white !important;
+  }
+  
+  .header-custom .header-toggler-icon {
+    background-color: white !important;
+  }
+  
+  .header-custom .nav-link.active {
+    color: yellow !important;
+  }
+  
