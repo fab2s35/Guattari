@@ -1,0 +1,39 @@
+
+
+#slider-rooms {
+    width: 100%;
+    overflow-x: auto; /* Para hacer scroll si no caben */
+    white-space: nowrap; /* Mantiene los elementos en una línea */
+    padding: 10px 0;
+  }
+  
+  .carousel {
+    display: flex;
+    gap: 16px; /* Espacio entre las cards */
+  }
+  
+  .room-card {
+    display: inline-block;
+    width: 150px;
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .room-img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+  
+  .room-name {
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  .skip-label {
+
+    
+  }
