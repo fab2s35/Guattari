@@ -11,7 +11,7 @@ function App() {
 
       <Routes>
         <Route path="/mainPage" element={<MainPage />} />
-        {/* Agrega más rutas si quieres */}
+
       </Routes>
 
       <Footer />
