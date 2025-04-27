@@ -5,18 +5,18 @@
     padding: 40px 20px;
     color: white;
     margin-top: 12%;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Inter', sans-serif;
   }
   
   .footer-columns {
     flex-direction: row;
     align-items: flex-start;
-    margin-bottom: 10px; /* reduce el espacio debajo del footer */
+    margin-bottom: 10px; 
   }
   
   .col {
     margin-left: 4%;
-    margin-bottom: 0; /* elimina espacio extra abajo de cada columna */
+    margin-bottom: 0; 
   }
   
   .footer-section-title {
@@ -57,7 +57,7 @@
   display: flex;
   justify-content: flex-start;
   gap: 25px;
-  margin-top: 10px; /* más pequeño que antes */
+  margin-top: 10px; 
   margin-left: 25%;
 }
 
@@ -89,7 +89,7 @@
     }
   
     .icono-footer {
-      width: 50px; /* Más pequeño en responsive */
+      width: 50px; 
     }
   }
   

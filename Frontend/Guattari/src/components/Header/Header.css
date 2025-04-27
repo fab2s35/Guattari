@@ -4,19 +4,20 @@
 .ads-text {
   background-color: #923922;
   display: flex;
-  justify-content: flex-end; /* 👉 Alinea a la derecha */
+  justify-content: flex-end; 
   gap: 5px;
   align-items: center;
+  font-family: 'Inter', sans-serif;
 }
 
 .ads-text span {
-  color: white; /* Cambia el color del texto a blanco */
-  font-size: 14px; /* Cambia el tamaño de la fuente según sea necesario */
-  font-weight: no; /* Cambia el peso de la fuente según sea necesario */
+  color: white; 
+  font-size: 14px; 
+  font-weight: no; 
 }
 
 .for-margin {
-  margin-right: 4%; /* Cambia el margen derecho según sea necesario */
+  margin-right: 4%; 
   margin-top: 0.3%;
   margin-bottom: 0.3%;
 }
@@ -32,6 +33,7 @@
   border-bottom: #923922 2px solid;
   padding-top: 4px;
   padding-bottom: 4px;
+  font-family: 'Inter', sans-serif;
 }
 
 /* Enlaces del navbar */
@@ -46,7 +48,7 @@
 /* Mueve todos los enlaces con un margen desde la izquierda */
 .navbar-nav {
   display: flex;
-  margin-left: 3%; /* Puedes probar con 5%, 8%, etc. */
+  margin-left: 3%;
 }
 
 /* Enlace activo */

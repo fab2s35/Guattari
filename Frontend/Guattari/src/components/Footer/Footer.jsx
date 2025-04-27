@@ -1,5 +1,5 @@
 import React from 'react';
-import './Footer.css'; // 👈 Import del CSS
+import './Footer.css'; 
 import ICfooter from '../../img/GUATTARI_logo_ver2.png';
 import ICwhatsapp from '../../img/whatsapp.png';
 import ICfacebook from '../../img/facebook.png';
