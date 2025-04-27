@@ -1,6 +1,6 @@
 import React from 'react';
 import './Header.css'; 
-import logoGuattari from '../../img/GUATTARI_logo-ver1.jpg';
+import logoGuattari from '../../img/GUATTARI_logo-ver1.png';
 import IC_cuenta from '../../img/user.png';
 import IC_cart from '../../img/shopping-cart.png';
 import { Link } from 'react-router-dom';
@@ -57,9 +57,10 @@ function Header() {
 
         <div className="navbar-nav">
       <Link className="nav-item nav-link inicio-link active" to="/mainPage">Inicio</Link>
-      <Link className="nav-item nav-link" to="#">Estancias</Link>
+
+      <Link className="nav-item nav-link" to="/estancias">Estancias</Link>
       <Link className="nav-item nav-link sobreNosotros-link active" to="/aboutUs">Sobre Nosotros</Link>
-      <Link className="nav-item nav-link" to="#">Contáctanos</Link>
+      <Link className="nav-item nav-link" to="/contactanos">Contáctanos</Link>
     </div>
         </div>
       </nav>
