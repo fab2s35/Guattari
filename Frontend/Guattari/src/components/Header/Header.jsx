@@ -54,21 +54,13 @@ function Header() {
         </button>
 
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-<<<<<<< HEAD
-          <div className="navbar-nav">
-            <a className="nav-item nav-link inicio-link active" href="#">Inicio</a>
-            <a className="nav-item nav-link" href="#">Estancias</a>
-            <a className="nav-item nav-link" href="#/AboutUs">Sobre Nosotros</a>
-            <a className="nav-item nav-link" href="#">Contáctanos</a>
-          </div>
-=======
+
         <div className="navbar-nav">
       <Link className="nav-item nav-link inicio-link active" to="/mainPage">Inicio</Link>
       <Link className="nav-item nav-link" to="#">Estancias</Link>
-      <Link className="nav-item nav-link" to="#">Sobre Nosotros</Link>
+      <Link className="nav-item nav-link sobreNosotros-link active" to="/aboutUs">Sobre Nosotros</Link>
       <Link className="nav-item nav-link" to="#">Contáctanos</Link>
     </div>
->>>>>>> beea6b2898ab903e309e38a4af55ba74acbc49f2
         </div>
       </nav>
     </>
