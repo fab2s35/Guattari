@@ -55,7 +55,7 @@ function Header() {
           <div className="navbar-nav">
             <a className="nav-item nav-link inicio-link active" href="#">Inicio</a>
             <a className="nav-item nav-link" href="#">Estancias</a>
-            <a className="nav-item nav-link" href="#">Sobre Nosotros</a>
+            <a className="nav-item nav-link" href="#/AboutUs">Sobre Nosotros</a>
             <a className="nav-item nav-link" href="#">Contáctanos</a>
           </div>
         </div>
