@@ -1,6 +1,6 @@
 import React from 'react';
 import './Header.css'; 
-import logoGuattari from '../../img/GUATTARI_logo-ver1.jpg';
+import logoGuattari from '../../img/GUATTARI_logo-ver1.png';
 import IC_cuenta from '../../img/user.png';
 import IC_cart from '../../img/shopping-cart.png';
 import { Link } from 'react-router-dom';

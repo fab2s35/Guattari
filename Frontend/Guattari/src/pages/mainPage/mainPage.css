@@ -131,7 +131,7 @@
 }
 
 .btn-banner {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Inter', sans-serif;
     background-color: #0E0000;
     color: #ffffff;
     padding: 8px 14px;
@@ -164,7 +164,7 @@
     #principalBanner .banner-left {
         font-size: 24px;
         line-height: 1.1;
-        justify-content: flex-end; /* keeps it flex-end even on mobile */
+        justify-content: flex-end; 
     }
 
     #principalBanner .banner-right {
@@ -186,9 +186,9 @@
 /*Banner secundario*/
 .banner-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* mitad-mitad */
+    grid-template-columns: 1fr 1fr; 
     width: 100%;
-    height: 80vh; /* altura de pantalla completa */
+    height: 80vh; 
     overflow: hidden;
   }
   
@@ -208,18 +208,18 @@
   
   .banner-grid-right {
     display: grid;
-    grid-template-rows: 1fr 1fr; /* divide en dos filas iguales */
+    grid-template-rows: 1fr 1fr; 
     height: 100vh;
-    gap: 10px; /* Reduce el espacio entre los banners de la derecha */
+    gap: 10px; 
   }
   
   .banner-grid-right-1 {
-    height: 45vh; /* Haz este banner un poco más grande */
+    height: 45vh; 
     margin-right: 2%;
   }
   
   .banner-grid-right-2 {
-    height: 33vh; /* El tamaño del banner inferior */
+    height: 33vh; 
     margin-right: 2%;
   }
   
@@ -235,15 +235,14 @@
   
   .banner-text-1 {
     position: relative;
-    z-index: 2;
+    z-index: 3;
     color: white;
-    font-size: 22px;
-    font-weight: 480;
-    text-shadow: 2px 2px 8px rgba(25, 25, 25, 0.8);
+    font-size: 23px;
+    font-weight: 496;
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center; /* Asegura que el texto esté centrado */
+    text-align: center; 
   }
   
   .banner-text-1 {
@@ -253,13 +252,13 @@
     position: relative;
     z-index: 2;
     color: white;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 600;
     text-shadow: 2px 2px 8px rgba(25, 25, 25, 0.8);
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center; /* Asegura que el texto esté centrado */
+    text-align: center; 
     height: 100%;
   }
 
@@ -274,8 +273,111 @@
     justify-content: left; 
     align-items: center; 
     text-align: center;
-    margin-bottom: 5%;
-    margin-left: 5%; 
+    margin-bottom: 7%;
+    margin-left: 8%; 
     height: 100%; 
   }
   
+  .guattari-logo {
+    position: absolute;
+    top: 31%;
+    left: 11%;
+    width: 280px; 
+    z-index: 2;
+  }
+
+  .btn-banner-right {
+    font-family: 'Inter', sans-serif;
+    background-color: #838450;
+    color: #000000;
+    padding: 5px 27px;
+    border-radius: 0px;
+    font-size: 18px;
+    font-weight: 700;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border: none;
+    margin-top: 20px;
+    margin-bottom: 14%;
+    align-self: flex-end; 
+    z-index: 3;
+    position: relative;
+    height: auto; 
+    width: fit-content;
+    justify-content: right;
+}
+
+.banner-grid-right-2-content {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    width: 100%;
+    padding: 0 20px; 
+    height: 100%; 
+    position: relative;
+    z-index: 3;
+  }
+  
+
+
+
+
+
+  /*Habitaciones*/
+  .bedroom-line {
+    font-family: 'Inter', sans-serif;
+  }
+
+  .bedroom-line h3 {
+    text-align: left;
+    margin-left: 60px;
+    margin-top: 2.2%;
+    margin-bottom: 0px;
+    font-weight: 503;
+    font-size: 23px;
+  }
+  
+  .bedroom-line-content {
+    display: flex;
+    justify-content: space-between; 
+    align-items: flex-end; /* ahora todos los contenedores bajan su contenido */
+    width: 100%;
+    padding: 0 20px; 
+    height: 100%;
+  }
+  
+  .bedroom-container {
+    display: flex;
+    flex-direction: column; /* imagen arriba, botón abajo */
+    align-items: center; /* centra horizontalmente */
+    justify-content: flex-end; /* manda imagen+botón hacia abajo */
+    position: relative;
+    width: 22%; /* ajusta el ancho de cada bloque si quieres */
+  }
+  
+  .bedroom-line-img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  
+  .btn-bedroom {
+    font-family: 'Inter', sans-serif;
+    background-color: #923922;
+    color: #ffffff;
+    padding: 5px 27px;
+    border-radius: 20px;
+    font-size: 18px;
+    font-weight: 700;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border: none;
+    margin-top: 20px; /* espacio entre imagen y botón */
+    margin-bottom: 14%; /* puedes cambiar este % para subir/bajar el botón */
+    width: fit-content;
+    position: relative;
+  }
+  
+
+
+
+
+
