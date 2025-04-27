@@ -7,10 +7,15 @@ import bañoE from '../../img/caruselEstancias/bañoE.jpg';
 import dormitorioE from '../../img/caruselEstancias/dormitorioE.jpg';
 import decoracionE from '../../img/caruselEstancias/decoracionE.jpg';
 import iluminacionE from '../../img/caruselEstancias/iluminacionE.jpg';
+import bannerPrincipal from '../../img/bannerPrincipal.png'; 
+import bannerGrid1 from '../../img/bannerGrid1.png';
+import bannerGrid2 from '../../img/bannerGrid2.png';
+import bannerGrid3 from '../../img/bannerGrid3.png';
+import guattariLogo from '../../img/GUATTARI_logo-ver1.jpg';
 
 function MainPage() {
   return (
-    
+ <>  
     <div id="slider-rooms" class="full-width-xs">
          <h2>Estancias</h2>
   <wc-carousel class="carousel" id="slider-rooms-carousel">
@@ -63,11 +68,55 @@ function MainPage() {
       </sk-aspect-ratio>
       <div class="room-name">Iluminación</div>
     </a>
-
   </wc-carousel>
 </div>
 
-    
+
+
+<div id="principalBanner" className="full-width"> 
+  <img src={bannerPrincipal} alt="Banner Principal" className="banner-img" />
+
+  <div className="banner-left">
+    <div className="banner-content-background">
+      <p>Trae las ideas que amas</p>
+      <p>a tus espacios más</p>
+      <p>íntimos.</p>
+    </div>
+  </div>
+
+  <div className="banner-right">
+    <div className="banner-content-background">
+      <p>Guattari coloca a tu alcanze lo necesario</p>
+      <p>para hacer el proceso de llenar tus </p>
+      <p>lugares en un sueño hecho realidad</p>
+      <button className="btn btn-primary btn-banner">Vive la experiencia Guattari</button>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div className="banner-grid">
+  <div className="banner-grid-left">
+    <img src={bannerGrid1} alt="Banner 1" className="banner-grid-img" />
+    <div className="banner-text-1">Guattari es todo lo que deseas a la punta de tus manos.</div>
+  </div>
+
+  <div className="banner-grid-right">
+    <div className="banner-grid-right-1">
+      <img src={bannerGrid2} alt="Banner 2" className="banner-grid-img" />
+      <div className="banner-text-2">Comienza a disfrutar todo lo que Guattari tiene que ofrecer.</div>
+    </div>
+    <div className="banner-grid-right-2">
+      <img src={bannerGrid3} alt="Banner 3" className="banner-grid-img" />
+      <div className="banner-text-3">Guattari. Cuando y donde nos necesites.</div>
+    </div>
+  </div>
+</div>
+
+
+</> 
   );
 }
 
