@@ -3,11 +3,7 @@ import { Link } from 'react-router-dom';
 import './Estancias.css';
 
 
-const Estancias = () => { 
-
-  const { id } = useParams();
-  console.log(id);
-
+const Estancias = () => {
   // Estancias
   const categorias = [
     { id: 1, nombre: 'Salas', imagen: '/src/img/Estancias/1.png' },
@@ -39,8 +35,6 @@ const Estancias = () => {
   ];
 
   return (
-
-    
     <div className="estancias-container">
       {/* Título de la sección */}
       <h1 className="estancias-title">Estancias</h1>
