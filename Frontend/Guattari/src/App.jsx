@@ -3,6 +3,8 @@ import './App.css';
 import Header from './components/Header/Header.jsx';
 import Footer from './components/Footer/Footer.jsx';
 import MainPage from './pages/mainPage/mainPage.jsx';
+import Estancias from './components/Estancias/Estancias.jsx';
+import Contactanos from './components/Contactanos/Contactanos.jsx';
 
 function App() {
   return (
@@ -11,6 +13,8 @@ function App() {
 
       <Routes>
         <Route path="/mainPage" element={<MainPage />} />
+        <Route path="/estancias" element={<Estancias />} />
+        <Route path="/contactanos" element={<Contactanos/>} />
 
       </Routes>
 
