@@ -7,9 +7,9 @@ import GuattariLogo from '../../img/aboutUsBanner/GUATTARI_logo.png';
 import AUSofa from '../../img/muebles-AboutUs/sofa-One.png';
 import AUSofaTwo from '../../img/muebles-AboutUs/sofa-Two.png';
 import AUSofaThree from '../../img/muebles-AboutUs/sofa-Three.png';
-import AUMision from '../../img/muebles-AboutUs/misioon.png'
-import AUVision from '../../img/muebles-AboutUs/visioon.png'
-import AUValores from '../../img/muebles-AboutUs/valores.png'
+import AUMision from '../../img/muebles-AboutUs/misioon.png';
+import AUVision from '../../img/muebles-AboutUs/visioon.png';
+import AUValores from '../../img/muebles-AboutUs/valores.png';
 
 //Integrantes
 import Fab from '../../img/muebles-AboutUs/fab.png'

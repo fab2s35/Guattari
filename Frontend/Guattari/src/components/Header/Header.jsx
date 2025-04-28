@@ -7,11 +7,12 @@ import { Link } from 'react-router-dom';
 
 
 
+
 function Header() {
   return (
     <>
    <div class="ads-text">
-  <span>Registrarse</span>
+  <span><Link className="nav-item nav-link registrarse-link active" to="/register">Registrarse</Link></span>
   <span>/</span>
   <span className='for-margin'>Iniciar Sesión</span>
 </div>
