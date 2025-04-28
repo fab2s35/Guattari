@@ -11,6 +11,7 @@ import AboutUs from './pages/aboutUs/AboutUs.jsx';
 
 //Registre, login and porfile
 import Register from './pages/registre/register.jsx';
+import Login from './pages/login/login.jsx';
 
 
 function App() {
@@ -29,7 +30,7 @@ function App() {
         <Route path="/categorias/:id" element={<Categorias/>} />
 
         <Route path="/register" element={<Register/>} />
-     
+        <Route path="/login" element={<Login/>} />
       </Routes>
 
       <Footer />

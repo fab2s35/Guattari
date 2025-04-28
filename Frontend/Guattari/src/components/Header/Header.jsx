@@ -14,7 +14,7 @@ function Header() {
    <div class="ads-text">
   <span><Link className="nav-item nav-link registrarse-link active" to="/register">Registrarse</Link></span>
   <span>/</span>
-  <span className='for-margin'>Iniciar Sesión</span>
+  <span className='for-margin'><Link className="nav-item nav-link login-link active" to="/login">Iniciar Sesión</Link></span>
 </div>
 
 
