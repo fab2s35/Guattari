@@ -325,6 +325,7 @@
   /*Habitaciones*/
   .bedroom-line {
     font-family: 'Inter', sans-serif;
+    
   }
 
   .bedroom-line h3 {
@@ -335,23 +336,31 @@
     font-weight: 503;
     font-size: 23px;
   }
+
+  .bedroom-line hr {
+    border: none;
+    border-top: 1px solid #000000;
+    margin-left: 4%;
+    margin-right: 4%;
+  }
   
   .bedroom-line-content {
     display: flex;
     justify-content: space-between; 
-    align-items: flex-end; /* ahora todos los contenedores bajan su contenido */
+    align-items: flex-end; 
     width: 100%;
-    padding: 0 20px; 
+    padding: 0 24px; 
     height: 100%;
+    background-color: #838450;
   }
   
   .bedroom-container {
     display: flex;
-    flex-direction: column; /* imagen arriba, botón abajo */
-    align-items: center; /* centra horizontalmente */
-    justify-content: flex-end; /* manda imagen+botón hacia abajo */
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: flex-end; 
     position: relative;
-    width: 22%; /* ajusta el ancho de cada bloque si quieres */
+    width: 22%; 
   }
   
   .bedroom-line-img {
@@ -362,18 +371,19 @@
   
   .btn-bedroom {
     font-family: 'Inter', sans-serif;
-    background-color: #923922;
+    background-color: #A73B3B;
     color: #ffffff;
     padding: 5px 27px;
     border-radius: 20px;
     font-size: 18px;
-    font-weight: 700;
+    font-weight: 500;
     transition: background-color 0.3s ease, color 0.3s ease;
     border: none;
-    margin-top: 20px; /* espacio entre imagen y botón */
-    margin-bottom: 14%; /* puedes cambiar este % para subir/bajar el botón */
+    margin-top: 20px; 
+    margin-bottom: 20%; 
     width: fit-content;
-    position: relative;
+    position: absolute;
+    box-shadow: #14141479 0px 3px 20px;
   }
   
 

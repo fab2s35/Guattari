@@ -20,17 +20,17 @@ const Estancias = () => {
     { 
       id: 1, 
       imagen: '/src/img/Estancias/a.png', 
-      texto: 'A burst of colour'
+      texto: 'A burst of Colour'
     },
     { 
       id: 2, 
       imagen: '/src/img/Estancias/b.png', 
-      texto: 'Fall'
+      texto: 'Love in All'
     },
     { 
       id: 3, 
       imagen: '/src/img/Estancias/c.png', 
-      texto: 'Let yourself here'
+      texto: 'Let yourself Revive'
     },
   ];
 
