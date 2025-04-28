@@ -16,6 +16,10 @@ import salaM from '../../img/salaM.png';
 import habitacionM from '../../img/habitacionM.png';
 import comedorM from '../../img/comedorM.png';
 import decoracionM from '../../img/decoracionM.png';
+import tercerBanner from '../../img/tercerBanner.png';
+import categoria1Img from '../../img/Estancias/7.png';
+import cuartoBanner from '../../img/cuartoBanner.png';
+import sofa1 from '../../img/sofas/sofa1.png';
 
 function MainPage() {
   return (
@@ -93,7 +97,7 @@ function MainPage() {
       <p>Guattari coloca a tu alcanze lo necesario</p>
       <p>para hacer el proceso de llenar tus </p>
       <p>lugares en un sueño hecho realidad</p>
-      <button className="btn btn-primary btn-banner">Vive la experiencia Guattari</button>
+      <a className="btn btn-primary btn-banner" href='/estancias' role="button"> Vive la experiencia Guattari </a>
     </div>
   </div>
 </div>
@@ -118,7 +122,9 @@ function MainPage() {
       <img src={bannerGrid3} alt="Banner 3" className="banner-grid-img" />
       <div className="banner-grid-right-2-content">
         <div className="banner-text-3">Guattari. Cuando y donde nos necesites.</div>
-        <button className="btn btn-primary btn-banner-right">COMPRAR AHORA</button>
+        <button className="btn btn-primary btn-banner-right" 
+        onClick={() => window.location.href = '/estancias'}>COMPRAR AHORA </button>
+
       </div>
     </div>
   </div>
@@ -128,26 +134,138 @@ function MainPage() {
 
 <div className="bedroom-line">
     <h3>¿Qué vas a transformar hoy?</h3>
-    <hr></hr>
+    <hr />
     <div className="bedroom-line-content">
         <div className="bedroom-container">
-    <img src={salaM} alt="Salas" className="bedroom-line-img" />
-    <button className="btn btn-primary btn-bedroom">Salas</button>
+            <img src={salaM} alt="Salas" className="bedroom-line-img" />
+            <button className="btn btn-primary btn-bedroom"
+                onClick={() => window.location.href = '/salas'}> Salas
+            </button>
         </div>
         <div className="bedroom-container">
-    <img src={habitacionM} alt="Habitacion" className="bedroom-line-img" />
-    <button className="btn btn-primary btn-bedroom">Habitaciones</button>
+            <img src={habitacionM} alt="Habitación" className="bedroom-line-img" />
+            <button className="btn btn-primary btn-bedroom"
+                onClick={() => window.location.href = '/habitaciones'}> Habitaciones
+            </button>
         </div>
         <div className="bedroom-container">
-    <img src={comedorM} alt="Comedor" className="bedroom-line-img" />
-    <button className="btn btn-primary btn-bedroom">Comedores</button>
+            <img src={comedorM} alt="Comedor" className="bedroom-line-img" />
+            <button className="btn btn-primary btn-bedroom"
+                onClick={() => window.location.href = '/comedores'}> Comedores
+            </button>
         </div>
         <div className="bedroom-container">
-    <img src={decoracionM} alt="Decoracion" className="bedroom-line-img" />
-    <button className="btn btn-primary btn-bedroom">Decoraciones</button>
+            <img src={decoracionM} alt="Decoración" className="bedroom-line-img" />
+            <button className="btn btn-primary btn-bedroom"
+                onClick={() => window.location.href = '/decoraciones'}> Decoraciones
+            </button>
         </div>
     </div>
 </div>
+
+
+
+
+<div className="tercer-banner">
+    <div className="tercer-banner-content">
+      <div className="tercer-banner-img">
+        <img src={tercerBanner} alt="Banner tercero" className="banner-img" />
+  </div>
+      <div className="tercer-banner-text">
+        <h2 className='h2-text-1'>Guattari, diseño como lo</h2>
+        <h2 className='h2-text-2'>imaginas.</h2>
+        <p>Somos una tienda de diversos tipos de muebles y decoración para tu hogar, con un <b>estilo libre y diferente. </b>
+           Juntamos la comodidad que conocemos de lo moderno con la calidad estética retro, sin olvidar nuestras raíces <b>postmodernistas</b>, 
+          que pueden ser encontradas a través de cada producto.</p>
+       </div>
+  </div>
+</div>
+
+
+
+
+
+<div className="categorias-populares">
+<h3>Categorias populares</h3>
+    <hr></hr>
+    <div className="categorias-populares-content">
+
+    <div className="categorias-populares-container">
+
+<a href="/categoria1" className="categorias-populares-item">
+  <img src={categoria1Img} alt="Categoría 1" className="categorias-populares-image" />
+  <span className="categorias-populares-name">Sillas</span>
+</a>
+
+<a href="/categoria2" className="categorias-populares-item">
+  <img src={categoria1Img} alt="Categoría 2" className="categorias-populares-image" />
+  <span className="categorias-populares-name">Mesitas de noche</span>
+</a>
+
+<a href="/categoria3" className="categorias-populares-item">
+  <img src={categoria1Img} alt="Categoría 3" className="categorias-populares-image" />
+  <span className="categorias-populares-name">Alfombras y tapetes</span>
+</a>
+
+<a href="/categoria4" className="categorias-populares-item">
+  <img src={categoria1Img} alt="Categoría 4" className="categorias-populares-image" />
+  <span className="categorias-populares-name">Lamparas decorativas</span>
+</a>
+
+<a href="/categoria5" className="categorias-populares-item">
+  <img src={categoria1Img} alt="Categoría 5" className="categorias-populares-image" />
+  <span className="categorias-populares-name">Conjunto de comedor</span>
+</a>
+
+<a href="/categoria1" className="categorias-populares-item">
+  <img src={categoria1Img} alt="Categoría 6" className="categorias-populares-image" />
+  <span className="categorias-populares-name">Estanterías y librerías</span>
+</a>
+
+<a href="/categoria2" className="categorias-populares-item">
+  <img src={categoria1Img} alt="Categoría 7" className="categorias-populares-image" />
+  <span className="categorias-populares-name">Mesas de centro</span>
+</a>
+
+<a href="/categoria3" className="categorias-populares-item">
+  <img src={categoria1Img} alt="Categoría 8" className="categorias-populares-image" />
+  <span className="categorias-populares-name">Jarrones y macetas</span>
+</a>
+
+<a href="/categoria4" className="categorias-populares-item">
+  <img src={categoria1Img} alt="Categoría 9" className="categorias-populares-image" />
+  <span className="categorias-populares-name">Pantallas de lampara</span>
+</a>
+
+<a href="/categoria5" className="categorias-populares-item">
+  <img src={categoria1Img} alt="Categoría 10" className="categorias-populares-image" />
+  <span className="categorias-populares-name">Camas</span>
+</a>
+</div>        
+     </div>       
+</div>
+
+
+
+
+<hr className='border-1'></hr>
+<div className="cuarto-banner">
+  <div className="cuarto-banner-content">
+    <div className="cuarto-banner-text">
+      <h2>The style that never left.</h2>
+    </div>
+    <div className="cuarto-banner-img">
+      <img src={cuartoBanner} alt="Banner cuarto" className="banner-img" />
+    </div>
+  </div>
+</div>
+<hr className='border-2'></hr>
+
+
+
+
+
+
 
 </> 
   );

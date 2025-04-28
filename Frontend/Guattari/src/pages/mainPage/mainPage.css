@@ -76,6 +76,11 @@
 
 
 
+
+
+
+
+
   /*Banner principal*/
   #principalBanner {
     position: relative;
@@ -145,6 +150,11 @@
     align-self: flex-end;
 }
 
+.btn-banner:hover {
+  background-color: #923922;
+  color: #ffffff; 
+}
+
 /*Responsive*/
 @media (max-width: 768px) {
     #principalBanner {
@@ -177,6 +187,11 @@
         align-self: center;
     }
 }
+
+
+
+
+
 
 
 
@@ -294,7 +309,6 @@
     border-radius: 0px;
     font-size: 18px;
     font-weight: 700;
-    transition: background-color 0.3s ease, color 0.3s ease;
     border: none;
     margin-top: 20px;
     margin-bottom: 14%;
@@ -304,6 +318,11 @@
     height: auto; 
     width: fit-content;
     justify-content: right;
+}
+
+.btn-banner-right:hover {
+    text-decoration: underline;
+    background-color: #838450;
 }
 
 .banner-grid-right-2-content {
@@ -385,7 +404,234 @@
     position: absolute;
     box-shadow: #14141479 0px 3px 20px;
   }
+
+  .btn-bedroom:hover {
+    background-color: #943131;
+}
+
+
+
+
+
+
+
+
+
+/*Tercer banner*/
+.tercer-banner {
+  font-family: 'Inter', sans-serif;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 19px 10px;
+  box-sizing: border-box;
+  background-color: #F6F6F6;
+  margin-top: 3.5%;
+}
+
+.tercer-banner-content {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  height: 780px; 
+  overflow: hidden; 
+}
+
+.tercer-banner-img, .tercer-banner-text {
+  flex: 0 0 50%; 
+  max-width: 50%;
+}
+
+.tercer-banner-img {
+  position: relative;
+}
+
+.tercer-banner-img img {
+  position: absolute;
+  width: 85%;
+  height: 85%;
+  object-fit: cover; 
+}
+
+.tercer-banner-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 40px;
+  margin-top: 5.6%;
+  background-color: #F6F6F6; 
+}
+
+.h2-text-1 {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 708;
+  color: #ffffff;
+  background-color: #901F18;
+  border-radius: 13px;
+  margin-bottom: 1%;
+  padding: 4px 12px;
+  text-align: right;
+  margin-left: 11%;
+}
+
+.h2-text-2 {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 708;
+  color: #ffffff;
+  background-color: #901F18;
+  border-radius: 13px;
+  padding: 4px;
+  text-align: right;
+  margin-bottom: 4%;
+  margin-left: 11%;
+}
+
+.tercer-banner-text p {
+  margin-top: 20px;
+  font-size: 18px;
+  line-height: 1.5;
+  text-align: right;
+  margin-left: auto;
+  margin-right:0%;
+  max-width: 80%;
+}
+
+
   
+
+
+
+
+
+/*Categorías populares*/
+.categorias-populares h3 {
+  text-align: left;
+  margin-left: 60px;
+  margin-top: 2.8%;
+  margin-bottom: 0px;
+  font-weight: 503;
+  font-size: 23px;
+}
+
+.categorias-populares hr {
+  border: none;
+  border-top: 1px solid #000000;
+  margin-left: 4%;
+  margin-right: 4%;
+}
+
+
+.categorias-populares-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  padding: 20px;
+}
+
+.categorias-populares-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease;
+}
+
+.categorias-populares-item:hover {
+  transform: scale(1.05);
+}
+
+.categorias-populares-image {
+  width: 58%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.categorias-populares-name {
+  margin-top: 8px;
+  font-size: 17px;
+  font-weight: 497;
+}
+
+
+
+
+
+
+
+/*Cuarto banner*/
+.cuarto-banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 500px;  
+  background-color: #FFFAFA;  
+  padding: 35px 35px 35px 35px;
+  margin-top: 0%;
+  border-top: #923922;
+  border-bottom: #923922;
+}
+
+.border-1 {
+  background-color: #741700;
+  height: 2px;
+  margin-bottom: 0%;
+  margin-top: 5%;
+}
+
+.border-2 {
+  background-color: #741700;
+  height: 2px;
+  margin-bottom: 5%;
+  margin-top: 0%;
+}
+
+.cuarto-banner h2 {
+  font-family: 'Arima', sans-serif;
+  text-align: left;
+  margin-left: 60px;
+  margin-top: 2.8%;
+  margin-bottom: 0px;
+  font-weight: 503;
+  font-size: 23px;
+  color: #923922;
+}
+
+.cuarto-banner-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; 
+  align-items: center;
+  height: 100%;  
+  width: 100%; 
+}
+
+.cuarto-banner-text {
+  margin-bottom: 20px;  
+  text-align: center;
+}
+
+.cuarto-banner-img {
+  width: 100%;  
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+}
+
+.cuarto-banner-img img {
+  position: relative;
+  max-width: 40%; 
+  height: auto;
+  object-fit: cover;  
+  max-height: 390px;  
+  border-radius: 8px;  
+}
+
+
 
 
 

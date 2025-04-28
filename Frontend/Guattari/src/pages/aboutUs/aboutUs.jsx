@@ -187,7 +187,7 @@ function AboutUs() {
                     <div class="card">
                         <img src={Fab} id="imgIntegrante" class="card-img-top" alt="..."/>
                         <div class="card-body">
-                        <h5 class="card-title">Fabiola Retana</h5> <p><small class="text-body-secondary">CEO</small></p>
+                        <h5 class="card-title">Fabiola Osorto</h5> <p><small class="text-body-secondary">CEO</small></p>
                         </div>
                     </div>
                     <div class="card">
