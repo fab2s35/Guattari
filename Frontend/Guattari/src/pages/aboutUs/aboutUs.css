@@ -82,6 +82,12 @@
   margin-top: 10px;
 }
 
+.card {
+    width: 150px; /* Ajusta el ancho de las tarjetas */
+    height: auto; /* Mantén la proporción */
+    margin: 10px auto; /* Centra las tarjetas y agrega un margen */
+}
+
 /*Mision,visio y valores*/
 
 .fondo-mision{
@@ -170,6 +176,14 @@
 
 
 .title-Integrantes{
-    font-size: 70px; 
+    font-size: 50px; 
     text-align: center;
+}
+
+#imgIntegrante {
+    width: 250px; /* Ajusta el ancho de las imágenes */
+    height: auto; /* Mantén la proporción */
+    display: block;
+    margin: 0 auto; /* Centra las imágenes */
+    margin-top: 10px; /* Agrega un margen superior */
 }
