@@ -12,6 +12,7 @@ import AboutUs from './pages/aboutUs/AboutUs.jsx';
 //Registre, login and porfile
 import Register from './pages/registre/register.jsx';
 import Login from './pages/login/login.jsx';
+import Productos from './pages/Productos/Productos.jsx';
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
 
         <Route path="/contactanos" element={<Contactanos/>} />
         <Route path="/categorias/:id" element={<Categorias/>} />
+        <Route path="/productos" element={<Productos/>} />
 
         <Route path="/register" element={<Register/>} />
         <Route path="/login" element={<Login/>} />

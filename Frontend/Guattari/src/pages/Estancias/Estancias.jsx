@@ -44,7 +44,7 @@ const Estancias = () => {
       <div className="categorias-grid">
         {categorias.map((categoria) => (
           <Link 
-            to={`/categoria/${categoria.id}`} 
+            to="/productos" /* Cambié la ruta para que siempre apunte a /productos */
             className="categoria-item" 
             key={categoria.id}
           >
