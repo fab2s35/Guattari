@@ -3,8 +3,8 @@ import './App.css';
 import Header from './components/Header/Header.jsx';
 import Footer from './components/Footer/Footer.jsx';
 import MainPage from './pages/mainPage/mainPage.jsx';
-import Estancias from './components/Estancias/Estancias.jsx';
-import Contactanos from './components/Contactanos/Contactanos.jsx';
+import Estancias from './pages/Estancias/Estancias.jsx';
+import Contactanos from './pages/Contactanos/Contactanos.jsx';
 
 function App() {
   return (
