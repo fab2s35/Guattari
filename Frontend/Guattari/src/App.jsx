@@ -5,7 +5,7 @@ import Footer from './components/Footer/Footer.jsx';
 import MainPage from './pages/mainPage/mainPage.jsx';
 import Estancias from './pages/Estancias/Estancias.jsx';
 import Contactanos from './pages/Contactanos/Contactanos.jsx';
-
+import AboutUs from './pages/aboutUs/AboutUs';
 function App() {
   return (
     <Router>
@@ -13,10 +13,12 @@ function App() {
 
       <Routes>
         <Route path="/mainPage" element={<MainPage />} />
+        <Route path="/aboutUs" element={<AboutUs/>} />
         <Route path="/estancias" element={<Estancias />} />
         <Route path="/contactanos" element={<Contactanos/>} />
 
       </Routes>
+
 
       <Footer />
     </Router>

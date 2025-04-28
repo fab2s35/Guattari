@@ -1,0 +1,175 @@
+/*Primer banner de About Us*/
+.carousel-caption {
+    text-align: left;
+    font-weight: bold;    
+}
+
+.white-line {
+    width: 2000px;      
+    height: 2px;       
+    background-color: white;
+    margin-top: 10px;
+    margin-bottom: -150px;
+    margin-left: -700px;
+    border: none;
+    align-items: center;
+}
+
+.title-AboutUs{
+    font-size: 125px; 
+    margin-bottom: 30px; 
+}
+
+.btnBanner{
+    margin-bottom: 50px;
+    font-size: 20px;
+    background-color: black; 
+    color: white;            
+    border: none;           
+    padding: 10px 20px;      
+    cursor: pointer;         
+}
+
+#imgBannerOne{
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: brightness(50%);
+}
+
+#imgGuattariLogo{
+    margin-top: 25px;
+    margin-bottom: -190px;
+    margin-left: 700px;
+    width: 400px; 
+    height: auto;
+}
+
+/*History*/
+
+.text-AboutUs{
+    padding: 80px;
+    padding-top: 40px;
+    font-size: 18px;
+}
+
+.text-AboutUs h2{
+    font-size: 55px; 
+    margin-bottom: 10px; 
+    text-align: center;
+}
+
+.text-AboutUs h3 {
+    font-size: 20px;
+    color: #fff; 
+    background-color: #901F18; 
+    border: 3px solid #901F18; 
+    border-radius: 50px; 
+    padding: 5px;
+    text-align: left; 
+    display: inline-block;
+}
+
+/*Cards*/
+
+#imgSofa{
+    width: 100px; 
+  height: auto;
+
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+}
+
+/*Mision,visio y valores*/
+
+.fondo-mision{
+    background-color: #EBEAEA;
+    padding: 150px;
+}
+
+.textMision{
+    font-size: 18px;
+    padding-right: 400px;
+}
+
+.fondo-mision h2{
+    font-size: 50px;
+
+}
+
+#imgMision{
+    margin-top: 30px; 
+    width: 400px; 
+    height: auto;
+}
+
+
+/*Vision*/
+
+.fondo-vision{
+    background-color: #901F18;
+    padding: 150px;
+}
+
+.textVision{
+    font-size: 18px;
+    color: white; 
+    padding-left: 400px;
+}
+
+.fondo-vision h2{
+    font-size: 50px;
+
+}
+
+#imgVision{
+    margin-top: 110px; 
+    width: 400px; 
+    height: auto;
+}
+
+/*Valores*/
+
+.fondo-valores{
+    background-color: #EBEAEA;
+    padding: 150px;
+}
+
+.textValores{
+    font-size: 18px;
+    padding-right: 300px;
+    padding-right: 500px;
+    
+}
+
+.fondo-valores h2{
+    font-size: 50px;
+
+}
+
+#imgValores{
+    margin-top: -150px;
+    width: 385px; 
+    height: auto;
+    padding-right: -500px;
+    
+}
+
+
+/*Integrantes*/
+
+
+#imgSofa{
+    width: 50px; 
+  height: auto;
+
+ 
+}
+
+
+.title-Integrantes{
+    font-size: 70px; 
+    text-align: center;
+}

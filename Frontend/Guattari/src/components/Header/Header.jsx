@@ -54,10 +54,11 @@ function Header() {
         </button>
 
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+
         <div className="navbar-nav">
-      <Link className="nav-item nav-link inicio-link" to="/mainPage">Inicio</Link>
+      <Link className="nav-item nav-link inicio-link active" to="/mainPage">Inicio</Link>
       <Link className="nav-item nav-link" to="/estancias">Estancias</Link>
-      <Link className="nav-item nav-link" to="#">Sobre Nosotros</Link>
+      <Link className="nav-item nav-link sobreNosotros-link active" to="/aboutUs">Sobre Nosotros</Link>
       <Link className="nav-item nav-link" to="/contactanos">Contáctanos</Link>
     </div>
         </div>
