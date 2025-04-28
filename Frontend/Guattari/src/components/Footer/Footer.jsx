@@ -14,8 +14,8 @@ function Footer() {
           <div className="col mb-3">
             <h5 className="footer-section-title">Conócenos</h5>
             <ul className="nav flex-column">
-              <li className="nav-item mb-2"><a href="#" className="nav-link p-0">Nuestra Historia</a></li>
-              <li className="nav-item mb-2"><a href="#" className="nav-link p-0">Misión y Visión</a></li>
+              <li className="nav-item mb-2"><a href="/aboutUs" className="nav-link p-0">Nuestra Historia</a></li>
+              <li className="nav-item mb-2"><a href="/aboutUs" className="nav-link p-0">Misión y Visión</a></li>
               <li className="nav-item mb-2"><a href="#" className="nav-link p-0">FAQs</a></li>
             </ul>
           </div>
@@ -31,7 +31,7 @@ function Footer() {
           <div className="col mb-3">
             <h5 className="footer-section-title">Servicio al cliente</h5>
             <ul className="nav flex-column">
-              <li className="nav-item mb-2"><a href="#" className="nav-link p-0">Contáctenos</a></li>
+              <li className="nav-item mb-2"><a href="/contactanos" className="nav-link p-0">Contáctenos</a></li>
             </ul>
           </div>
   

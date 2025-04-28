@@ -17,9 +17,19 @@ import habitacionM from '../../img/habitacionM.png';
 import comedorM from '../../img/comedorM.png';
 import decoracionM from '../../img/decoracionM.png';
 import tercerBanner from '../../img/tercerBanner.png';
-import categoria1Img from '../../img/Estancias/7.png';
 import cuartoBanner from '../../img/cuartoBanner.png';
+import categoria1Img from '../../img/Estancias/7.png';
 import sofa1 from '../../img/sofas/sofa1.png';
+import sillaCP from '../../img/categoriasPopulares/sillas.png';
+import mesaNocheCP from '../../img/categoriasPopulares/mesaNoche.png';
+import alfombraCP from '../../img/categoriasPopulares/alfombra.png';
+import lamparaCP from '../../img/categoriasPopulares/lamparas.png';
+import comedorCP from '../../img/categoriasPopulares/comedor.png';
+import estanteriaCP from '../../img/categoriasPopulares/estanteria.png';
+import mesasCentroCP from '../../img/categoriasPopulares/mesasCentro.png';
+import jarronesCP from '../../img/categoriasPopulares/jarron.png';
+import lampshadeCP from '../../img/categoriasPopulares/lampshade.png';
+import camaCP from '../../img/categoriasPopulares/cama.png';
 
 function MainPage() {
   return (
@@ -191,52 +201,52 @@ function MainPage() {
     <div className="categorias-populares-container">
 
 <a href="/categoria1" className="categorias-populares-item">
-  <img src={categoria1Img} alt="Categoría 1" className="categorias-populares-image" />
+  <img src={sillaCP} alt="Categoría 1" className="categorias-populares-image" />
   <span className="categorias-populares-name">Sillas</span>
 </a>
 
 <a href="/categoria2" className="categorias-populares-item">
-  <img src={categoria1Img} alt="Categoría 2" className="categorias-populares-image" />
+  <img src={mesaNocheCP} alt="Categoría 2" className="categorias-populares-image" />
   <span className="categorias-populares-name">Mesitas de noche</span>
 </a>
 
 <a href="/categoria3" className="categorias-populares-item">
-  <img src={categoria1Img} alt="Categoría 3" className="categorias-populares-image" />
+  <img src={alfombraCP} alt="Categoría 3" className="categorias-populares-image" />
   <span className="categorias-populares-name">Alfombras y tapetes</span>
 </a>
 
 <a href="/categoria4" className="categorias-populares-item">
-  <img src={categoria1Img} alt="Categoría 4" className="categorias-populares-image" />
+  <img src={lamparaCP} alt="Categoría 4" className="categorias-populares-image" />
   <span className="categorias-populares-name">Lamparas decorativas</span>
 </a>
 
 <a href="/categoria5" className="categorias-populares-item">
-  <img src={categoria1Img} alt="Categoría 5" className="categorias-populares-image" />
+  <img src={comedorCP} alt="Categoría 5" className="categorias-populares-image" />
   <span className="categorias-populares-name">Conjunto de comedor</span>
 </a>
 
 <a href="/categoria1" className="categorias-populares-item">
-  <img src={categoria1Img} alt="Categoría 6" className="categorias-populares-image" />
+  <img src={estanteriaCP} alt="Categoría 6" className="categorias-populares-image" />
   <span className="categorias-populares-name">Estanterías y librerías</span>
 </a>
 
 <a href="/categoria2" className="categorias-populares-item">
-  <img src={categoria1Img} alt="Categoría 7" className="categorias-populares-image" />
+  <img src={mesasCentroCP} alt="Categoría 7" className="categorias-populares-image" />
   <span className="categorias-populares-name">Mesas de centro</span>
 </a>
 
 <a href="/categoria3" className="categorias-populares-item">
-  <img src={categoria1Img} alt="Categoría 8" className="categorias-populares-image" />
+  <img src={jarronesCP} alt="Categoría 8" className="categorias-populares-image" />
   <span className="categorias-populares-name">Jarrones y macetas</span>
 </a>
 
 <a href="/categoria4" className="categorias-populares-item">
-  <img src={categoria1Img} alt="Categoría 9" className="categorias-populares-image" />
+  <img src={lampshadeCP} alt="Categoría 9" className="categorias-populares-image" />
   <span className="categorias-populares-name">Pantallas de lampara</span>
 </a>
 
 <a href="/categoria5" className="categorias-populares-item">
-  <img src={categoria1Img} alt="Categoría 10" className="categorias-populares-image" />
+  <img src={camaCP} alt="Categoría 10" className="categorias-populares-image" />
   <span className="categorias-populares-name">Camas</span>
 </a>
 </div>        
