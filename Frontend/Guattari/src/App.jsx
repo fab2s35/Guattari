@@ -8,8 +8,10 @@ import Categorias from './pages/subCategorias/subCategorias.jsx';
 import Contactanos from './pages/Contactanos/Contactanos.jsx';
 import AboutUs from './pages/aboutUs/AboutUs.jsx';
 
+
 //Registre, login and porfile
 import Register from './pages/registre/register.jsx';
+
 
 function App() {
   return (
@@ -17,17 +19,18 @@ function App() {
       <Header />
 
       <Routes>
+        {/* Ruta predeterminada para cargar la página de inicio */}
+        <Route path="/" element={<MainPage />} />
         <Route path="/mainPage" element={<MainPage />} />
-        <Route path="/aboutUs" element={<AboutUs/>} />
+        <Route path="/aboutUs" element={<AboutUs />} />
         <Route path="/estancias" element={<Estancias />} />
+
         <Route path="/contactanos" element={<Contactanos/>} />
         <Route path="/categorias/:id" element={<Categorias/>} />
 
         <Route path="/register" element={<Register/>} />
-       
+     
       </Routes>
-
-
 
       <Footer />
     </Router>
