@@ -10,7 +10,7 @@ const Procuctos = () => {
       nombre: 'Sofá 2 piezas KLIPPAN rojo vivo',
       precio: 339.00,
       imagen: '/src/img/Estancias/1.png',
-      colores: ['rojo', 'amarillo', 'azul', 'verde']
+      colores: ['green', 'amarillo', 'azul', 'verde']
     },
     {
       id: 2,
@@ -70,13 +70,13 @@ const Procuctos = () => {
       'amarillo': 'color-amarillo',
       'azul': 'color-azul',
       'verde': 'color-verde',
-      'morado': 'color-morado',
+      'green': 'color-green',
       'gris': 'color-gris',
       'beige': 'color-beige',
       'naranja': 'color-naranja',
       'marron': 'color-marron',
       'vino': 'color-vino',
-      'negro': 'color-negro'
+      'negro': 'color-negro',
     };
     
     return colorMap[color] || '';
