@@ -1,5 +1,6 @@
 import React from 'react';
-import './mainPage.css'; 
+import './MainPage.css'; 
+//Imports de imgs
 import salaE from '../../img/caruselEstancias/salaE.jpg';
 import cocinaE from '../../img/caruselEstancias/cocinaE.jpg';   
 import comedorE from '../../img/caruselEstancias/comedorE.jpg';
@@ -19,7 +20,7 @@ import decoracionM from '../../img/decoracionM.png';
 import tercerBanner from '../../img/tercerBanner.png';
 import cuartoBanner from '../../img/cuartoBanner.png';
 import categoria1Img from '../../img/Estancias/7.png';
-import sofa1 from '../../img/sofas/sofa1.png';
+import sofa1 from '../../img/sofasss/sofa1.png';
 import sillaCP from '../../img/categoriasPopulares/sillas.png';
 import mesaNocheCP from '../../img/categoriasPopulares/mesaNoche.png';
 import alfombraCP from '../../img/categoriasPopulares/alfombra.png';

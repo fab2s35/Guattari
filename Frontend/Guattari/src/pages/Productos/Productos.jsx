@@ -1,5 +1,6 @@
 import React from 'react';
-import './Productos.css'; // Asegúrate de tener este archivo CSS para los estilos
+import './Productos.css'; // Asegúrate de tener este archivo CSS para los estilos 
+
 
 const Procuctos = () => {
   // Datos estáticos de productos
@@ -13,10 +14,10 @@ const Procuctos = () => {
     },
     {
       id: 2,
-      nombre: 'Sofá 2 piezas VANITY azul - rosa',
-      precio: 359.00,
-      imagen: '/src/img/Estancias/1.png',
-      colores: ['morado', 'gris', 'beige']
+      nombre: 'Burrard 83.5" Sofa - Forest Green',
+      precio: 1229.00,
+      imagen: '/src/img/Salas-Sofas/Sofa1.jpg',
+      colores: ['green', 'gris', 'beige']
     },
     {
       id: 3,
@@ -84,7 +85,7 @@ const Procuctos = () => {
   return (
     <div className="productos-container">
       <div className="breadcrumb">
-        <span>Estancias</span> / <span>Salas</span> / <span>Sofás</span>
+        <span>Estancias </span> / <span> Salas </span> / <span> <b>Sofás</b></span>
       </div>
 
       <h1 className="productos-titulo">Sofás</h1>

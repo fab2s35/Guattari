@@ -1,5 +1,5 @@
 .productos-container {
-    max-width: 1200px;
+    max-width: 1180px;
     margin: 0 auto;
     padding: 20px;
     font-family: 'Arial', sans-serif;
@@ -9,10 +9,13 @@
     margin-bottom: 20px;
     font-size: 0.9rem;
     color: #666;
+    justify-content: center;
   }
   
   .breadcrumb span {
-    color: #666;
+    color: #272727;
+    margin: 0 5px;
+
   }
   
   .productos-titulo {
@@ -23,8 +26,8 @@
   
   .productos-divider {
     border: none;
-    border-top: 1px solid #ddd;
-    margin: 10px 0 25px;
+    border-top: 1.5px solid #222222;
+    margin: 13px 0 17px;
   }
   
   .productos-grid {
@@ -39,7 +42,7 @@
   }
   
   .producto-imagen-container {
-    height: 200px;
+    height: 300px;
     overflow: hidden;
     margin-bottom: 10px;
   }

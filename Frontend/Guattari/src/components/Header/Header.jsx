@@ -27,7 +27,7 @@ function Header() {
         type="text"
         className="form-control search-input"
         placeholder="Buscar..."
-      />
+      /> 
       <i className="fas fa-search search-icon"></i>
     </div>
   </div>

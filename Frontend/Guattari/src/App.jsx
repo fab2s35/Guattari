@@ -10,7 +10,7 @@ import AboutUs from './pages/aboutUs/AboutUs.jsx';
 
 
 //Registre, login and porfile
-import Register from './pages/registre/register.jsx';
+import Register from './pages/Register/Register.jsx';
 import Login from './pages/login/login.jsx';
 import Productos from './pages/Productos/Productos.jsx';
 
