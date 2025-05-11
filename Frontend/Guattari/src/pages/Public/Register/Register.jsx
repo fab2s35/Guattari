@@ -1,8 +1,8 @@
 import React from 'react';
 import './Register.css'; //Conectar CSS
 
-import RegisterIMG from '../../img/register-login-profile/register-img.png';
-import Logo from '../../img/register-login-profile/logo-Guattari.png';
+import RegisterIMG from '../../../img/register-login-profile/register-img.png';
+import Logo from '../../../img/register-login-profile/logo-Guattari.png';
 
 function Register(){
     return(

@@ -1,8 +1,8 @@
 import React from 'react';
 import './login.css'; //Conectar CSS
 
-import LoginC from '../../img/register-login-profile/login-img.png';
-import Logo from '../../img/register-login-profile/logo-Guattari.png';
+import LoginC from '../../../img/register-login-profile/login-img.png';
+import Logo from '../../../img/register-login-profile/logo-Guattari.png';
 
 function Login(){
     return(

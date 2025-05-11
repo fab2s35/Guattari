@@ -2,17 +2,17 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Header from './components/Header/Header.jsx';
 import Footer from './components/Footer/Footer.jsx';
-import MainPage from './pages/mainPage/mainPage.jsx';
-import Estancias from './pages/Estancias/Estancias.jsx';
-import Categorias from './pages/subCategorias/subCategorias.jsx';
-import Contactanos from './pages/Contactanos/Contactanos.jsx';
-import AboutUs from './pages/aboutUs/AboutUs.jsx';
+import MainPage from './pages/Public/MainPage/MainPage.jsx';
+import Estancias from './pages/Public/Estancias/Estancias.jsx';
+import Categorias from './pages/Public/Productos/Productos.jsx';
+import Contactanos from './pages/Public/Contactanos/Contactanos.jsx';
+import AboutUs from './pages/Public/AboutUs/AboutUs.jsx';
 
 
 //Registre, login and porfile
-import Register from './pages/Register/Register.jsx';
-import Login from './pages/login/login.jsx';
-import Productos from './pages/Productos/Productos.jsx';
+import Register from './pages/Public/Register/Register.jsx';
+import Login from './pages/Public/Login/Login.jsx';
+import Productos from './pages/Public/Productos/Productos.jsx';
 
 
 function App() {

@@ -2,7 +2,7 @@
     max-width: 1180px;
     margin: 0 auto;
     padding: 20px;
-    font-family: 'Arial', sans-serif;
+    font-family: 'Inter', sans-serif;
   }
   
   .breadcrumb {
@@ -42,7 +42,7 @@
   }
   
   .producto-imagen-container {
-    height: 300px;
+    height: 340px;
     overflow: hidden;
     margin-bottom: 10px;
   }
@@ -84,7 +84,7 @@
     border: 1px solid #ddd;
   }
   
-  /* Colores */
+  /* Colores de las opciones de color*/
   .color-rojo {
     background-color: #e74c3c;
   }
@@ -97,8 +97,8 @@
     background-color: #3498db;
   }
   
-  .color-verde {
-    background-color: #2ecc71;
+  .color-rosa {
+    background-color:rgb(249, 174, 174);
   }
   
   .color-green {
