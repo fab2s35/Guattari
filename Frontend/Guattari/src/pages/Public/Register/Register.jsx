@@ -14,22 +14,27 @@ function Register(){
             <img src={Logo} id="img-logo" alt="" />
             <form  className="text-Register">
            
-            <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Nombre</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
-            </div>
-            <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Email</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
-            </div>
-            <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-                <input type="password" class="form-control" id="exampleInputPassword1"/>
-            </div>
-            <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Confirmar Contraseña</label>
-                <input type="password" class="form-control" id="exampleInputPassword1"/>
-            </div>
+           <div className="conteiner-Text-Conteiner">
+
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Nombre</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1"/>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Confirmar Contraseña</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1"/>
+                </div>
+
+           </div>
+           
             <button class="btn-register" type="submit" ><p>Crear Cuenta</p></button>
             </form>
             
