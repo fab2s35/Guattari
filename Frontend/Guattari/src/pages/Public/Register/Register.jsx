@@ -11,8 +11,9 @@ function Register(){
             <img src={RegisterIMG} id="img-Register" class="img-fluid" alt="..."/>
 
             <div className="centrar"> 
-            <form  className="text-Register">
             <img src={Logo} id="img-logo" alt="" />
+            <form  className="text-Register">
+           
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Nombre</label>
                 <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
@@ -29,8 +30,9 @@ function Register(){
                 <label for="exampleInputPassword1" class="form-label">Confirmar Contraseña</label>
                 <input type="password" class="form-control" id="exampleInputPassword1"/>
             </div>
-            <button class="btn-register" type="submit" >Crear Cuenta</button>
+            <button class="btn-register" type="submit" ><p>Crear Cuenta</p></button>
             </form>
+            
             </div>
             </div>
             

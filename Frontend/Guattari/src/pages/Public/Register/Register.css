@@ -1,39 +1,74 @@
-.conteiner-Register{
+/* Base responsive para celular (imagen arriba y texto abajo) */
+.conteiner-Register {
     display: flex;
+    flex-direction: column;
     align-items: center;
 }
 
-#img-Register{
-    width: 500px; 
+#img-Register {
+    width: 100%;
     height: auto;
+    margin-bottom: 20px;
 }
 
-.text-Register{
-    padding-left: 150px;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: -100;
+
+.centrar{
+    padding: 0;
+    
 }
 
-.btn-register{
-    margin-top: 30px;
-    font-size: 20px;
-    background-color: #923922; 
-    color: white;            
-    border: none;           
-    padding-left: 200px;   
-    padding-right: 200px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    cursor: pointer;
-    padding-top: px;
+
+.btn-register { 
+    width: 20%; 
+    display: block; 
+    float: right;
+    text-align: center;
+
+    background-color: #923922;
+    color: white;
+
+    white-space: nowrap; /* Sin salto de línea */
+    border-radius: 5px; 
+
 }
 
-#img-logo{
-    width: 500px; 
-    height: auto;
-    align-items: center;
-    padding-left: 180px;  
-    margin: -100px;
-    padding-bottom: -400;
+.btn-register p{
+    padding-right: 50%;
+}
+
+#img-logo {
+    display: block;         
+    margin:  auto;      
+    padding: 0;
+    width: 100%;           
+
+}
+
+.text-Register {
+    display: block;         
+    width: 100vw;             
+    max-width: 600px;        
+    padding-right: 10px;
+    padding-left: 10px;
+
+    margin-bottom: 0.25rem;
+    font-weight: 500;
+}
+
+
+
+/* Para pantallas grandes: Imagen a la izquierda, texto a la derecha */
+@media (min-width: 768px) {
+    .conteiner-Register {
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    #img-Register {
+        margin-left: -300px;
+        margin-bottom: 0;
+    }
+
+
 }
