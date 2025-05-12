@@ -5,7 +5,10 @@ import './App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
-import Proveedores from './pages/Proveedores/Proveedores';
+{/*Import de las routes para la navegación*/}
+import Proveedores from './pages/Proveedores/Proveedores.jsx';
+import Inventory from './pages/Inventory/Inventory.jsx'
+import Reviews from './pages/Reviews/Reviews.jsx'
 
 function App() {
 
@@ -16,7 +19,8 @@ function App() {
         <Header />
         <Routes>
           <Route path="/proveedores" element={<Proveedores/>} />
-          {/* <Route path="/ruta" element={<Componente />} /> */}
+          <Route path="/Inventory" element={<Inventory />} />
+          <Route path="/Reviews" element={<Reviews />} /> 
         </Routes>
         <Footer />
       </Router>

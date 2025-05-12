@@ -8,14 +8,6 @@ import Categorias from './Public/Pages/Productos/Productos.jsx';
 import Contactanos from './Public/Pages/Contactanos/Contactanos.jsx';
 import AboutUs from './Public/Pages/AboutUs/AboutUs.jsx';
 
-<<<<<<< HEAD:Frontend/Guattari/src/App.jsx
-//Recuperar Contraseña
-import Code from './Privatee/pages/SecurityCode/Code.jsx';
-import RecoverPassword from './Privatee/pages/RecoverPassword/RecoverPassword.jsx';
-import newPassword from './Privatee/pages/NewPassword/newPassword.jsx';
-
-=======
->>>>>>> d69caf8814d7f2a3ae7b3b95198d3e056449afdd:Frontend/public/Guattari/src/App.jsx
 //Registre, login and porfile
 import Register from './Public/Pages/Register/Register.jsx';
 import Login from './Public/Pages/Login/Login.jsx';

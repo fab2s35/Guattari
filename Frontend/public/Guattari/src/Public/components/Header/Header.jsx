@@ -2,7 +2,6 @@ import React from 'react';
 import './Header.css'; 
 import logoGuattari from '../../img/GUATTARI_logo-ver1.png';
 import IC_cuenta from '../../img/user.png';
-import IC_cart from '../../img/shopping-cart.png';
 import { Link } from 'react-router-dom';
 
 
@@ -34,7 +33,6 @@ function Header() {
 
   <div className="d-flex align-items-center" id="iconos-esquina">
     <img src={IC_cuenta} alt="Cuenta" className="icono-header" />
-    <img src={IC_cart} alt="Carrito" className="icono-header ms-2" />
   </div>
 </div>
 
