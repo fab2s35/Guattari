@@ -2,17 +2,22 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Header from './Public/components/Header/Header.jsx';
 import Footer from './Public/components/Footer/Footer.jsx';
-import MainPage from './Public/pages/MainPage/MainPage.jsx';
-import Estancias from './Public/pages/Estancias/Estancias.jsx';
-import Categorias from './Public/pages/Productos/Productos.jsx';
-import Contactanos from './Public/pages/Contactanos/Contactanos.jsx';
-import AboutUs from './Public/pages/AboutUs/AboutUs.jsx';
+import MainPage from './Public/Pages/MainPage/MainPage.jsx';
+import Estancias from './Public/Pages/Estancias/Estancias.jsx';
+import Categorias from './Public/Pages/Productos/Productos.jsx';
+import Contactanos from './Public/Pages/Contactanos/Contactanos.jsx';
+import AboutUs from './Public/Pages/AboutUs/AboutUs.jsx';
 
+//Recuperar Contraseña
+import Code from './Privatee/pages/SecurityCode/Code.jsx';
+import RecoverPassword from './Privatee/pages/RecoverPassword/RecoverPassword.jsx';
+import newPassword from './Privatee/pages/NewPassword/newPassword.jsx';
 
 //Registre, login and porfile
-import Register from './Public/pages/Register/Register.jsx';
-import Login from './Public/pages/Login/Login.jsx';
-import Productos from './Public/pages/Productos/Productos.jsx';
+import Register from './Public/Pages/Register/Register.jsx';
+import Login from './Public/Pages/Login/Login.jsx';
+import Productos from './Public/Pages/Productos/Productos.jsx';
+
 
 
 function App() {
@@ -33,6 +38,10 @@ function App() {
 
         <Route path="/register" element={<Register/>} />
         <Route path="/login" element={<Login/>} />
+
+        <Route path="/recoverPassword" element={<RecoverPassword/>} />
+        <Route path="/newPassword" element={<newPassword/>} />
+        <Route path="/code" element={<Code/>} />
       </Routes>
 
       <Footer />

@@ -22,7 +22,15 @@
   margin-bottom: 0.3%;
 }
 
-
+#iconos-esquinas{
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  z-index: 10;
+}
 
 
 /*Los estilos de la nevegacion entre paginas*/

@@ -32,12 +32,11 @@ function Header() {
     </div>
   </div>
 
-  <div className="d-flex align-items-center">
+  <div className="d-flex align-items-center" id="iconos-esquina">
     <img src={IC_cuenta} alt="Cuenta" className="icono-header" />
     <img src={IC_cart} alt="Carrito" className="icono-header ms-2" />
   </div>
 </div>
-
 
 
 
@@ -61,6 +60,9 @@ function Header() {
       <Link className="nav-item nav-link" to="/estancias">Estancias</Link>
       <Link className="nav-item nav-link" to="/aboutUs">Sobre Nosotros</Link>
       <Link className="nav-item nav-link" to="/contactanos">Contáctanos</Link>
+      <Link className="nav-item nav-link" to="/code">Code</Link>
+      <Link className="nav-item nav-link" to="/recoverPassword">Correo Contra</Link>
+      <Link className="nav-item nav-link" to="/newPassword">Nueva Contra</Link>
 
     </div>
         </div>

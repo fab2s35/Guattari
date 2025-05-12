@@ -177,7 +177,7 @@
     align-self: flex-start; 
 }
 
-/*Responsive para móvil */
+/*Responsive  */
 @media (max-width: 768px) {
     .fondo-mision {
         flex-direction: column;
@@ -238,7 +238,7 @@
     object-fit: contain;
   }
   
-  /* ✅ Responsive mejorado */
+  /* Responsive*/
   @media (max-width: 768px) {
     .fondo-vision {
       flex-direction: column;

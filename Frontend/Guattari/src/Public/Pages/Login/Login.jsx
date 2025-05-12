@@ -26,7 +26,7 @@ function Login(){
                 <input type="password" class="form-control" id="exampleInputPassword1"/>
             </div>
             <button class="btn-Login" type="submit" ><p>Iniciar Sesión</p></button>
-
+            
             </div>
           
             </form>
@@ -40,3 +40,9 @@ function Login(){
 }
 
 export default Login;
+
+/*<Link to="/recoverPassword" className="p2">
+¿Olvidó su contraseña?
+</Link>*/
+
+/*<Link className="nav-item nav-link" id="p2" to="/recoverPassword">¿Olvidó su contraseña?</Link> */
