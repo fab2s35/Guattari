@@ -105,6 +105,7 @@ function MainPage() {
           </div>
         </div>
 
+
   <div className="banner-right">
     <div className="banner-content-background">
       <p>Guattari coloca a tu alcanze lo necesario</p>

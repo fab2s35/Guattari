@@ -8,7 +8,6 @@ import Categorias from './Public/pages/Productos/Productos.jsx';
 import Contactanos from './Public/pages/Contactanos/Contactanos.jsx';
 import AboutUs from './Public/pages/AboutUs/AboutUs.jsx';
 
-
 //Registre, login and porfile
 import Register from './Public/pages/Register/Register.jsx';
 import Login from './Public/pages/Login/Login.jsx';
