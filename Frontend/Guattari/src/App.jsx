@@ -1,18 +1,18 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
-import Header from './components/Header/Header.jsx';
-import Footer from './components/Footer/Footer.jsx';
-import MainPage from './pages/Public/MainPage/MainPage.jsx';
-import Estancias from './pages/Public/Estancias/Estancias.jsx';
-import Categorias from './pages/Public/Productos/Productos.jsx';
-import Contactanos from './pages/Public/Contactanos/Contactanos.jsx';
-import AboutUs from './pages/Public/AboutUs/AboutUs.jsx';
+import Header from './Public/components/Header/Header.jsx';
+import Footer from './Public/components/Footer/Footer.jsx';
+import MainPage from './Public/pages/MainPage/MainPage.jsx';
+import Estancias from './Public/pages/Estancias/Estancias.jsx';
+import Categorias from './Public/pages/Productos/Productos.jsx';
+import Contactanos from './Public/pages/Contactanos/Contactanos.jsx';
+import AboutUs from './Public/pages/AboutUs/AboutUs.jsx';
 
 
 //Registre, login and porfile
-import Register from './pages/Public/Register/Register.jsx';
-import Login from './pages/Public/Login/Login.jsx';
-import Productos from './pages/Public/Productos/Productos.jsx';
+import Register from './Public/pages/Register/Register.jsx';
+import Login from './Public/pages/Login/Login.jsx';
+import Productos from './Public/pages/Productos/Productos.jsx';
 
 
 function App() {

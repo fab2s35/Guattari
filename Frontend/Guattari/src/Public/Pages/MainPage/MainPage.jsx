@@ -1,40 +1,41 @@
 import React from 'react';
 import './MainPage.css'; 
 //Imports de imgs
-import salaE from '../../../img/caruselEstancias/salaE.jpg';
-import cocinaE from '../../../img/caruselEstancias/cocinaE.jpg';   
-import comedorE from '../../../img/caruselEstancias/comedorE.jpg';
-import bañoE from '../../../img/caruselEstancias/bañoE.jpg';
-import dormitorioE from '../../../img/caruselEstancias/dormitorioE.jpg';
-import decoracionE from '../../../img/caruselEstancias/decoracionE.jpg';
-import iluminacionE from '../../../img/caruselEstancias/iluminacionE.jpg';
-import bannerPrincipal from '../../../img/bannerPrincipal.png'; 
-import bannerGrid1 from '../../../img/bannerGrid1.png';
-import bannerGrid2 from '../../../img/bannerGrid2.png';
-import bannerGrid3 from '../../../img/bannerGrid3.png';
-import guattariLogo from '../../../img/GUATTARI_logo-ver1.png';
-import salaM from '../../../img/salaM.png';
-import habitacionM from '../../../img/habitacionM.png';
-import comedorM from '../../../img/comedorM.png';
-import decoracionM from '../../../img/decoracionM.png';
-import tercerBanner from '../../../img/tercerBanner.png';
-import cuartoBanner from '../../../img/cuartoBanner.png';
-import categoria1Img from '../../../img/Estancias/7.png';
-import sofa1 from '../../../img/sofasss/sofa1.png';
-import sillaCP from '../../../img/categoriasPopulares/sillas.png';
-import mesaNocheCP from '../../../img/categoriasPopulares/mesaNoche.png';
-import alfombraCP from '../../../img/categoriasPopulares/alfombra.png';
-import lamparaCP from '../../../img/categoriasPopulares/lamparas.png';
-import comedorCP from '../../../img/categoriasPopulares/comedor.png';
-import estanteriaCP from '../../../img/categoriasPopulares/estanteria.png';
-import mesasCentroCP from '../../../img/categoriasPopulares/mesasCentro.png';
-import jarronesCP from '../../../img/categoriasPopulares/jarron.png';
-import lampshadeCP from '../../../img/categoriasPopulares/lampshade.png';
-import camaCP from '../../../img/categoriasPopulares/cama.png';
+import salaE from '../../img/caruselEstancias/salaE.jpg';
+import cocinaE from '../../img/caruselEstancias/cocinaE.jpg';   
+import comedorE from '../../img/caruselEstancias/comedorE.jpg';
+import bañoE from '../../img/caruselEstancias/bañoE.jpg';
+import dormitorioE from '../../img/caruselEstancias/dormitorioE.jpg';
+import decoracionE from '../../img/caruselEstancias/decoracionE.jpg';
+import iluminacionE from '../../img/caruselEstancias/iluminacionE.jpg';
+import bannerPrincipal from '../../img/bannerPrincipal.png'; 
+import bannerGrid1 from '../../img/bannerGrid1.png';
+import bannerGrid2 from '../../img/bannerGrid2.png';
+import bannerGrid3 from '../../img/bannerGrid3.png';
+import guattariLogo from '../../img/GUATTARI_logo-ver1.png';
+import salaM from '../../img/salaM.png';
+import habitacionM from '../../img/habitacionM.png';
+import comedorM from '../../img/comedorM.png';
+import decoracionM from '../../img/decoracionM.png';
+import tercerBanner from '../../img/tercerBanner.png';
+import cuartoBanner from '../../img/cuartoBanner.png';
+import categoria1Img from '../../img/Estancias/7.png';
+import sofa1 from '../../img/sofasss/sofa1.png';
+import sillaCP from '../../img/categoriasPopulares/sillas.png';
+import mesaNocheCP from '../../img/categoriasPopulares/mesaNoche.png';
+import alfombraCP from '../../img/categoriasPopulares/alfombra.png';
+import lamparaCP from '../../img/categoriasPopulares/lamparas.png';
+import comedorCP from '../../img/categoriasPopulares/comedor.png';
+import estanteriaCP from '../../img/categoriasPopulares/estanteria.png';
+import mesasCentroCP from '../../img/categoriasPopulares/mesasCentro.png';
+import jarronesCP from '../../img/categoriasPopulares/jarron.png';
+import lampshadeCP from '../../img/categoriasPopulares/lampshade.png';
+import camaCP from '../../img/categoriasPopulares/cama.png';
 
 function MainPage() {
   return (
     <>  
+    {/*Scroll horizontal de estancias circulares*/}
       <div id="slider-rooms" className="full-width-xs">
         <h2>Estancias</h2>
         <wc-carousel className="carousel" id="slider-rooms-carousel">
@@ -89,7 +90,10 @@ function MainPage() {
           </a>
         </wc-carousel>
       </div>
+{/*Fin del scroll horizontal de estancias*/}
 
+
+      {/* Primer Banner y banner Principal*/}
       <div id="principalBanner" className="full-width"> 
         <img src={bannerPrincipal} alt="Banner Principal" className="banner-img" />
 
@@ -110,10 +114,10 @@ function MainPage() {
     </div>
   </div>
 </div>
+{/*Fin del Banner Principal*/}
 
 
-
-
+      {/* Segundo Banner y banner Grid*/}
       <div className="banner-grid">
         <div className="banner-grid-left">
           <img src={bannerGrid1} alt="Banner 1" className="banner-grid-img" />
@@ -138,9 +142,10 @@ function MainPage() {
     </div>
   </div>
 </div>
+{/*Fin del Banner Grid*/}
 
 
-
+{/* Opciones de estancias*/}
 <div className="bedroom-line">
     <h3>¿Qué vas a transformar hoy?</h3>
     <hr />
@@ -171,10 +176,10 @@ function MainPage() {
         </div>
     </div>
 </div>
+{/*Fin de las opciones de estancias*/}
 
 
-
-
+{/* Tercer Banner (blanco dividido en dos png)*/}
 <div className="tercer-banner">
     <div className="tercer-banner-content">
       <div className="tercer-banner-img">
@@ -189,11 +194,12 @@ function MainPage() {
        </div>
   </div>
 </div>
+{/*Fin del tercer Banner*/}
 
 
 
 
-
+{/*Subcategorias populares*/}
 <div className="categorias-populares">
 <h3>Categorias populares</h3>
     <hr></hr>
@@ -253,10 +259,10 @@ function MainPage() {
 </div>        
      </div>       
 </div>
+{/*Fin de las subcategorias populares*/}
 
 
-
-
+{/*Cuarto Banner del sillón*/}
 <hr className='border-1'></hr>
 <div className="cuarto-banner">
   <div className="cuarto-banner-content">
@@ -269,11 +275,7 @@ function MainPage() {
   </div>
 </div>
 <hr className='border-2'></hr>
-
-
-
-
-
+{/*Fin del cuarto Banner*/}
 
 
 </> 

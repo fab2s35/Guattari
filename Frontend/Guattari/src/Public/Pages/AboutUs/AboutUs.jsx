@@ -1,20 +1,21 @@
 import React from 'react';
 import './AboutUs.css'; //Conectar CSS
-import AUBanner from '../../../img/aboutUsBanner/Banner_AboutUs_One.png';
-import AUBanner2 from '../../../img/aboutUsBanner/Banner_AboutUs_two.png';
-import AUBanner3 from '../../../img/aboutUsBanner/Banner_AboutUs_Three.png';
-import GuattariLogo from '../../../img/aboutUsBanner/GUATTARI_logo.png';
-import AUSofa from '../../../img/muebles-AboutUs/sofa-One.png';
-import AUSofaTwo from '../../../img/muebles-AboutUs/sofa-Two.png';
-import AUSofaThree from '../../../img/muebles-AboutUs/sofa-Three.png';
-import AUMision from '../../../img/muebles-AboutUs/misioon.png';
-import AUVision from '../../../img/muebles-AboutUs/visioon.png';
-import AUValores from '../../../img/muebles-AboutUs/valores.png';
+import AUBanner from '../../img/aboutUsBanner/Banner_AboutUs_One.png';
+import AUBanner2 from '../../img/aboutUsBanner/Banner_AboutUs_two.png';
+import AUBanner3 from '../../img/aboutUsBanner/Banner_AboutUs_Three.png';
+import GuattariLogo from '../../img/aboutUsBanner/GUATTARI_logo.png';
+import AUSofa from '../../img/muebles-AboutUs/sofa-One.png';
+import AUSofaTwo from '../../img/muebles-AboutUs/sofa-Two.png';
+import AUSofaThree from '../../img/muebles-AboutUs/sofa-Three.png';
+import AUMision from '../../img/muebles-AboutUs/misioon.png';
+import AUVision from '../../img/muebles-AboutUs/visioon.png';
+import AUValores from '../../img/muebles-AboutUs/valores.png';
 
 //Integrantes
-import Fab from '../../../img/muebles-AboutUs/fab.png'
-import Pao from '../../../img/muebles-AboutUs/pao.png'
-import Dav from '../../../img/muebles-AboutUs/dav.png'
+import Fab from '../../img/muebles-AboutUs/fab.png';
+import Pao from '../../img/muebles-AboutUs/pao.png';
+import Dav from '../../img/muebles-AboutUs/dav.png';
+
 
 function AboutUs() {
     return(

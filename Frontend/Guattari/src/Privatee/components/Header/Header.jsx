@@ -58,9 +58,11 @@ function Header() {
 
         <div className="navbar-nav">
       <Link className="nav-item nav-link inicio-link active" to="/mainPage">Inicio</Link>
-      <Link className="nav-item nav-link" to="/estancias">Estancias</Link>
-      <Link className="nav-item nav-link sobreNosotros-link active" to="/aboutUs">Sobre Nosotros</Link>
-      <Link className="nav-item nav-link" to="/contactanos">Contáctanos</Link>
+      <Link className="nav-item nav-link" to="/Suppliers">Proveedores</Link>
+      <Link className="nav-item nav-link" to="/Branches">Sucursales</Link>
+      <Link className="nav-item nav-link" to="/Employees">Empleados</Link>
+      <Link className="nav-item nav-link" to="/Inventory">Inventario</Link>
+      <Link className="nav-item nav-link" to="/Reviews">Reseñas</Link>
     </div>
         </div>
       </nav>
