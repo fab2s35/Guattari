@@ -58,7 +58,7 @@ function Header() {
 
         <div className="navbar-nav">
       <Link className="nav-item nav-link inicio-link active" to="/mainPage">Inicio</Link>
-      <Link className="nav-item nav-link" to="/Suppliers">Proveedores</Link>
+      <Link className="nav-item nav-link" to="/proveedores">Proveedores</Link>
       <Link className="nav-item nav-link" to="/Branches">Sucursales</Link>
       <Link className="nav-item nav-link" to="/Employees">Empleados</Link>
       <Link className="nav-item nav-link" to="/Inventory">Inventario</Link>

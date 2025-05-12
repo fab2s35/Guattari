@@ -5,6 +5,7 @@ import './App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
+import Proveedores from './pages/Proveedores/Proveedores';
 
 function App() {
 
@@ -14,7 +15,7 @@ function App() {
       <Router>
         <Header />
         <Routes>
-          {/* Aquí van las rutas de tus componentes */}
+          <Route path="/proveedores" element={<Proveedores/>} />
           {/* <Route path="/ruta" element={<Componente />} /> */}
         </Routes>
         <Footer />
