@@ -74,7 +74,7 @@ function AboutUs() {
 
 
 
-        <div>
+        <div  class="card-container">
 
             <div className="Card-History"> 
 
@@ -142,38 +142,45 @@ function AboutUs() {
 
 
 
-        <div className="conteiner-mision">
-        <img src={AUMision} id="imgMision" class="rounded float-end" alt="..."/>
-            <div className="fondo-mision">
-            <h2 className="textMision"><b>Misión</b></h2>
-            <p className="textMision">Ser una empresa que proporcione a nivel nacional productos que satisfagan la necesidad de los clientes desde un
-                punto de vista artístico y práctico, destacando en el mercado con una estética nostálgica junto a la comodidad 
-                y funcional de lo moderno.</p>
-            </div>
+        <div className="fondo-mision">
+        <div className="textMision">
+            <h2><b>Misión</b></h2>
+            <p>
+            Ser una empresa que proporcione a nivel nacional productos que satisfagan la necesidad de los clientes desde un
+            punto de vista artístico y práctico, destacando en el mercado con una estética nostálgica junto a la comodidad 
+            y funcional de lo moderno.
+            </p>
+        </div>
+        <img src={AUMision} id="imgMision" alt="Misión" />
         </div>
 
 
-        <div className="conteiner-vision">
-        <img src={AUVision} id="imgVision" class="rounded float-start" alt="..."/>
-            <div className="fondo-vision">
-            <h2 className="textVision"><b>Visión</b></h2>
-            <p className="textVision">Ser una empresa que proporcione a nivel nacional productos que satisfagan la necesidad de los clientes desde un
-                punto de vista artístico y práctico, destacando en el mercado con una estética nostálgica junto a la comodidad 
-                y funcional de lo moderno.</p>
-            </div>
+
+        <div className="fondo-vision">
+        <img src={AUVision} id="imgVision" className="rounded" alt="..." />
+        <div className="textVision">
+            <h2><b>Visión</b></h2>
+            <p>
+            Ser una empresa que proporcione a nivel nacional productos que satisfagan la necesidad de los clientes desde un
+            punto de vista artístico y práctico, destacando en el mercado con una estética nostálgica junto a la comodidad 
+            y funcional de lo moderno.
+            </p>
+        </div>
         </div>
 
 
         <div className="conteiner-valores">
-            <div className="fondo-valores">
-            <img src={AUValores} id="imgValores" class="rounded float-end" alt="..."/>
+        <div className="fondo-valores">
+            <img src={AUValores} id="imgValores" className="rounded float-end" alt="Imagen de valores" />
             <h2 className="textValores"><b>Valores</b></h2>
-            <p className="textValores">1) Compromiso al realizar y exportar productos en una excelente condición. <br />
-            2) Constante innovación a la hora de crear productos. <br />
+            <p className="textValores">
+            1) Compromiso al realizar y exportar productos en una excelente condición. <br />
+            2) Constante innovación a la hora de crear productos. <br />
             3) Proporcionar muebles que lleguen a nuestros estándares de calidad junto a un precio justo.
             </p>
-            </div>
         </div>
+        </div>
+
 
 
         <div>
