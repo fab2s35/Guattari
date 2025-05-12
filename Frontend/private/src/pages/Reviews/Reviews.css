@@ -1,0 +1,268 @@
+
+/*Titulo de inventario*/
+.container-inventory {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .productos-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .productos-divider {
+    border: none;
+    height: 1px;
+    background-color: #000000;
+    margin-bottom: 20px;
+  }
+  
+  
+  
+  
+  
+  
+  
+  /* Banner */
+  .principalBanner {
+    position: relative;
+    width: 60%;
+    height: 60vh;
+    margin-bottom: 1.5%;
+    justify-self: center;
+}
+
+
+  
+  
+  
+  
+  
+  /* Lista */
+  .main-container {
+    background-color: #f0f0f0;
+    padding: 20px;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .review-list-container {
+    max-width: 880px;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+  }
+  
+  /* Buscador */
+  .search-bar {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 20px;
+    padding: 8px 16px;
+    width: 66%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .search-input {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 14px;
+  }
+  
+  .add-review-btn {
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    padding: 8px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+  
+  .category-btns-container {
+    display: flex;
+    gap: 8px;
+    padding: 16px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  
+  .category-btn {
+    background-color: #EC643D;
+    color: white;
+    border-radius: 5px;
+    padding: 8px 12px;
+    font-weight: 530;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+  
+  .subcategory-btn {
+    background-color: #838450;
+    color: white;
+    border-radius: 5px;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: 530;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+  
+  .review-list {
+    padding-bottom: 16px;
+    margin-left: 3%;
+  }
+  
+  .review-item {
+    display: flex;
+    padding: 16px;
+    border-bottom: 1px solid #f0f0f0;
+    position: relative;
+  }
+  
+  .review-image {
+    width: 80px;
+    height: 80px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    position: relative;
+  }
+  
+  .review-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  
+  
+  .review-info-columns {
+    display: flex;
+    gap: 24px;
+    margin-left: 16px;
+    flex-grow: 1;
+  }
+  
+  .review-column {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  
+  .review-detail {
+    margin-bottom: 4px;
+  }
+  
+  .review-label {
+    font-weight: bold;
+    font-size: 16px;
+    margin-right: 4px;
+  }
+  
+  .review-value {
+    font-size: 16px;
+  }
+  
+  .action-buttons {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    right: 16px;
+    top: 16px;
+  }
+  
+  .action-btn {
+    width: 40px;
+    height: 40px;
+    background-color: #8B0000;
+    border-radius: 5px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: white;
+  }
+  
+  .delete-btn {
+    margin-bottom: 4px;
+  }
+  
+  .scrollbar {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 48px;
+    background-color: #ff4d4d;
+    border-radius: 3px;
+  }
+  
+
+
+
+
+
+
+
+
+
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .header,
+    .category-btns-container {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+  
+    .search-bar {
+      width: 100%;
+    }
+  
+    .review-item {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .review-info-columns {
+      flex-direction: column;
+      margin-left: 0;
+      gap: 12px;
+    }
+  
+    .action-buttons {
+      position: static;
+      flex-direction: row;
+      margin-top: 8px;
+      gap: 8px;
+    }
+  
+    .review-img {
+      max-width: 100%;
+      margin-bottom: 2%;
+      margin-left: 2%;
+    }
+  }
+  
