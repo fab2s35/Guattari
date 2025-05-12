@@ -1,0 +1,12 @@
+/* Si decides agregar un archivo CSS adicional para personalización */
+.btn-accion {
+  background-color: #f44336; /* Rojo brillante */
+  color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-accion:hover {
+  background-color: #d32f2f; /* Rojo más oscuro */
+}

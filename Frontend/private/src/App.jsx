@@ -9,6 +9,7 @@ import Footer from './components/Footer/Footer';
 import Proveedores from './pages/Proveedores/Proveedores.jsx';
 import Inventory from './pages/Inventory/Inventory.jsx'
 import Reviews from './pages/Reviews/Reviews.jsx'
+import Sucursales from './pages/Sucursales/Sucursales.jsx';
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/proveedores" element={<Proveedores/>} />
+          <Route path="/sucursales" element={<Sucursales/>} />
           <Route path="/Inventory" element={<Inventory />} />
           <Route path="/Reviews" element={<Reviews />} /> 
         </Routes>
