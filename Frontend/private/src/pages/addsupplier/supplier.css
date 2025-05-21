@@ -1,0 +1,4 @@
+/* AgregarSucursal.css */
+.agregar-sucursal-container {
+  min-height: calc(100vh - 120px); /* Ajustar según altura del header y footer */
+}

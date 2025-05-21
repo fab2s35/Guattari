@@ -1,83 +1,98 @@
-import React from 'react';
-import { Search, PlusCircle, Edit, Trash2 } from 'lucide-react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Agrega este import
 import './Proveedores.css';
-import contenedorImg from '../../img/contenedor.png'; // Ruta ajustada para la carpeta img
+import containerImage from '../../img/contenedor.png'; // Asegúrate de tener la imagen en esta ruta
 
-export default function Proveedores() {
-  // Datos de ejemplo solo para visualización
-  const proveedoresEjemplo = [
-    { id: 1, nombre: "Maderas del Norte", email: "contacto@maderasnorte.com", telefono: "+503 2345 6789", ubicacion: "Nacional" },
-    { id: 2, nombre: "Maderas del Sur", email: "contacto@maderassur.com", telefono: "+503 2345 6789", ubicacion: "Nacional" },
-    { id: 3, nombre: "Maderas del Este", email: "contacto@maderaseste.com", telefono: "+503 2345 6789", ubicacion: "Nacional" },
-    { id: 4, nombre: "Maderas del Oeste", email: "contacto@maderasoeste.com", telefono: "+503 2345 6789", ubicacion: "Nacional" },
-    { id: 5, nombre: "Maderas del Centro", email: "contacto@maderascentro.com", telefono: "+503 2345 6789", ubicacion: "Nacional" },
-    { id: 6, nombre: "Maderas Importadas", email: "contacto@maderasimportadas.com", telefono: "+503 2345 6789", ubicacion: "Nacional" },
-    { id: 7, nombre: "Maderas del Valle", email: "contacto@maderasvalle.com", telefono: "+503 2345 6789", ubicacion: "Nacional" },
-    { id: 8, nombre: "Maderas Exportadas", email: "contacto@maderasexportadas.com", telefono: "+503 2345 6789", ubicacion: "Nacional" },
-  ];
+const Proveedores = () => {
+  const [proveedores, setProveedores] = useState([
+    { id: 1, nombre: 'Maderas del Norte', email: 'contacto@maderasnorte.com', telefono: '+503 2345 6789', ubicacion: 'Nacional' },
+    { id: 2, nombre: 'Maderas del Norte', email: 'contacto@maderasnorte.com', telefono: '+503 2345 6789', ubicacion: 'Nacional' },
+    { id: 3, nombre: 'Maderas del Norte', email: 'contacto@maderasnorte.com', telefono: '+503 2345 6789', ubicacion: 'Nacional' },
+    { id: 4, nombre: 'Maderas del Norte', email: 'contacto@maderasnorte.com', telefono: '+503 2345 6789', ubicacion: 'Nacional' },
+    { id: 5, nombre: 'Maderas del Norte', email: 'contacto@maderasnorte.com', telefono: '+503 2345 6789', ubicacion: 'Nacional' },
+    { id: 6, nombre: 'Maderas del Norte', email: 'contacto@maderasnorte.com', telefono: '+503 2345 6789', ubicacion: 'Nacional' },
+    { id: 7, nombre: 'Maderas del Norte', email: 'contacto@maderasnorte.com', telefono: '+503 2345 6789', ubicacion: 'Nacional' },
+    { id: 8, nombre: 'Maderas del Norte', email: 'contacto@maderasnorte.com', telefono: '+503 2345 6789', ubicacion: 'Nacional' },
+  ]);
+
+  const navigate = useNavigate(); // Hook para navegación
+
+  // Esta función sería implementada más adelante para la funcionalidad
+  const handleDelete = (id) => {
+    console.log(`Eliminar proveedor con ID: ${id}`);
+  };
+
+  // Esta función sería implementada más adelante para la funcionalidad
+  const handleEdit = (id) => {
+    console.log(`Editar proveedor con ID: ${id}`);
+  };
 
   return (
     <div className="proveedores-container">
-      {/* Espacio para la imagen en la parte superior */}
-      <div className="image-container">
-        <img src={contenedorImg} alt="Contenedor de carga" className="header-image" />
+      <h1 className="proveedores-title">Proveedores</h1>
+      <hr className="divider" />
+      
+      <div className="banner-container">
+        <img src={containerImage} alt="Contenedores de carga" className="banner-image" />
       </div>
       
-      <div className="header">
-        <h1>Listado de proveedores</h1>
-        <div className="separator"></div>
-      </div>
-
-      <div className="content-container">
-        <div className="search-container">
-          <div className="search-input-container">
-            <Search className="search-icon" />
-            <input
-              type="text"
-              placeholder="Buscar..."
-              className="search-input"
-            />
+      <div className="proveedores-content">
+        <h2 className="proveedores-subtitle">Listado de proveedores</h2>
+        
+        <div className="proveedores-panel">
+          <div className="search-add-container">
+            <div className="search-container">
+              <input type="text" placeholder="Buscar..." className="search-input" />
+            </div>
+            <button 
+              className="add-button"
+              onClick={() => navigate('/supplier')}
+            >
+              <span className="plus-icon">+</span> Agregar Proveedor
+            </button>
           </div>
-          <button className="add-button">
-            <PlusCircle className="add-icon" />
-            <span>Agregar Proveedor</span>
-          </button>
-        </div>
-
-        <div className="table-container">
-          <table className="providers-table">
-            <thead>
-              <tr>
-                <th>Proveedor</th>
-                <th>Email</th>
-                <th>Teléfono</th>
-                <th>Ubicación</th>
-                <th className="actions-column">Acciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              {proveedoresEjemplo.map((proveedor) => (
-                <tr key={proveedor.id}>
-                  <td>{proveedor.nombre}</td>
-                  <td>{proveedor.email}</td>
-                  <td>{proveedor.telefono}</td>
-                  <td>{proveedor.ubicacion}</td>
-                  <td className="actions-cell">
-                    <div className="action-buttons">
-                      <button className="edit-button">
-                        <Edit className="action-icon" />
-                      </button>
-                      <button className="delete-button">
-                        <Trash2 className="action-icon" />
-                      </button>
-                    </div>
-                  </td>
+          
+          <div className="proveedores-table-container">
+            <table className="proveedores-table">
+              <thead>
+                <tr>
+                  <th>Proveedor</th>
+                  <th>Email</th>
+                  <th>Teléfono</th>
+                  <th>Ubicación</th>
+                  <th>Acciones</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {proveedores.map((proveedor) => (
+                  <tr key={proveedor.id}>
+                    <td>{proveedor.nombre}</td>
+                    <td>{proveedor.email}</td>
+                    <td>{proveedor.telefono}</td>
+                    <td>{proveedor.ubicacion}</td>
+                    <td className="actions-cell">
+                      <button 
+                        className="action-button edit-button" 
+                        onClick={() => handleEdit(proveedor.id)}
+                      >
+                        <i className="edit-icon">✏️</i>
+                      </button>
+                      <button 
+                        className="action-button delete-button" 
+                        onClick={() => handleDelete(proveedor.id)}
+                      >
+                        <i className="delete-icon">🗑️</i>
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default Proveedores;

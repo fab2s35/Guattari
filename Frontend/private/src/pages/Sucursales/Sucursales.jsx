@@ -1,90 +1,99 @@
-import React from 'react';
-import { Search, PlusCircle, Edit, Trash2 } from 'lucide-react';
-import map from '../../img/map.png';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Agrega este import
+import './Sucursales.css';
+import containerImage from '../../img/map.png'; // Asegúrate de tener la imagen en esta ruta
 
-export default function Sucursales() {
-  // Datos de ejemplo solo para visualización
-  const sucursaleEjemplo = [
-    { id: 1, nombre: "Maderas del Norte", email: "contacto@maderasnorte.com", telefono: "+503 2345 6789", ubicacion: "Nacional" },
-    { id: 2, nombre: "Maderas del Sur", email: "contacto@maderassur.com", telefono: "+503 2345 6789", ubicacion: "Nacional" },
-    { id: 3, nombre: "Maderas del Este", email: "contacto@maderaseste.com", telefono: "+503 2345 6789", ubicacion: "Nacional" },
-    { id: 4, nombre: "Maderas del Oeste", email: "contacto@maderasoeste.com", telefono: "+503 2345 6789", ubicacion: "Nacional" },
-    { id: 5, nombre: "Maderas del Centro", email: "contacto@maderascentro.com", telefono: "+503 2345 6789", ubicacion: "Nacional" },
-    { id: 6, nombre: "Maderas Importadas", email: "contacto@maderasimportadas.com", telefono: "+503 2345 6789", ubicacion: "Nacional" },
-  ];
+const Sucursales = () => {
+  const [sucursales, setSucursales] = useState([
+    { id: 1, nombre: 'Sucursal Central', direccion: 'Calle Principal #123', telefono: '+503 2345 6789', encargado: 'Juan Pérez' },
+    { id: 2, nombre: 'Sucursal Norte', direccion: 'Avenida Norte #456', telefono: '+503 2345 6789', encargado: 'María López' },
+    { id: 3, nombre: 'Sucursal Sur', direccion: 'Boulevard Sur #789', telefono: '+503 2345 6789', encargado: 'Carlos Ramírez' },
+    { id: 4, nombre: 'Sucursal Oriente', direccion: 'Calle Oriente #101', telefono: '+503 2345 6789', encargado: 'Ana Martínez' },
+    { id: 5, nombre: 'Sucursal Poniente', direccion: 'Avenida Poniente #202', telefono: '+503 2345 6789', encargado: 'Roberto Gómez' },
+    { id: 6, nombre: 'Sucursal Centro', direccion: 'Plaza Central #303', telefono: '+503 2345 6789', encargado: 'Lucía Hernández' },
+    { id: 7, nombre: 'Sucursal Comercial', direccion: 'Centro Comercial #404', telefono: '+503 2345 6789', encargado: 'Daniel Castro' },
+    { id: 8, nombre: 'Sucursal Industrial', direccion: 'Zona Industrial #505', telefono: '+503 2345 6789', encargado: 'Sofía Mendoza' },
+  ]);
+
+  const navigate = useNavigate(); // Hook para navegación
+
+  // Esta función sería implementada más adelante para la funcionalidad
+  const handleDelete = (id) => {
+    console.log(`Eliminar sucursal con ID: ${id}`);
+  };
+
+  // Esta función sería implementada más adelante para la funcionalidad
+  const handleEdit = (id) => {
+    console.log(`Editar sucursal con ID: ${id}`);
+  };
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-6">
-      <div className="mb-6">
-        <h1 className="text-2xl font-bold text-gray-800 mb-1">Sucursales</h1>
-        <div className="border-b border-gray-300 mb-4"></div>
-        
-        <div className="w-full h-48 bg-gray-200 mb-6 overflow-hidden">
-          <img 
-            src={map}
-            alt="Contenedores de carga" 
-            className="w-full h-full object-cover"
-          />
-        </div>
-        
-        <h2 className="text-lg font-medium text-gray-700 mb-2">Listado de Sucursales</h2>
-        <div className="border-b border-gray-300 mb-6"></div>
+    <div className="sucursales-container">
+      <h1 className="sucursales-title">Sucursales</h1>
+      <hr className="divider" />
+      
+      <div className="banner-container">
+        <img src={containerImage} alt="Imagen de sucursales" className="banner-image" />
       </div>
-
-      <div className="bg-gray-100 p-6 rounded-md">
-        <div className="flex items-center gap-4 mb-6">
-          <div className="relative flex-1">
-            <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
-              <Search className="h-5 w-5 text-gray-400" />
+      
+      <div className="sucursales-content">
+        <h2 className="sucursales-subtitle">Listado de sucursales</h2>
+        
+        <div className="sucursales-panel">
+          <div className="search-add-container">
+            <div className="search-container">
+              <i className="search-icon"></i>
+              <input type="text" placeholder="Buscar..." className="search-input" />
             </div>
-            <input
-              type="text"
-              placeholder="Buscar..."
-              className="pl-10 pr-4 py-2 w-full rounded-md border-gray-300 bg-white"
-            />
+            <button
+              className="add-button"
+              onClick={() => navigate('/branch')}
+            >
+              <span className="plus-icon">+</span> Agregar Sucursal
+            </button>
           </div>
-          <button
-            className="flex items-center justify-center gap-2 bg-black text-white py-2 px-4 rounded-md hover:bg-gray-800"
-          >
-            <PlusCircle className="h-5 w-5" />
-            <span>Agregar Sucursal</span>
-          </button>
-        </div>
-
-        <div className="overflow-x-auto">
-          <table className="min-w-full bg-white rounded-md overflow-hidden">
-            <thead>
-              <tr className="bg-gray-50 text-left">
-                <th className="px-6 py-3 text-gray-700">Proveedor</th>
-                <th className="px-6 py-3 text-gray-700">Email</th>
-                <th className="px-6 py-3 text-gray-700">Teléfono</th>
-                <th className="px-6 py-3 text-gray-700">Ubicación</th>
-                <th className="px-6 py-3 text-center">Acciones</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-200">
-              {sucursaleEjemplo.map((sucursal) => (
-                <tr key={sucursal.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4">{sucursal.nombre}</td>
-                  <td className="px-6 py-4">{sucursal.email}</td>
-                  <td className="px-6 py-4">{sucursal.telefono}</td>
-                  <td className="px-6 py-4">{sucursal.ubicacion}</td>
-                  <td className="px-6 py-4">
-                    <div className="flex justify-center gap-2">
-                      <button className="p-1.5 bg-red-600 text-white rounded-md hover:bg-red-700">
-                        <Edit className="h-4 w-4" />
-                      </button>
-                      <button className="p-1.5 bg-red-600 text-white rounded-md hover:bg-red-700">
-                        <Trash2 className="h-4 w-4" />
-                      </button>
-                    </div>
-                  </td>
+          
+          <div className="sucursales-table-container">
+            <table className="sucursales-table">
+              <thead>
+                <tr>
+                  <th>Sucursal</th>
+                  <th>Dirección</th>
+                  <th>Teléfono</th>
+                  <th>Encargado</th>
+                  <th>Acciones</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {sucursales.map((sucursal) => (
+                  <tr key={sucursal.id}>
+                    <td>{sucursal.nombre}</td>
+                    <td>{sucursal.direccion}</td>
+                    <td>{sucursal.telefono}</td>
+                    <td>{sucursal.encargado}</td>
+                    <td className="actions-cell">
+                      <button 
+                        className="action-button edit-button" 
+                        onClick={() => handleEdit(sucursal.id)}
+                      >
+                        <i className="edit-icon">✏️</i>
+                      </button>
+                      <button 
+                        className="action-button delete-button" 
+                        onClick={() => handleDelete(sucursal.id)}
+                      >
+                        <i className="delete-icon">🗑️</i>
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default Sucursales;

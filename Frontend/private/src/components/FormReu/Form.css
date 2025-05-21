@@ -1,0 +1,84 @@
+/* FormTemplate.css */
+
+.form-template-container {
+  padding: 0 20px;
+  max-width: 100%;
+  background-color: #f7f7f7;
+}
+
+.form-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.form-divider {
+  border: none;
+  height: 1px;
+  background-color: #ddd;
+  margin-bottom: 20px;
+}
+
+.form-content-wrapper {
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.form-content {
+  width: 100%;
+}
+
+.form-panel {
+  background-color: #eee;
+  border-radius: 5px;
+  padding: 20px;
+  border: 1px solid #0099ff;
+}
+
+.form-field {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: normal;
+  color: #333;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: white;
+  font-size: 14px;
+  outline: none;
+}
+
+.form-input:focus {
+  border-color: #0099ff;
+}
+
+.form-submit-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.form-submit-button {
+  background-color: #000;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  padding: 10px 40px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.form-submit-button:hover {
+  background-color: #333;
+}
