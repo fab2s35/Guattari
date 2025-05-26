@@ -3,7 +3,9 @@ Miembros del equipo
 ──────────────────────────────────────────────────
 
 Fabiola Aracely Retana Osorto 20200393 
+
 Paola Andrea Rivera Martínez 20230523
+
 David Miguel Zepeda Romero 20230271
 
 
