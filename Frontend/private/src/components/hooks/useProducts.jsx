@@ -1,75 +1,83 @@
-import { useEffect, useState } from 'react';
-
-const API_URL = 'http://localhost:3000/api/productos'; // cambia si es necesario
+// useProducts.js
+import { useState, useCallback } from 'react';
 
 const useProducts = () => {
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   // Obtener productos
-  const fetchProducts = async () => {
+  const fetchProducts = useCallback(async () => {
+    setLoading(true);
     try {
-      const res = await fetch(API_URL);
-      const data = await res.json();
+      const response = await fetch("http://localhost:4000/api/products");
+      if (!response.ok) throw new Error("Error al obtener productos");
+      const data = await response.json();
       setProducts(data);
-    } catch (err) {
-      console.error("Error al obtener productos:", err);
+    } catch (error) {
+      setError(error.message);
+      console.error("Error fetching products:", error);
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
-  // Crear producto
-  const addProduct = async (product) => {
+  // Agregar producto
+  const addProduct = async (newProduct) => {
     try {
-      const res = await fetch(API_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(product),
+      const response = await fetch("http://localhost:4000/api/products", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newProduct),
       });
-      const newProduct = await res.json();
-      setProducts([...products, newProduct]);
-    } catch (err) {
-      console.error("Error al agregar producto:", err);
+      if (!response.ok) throw new Error("Error al agregar el producto");
+      const addedProduct = await response.json();
+      setProducts((prevProducts) => [...prevProducts, addedProduct]);
+    } catch (error) {
+      setError(error.message);
+      console.error("Error adding product:", error);
     }
   };
 
   // Actualizar producto
-  const updateProduct = async (id, updatedData) => {
+  const updateProduct = async (updatedProduct) => {
     try {
-      await fetch(`${API_URL}/${id}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(updatedData),
+      const response = await fetch(`http://localhost:4000/api/products/${updatedProduct._id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updatedProduct),
       });
-      fetchProducts(); // Refresca lista
-    } catch (err) {
-      console.error("Error al actualizar producto:", err);
+      if (!response.ok) throw new Error("Error al actualizar el producto");
+      const updated = await response.json();
+      setProducts((prevProducts) =>
+        prevProducts.map((product) =>
+          product._id === updated._id ? updated : product
+        )
+      );
+    } catch (error) {
+      setError(error.message);
+      console.error("Error updating product:", error);
     }
   };
 
   // Eliminar producto
-  const deleteProduct = async (id) => {
+  const deleteProduct = async (productId) => {
     try {
-      await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
-      setProducts(products.filter((p) => p._id !== id));
-    } catch (err) {
-      console.error("Error al eliminar producto:", err);
+      const response = await fetch(`http://localhost:4000/api/products/${productId}`, {
+        method: "DELETE",
+      });
+      if (!response.ok) throw new Error("Error al eliminar el producto");
+      setProducts((prevProducts) =>
+        prevProducts.filter((product) => product._id !== productId)
+      );
+    } catch (error) {
+      setError(error.message);
+      console.error("Error deleting product:", error);
     }
   };
 
-  useEffect(() => {
-    fetchProducts();
-  }, []);
-
-  return {
-    products,
-    loading,
-    addProduct,
-    updateProduct,
-    deleteProduct,
-    fetchProducts,
-  };
+  return { products, loading, error, fetchProducts, addProduct, updateProduct, deleteProduct };
 };
 
 export default useProducts;
+

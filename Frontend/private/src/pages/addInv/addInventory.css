@@ -1,16 +1,19 @@
+/* Contenedor principal con fondo gris */
 .agregar-inventario-container {
   min-height: 100vh;
-  background-color: #f8f9fa;
+  background-color: #f8f9fa; /* Fondo gris claro para toda la página */
   padding: 0;
   margin: 0;
 }
 
+/* Ajuste para asegurarse de que el contenedor interno se vea bien */
 .content-wrapper {
   max-width: 1000px;
   margin: 0 auto;
   padding: 40px 20px;
 }
 
+/* Título de la página */
 .page-title {
   font-size: 32px;
   color: #333;
@@ -20,14 +23,16 @@
   padding-bottom: 15px;
 }
 
+/* Contenedor del formulario */
 .form-container {
   display: flex;
   justify-content: center;
   padding: 40px 0;
 }
 
+/* Estilo de la tarjeta del formulario */
 .form-card {
-  background-color: #e9ecef;
+  background-color: #e9ecef; /* Fondo gris claro para la tarjeta */
   border-radius: 12px;
   padding: 40px;
   width: 100%;
@@ -35,6 +40,7 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Fila para las columnas del formulario */
 .form-row {
   display: flex;
   gap: 40px;
@@ -45,6 +51,7 @@
   flex: 1;
 }
 
+/* Espaciado entre los campos del formulario */
 .form-group {
   margin-bottom: 25px;
 }
@@ -57,7 +64,7 @@
   font-weight: 500;
 }
 
-.form-input {
+.form-input, .form-textarea, .form-select {
   width: 100%;
   padding: 12px 16px;
   border: 1px solid #ccc;
@@ -69,51 +76,13 @@
   transition: border-color 0.3s ease;
 }
 
-.form-input:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
-}
-
-.form-textarea {
-  width: 100%;
-  padding: 12px 16px;
-  border: 1px solid #ccc;
-  border-radius: 12px;
-  font-size: 16px;
-  background-color: #fff;
-  box-sizing: border-box;
-  outline: none;
-  resize: vertical;
-  font-family: inherit;
-  transition: border-color 0.3s ease;
-}
-
-.form-textarea:focus {
+.form-input:focus, .form-textarea:focus, .form-select:focus {
   border-color: #007bff;
   box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
 }
 
 .select-wrapper {
   position: relative;
-}
-
-.form-select {
-  width: 100%;
-  padding: 12px 40px 12px 16px;
-  border: 1px solid #ccc;
-  border-radius: 25px;
-  font-size: 16px;
-  background-color: #fff;
-  box-sizing: border-box;
-  outline: none;
-  appearance: none;
-  cursor: pointer;
-  transition: border-color 0.3s ease;
-}
-
-.form-select:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
 }
 
 .select-wrapper::after {
@@ -127,6 +96,7 @@
   font-size: 12px;
 }
 
+/* Estilo del área para cargar fotos */
 .photo-upload-container {
   position: relative;
 }
@@ -142,8 +112,6 @@
   justify-content: center;
   cursor: pointer;
   transition: border-color 0.3s ease;
-  position: relative;
-  overflow: hidden;
 }
 
 .photo-upload-area:hover {
@@ -173,6 +141,7 @@
   z-index: 3;
 }
 
+/* Estilo del botón de envío */
 .submit-button {
   width: 200px;
   padding: 12px 24px;
