@@ -14,32 +14,32 @@ const clientsSchema = new Schema(
   {
     idClient: {
       type: Number,
-      require: true,
+      required: true,
     },
     
     nameClient: {
-        type: string,
-        require: true,
+        type: String,
+        required: true,
       },
 
       lastNameClient: {
-        type: string,
-        require : true,
+        type: String,
+        required : true,
     },
 
    dui : {
-        Type: Number,
-        require : true,
+        type: Number,
+        required : true,
     },
 
     phone : {
         type: Number,
-        require : true,
+        required : true,
     },
 
     address	 : {
-        Type : string,
-        require : false,
+        type : String,
+        required : false,
     },
 
   },

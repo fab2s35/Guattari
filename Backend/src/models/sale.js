@@ -17,47 +17,46 @@ const saleSchema = new Schema(
   {
     idsale: {
       type: Number,
-      require: true,
+      required: true,
     },
     
     idClient :{
         type: Schema.Types.ObjectId,
    ref: "idClient", //Referencia a la colección de idClient
-   require: true},
+   required: true},
 
    totalAmount: {
         type: Number,
-        require: true,
+        required: true,
       },
 
     Products: {
-        type: string,
-        require : true,
+        type: String,
+        required: true,
     },
 
     idProducts :{
         type: Schema.Types.ObjectId,
    ref: "idProducts", //Referencia a la colección de idProducts
-   require: true},
+   required: true},
 
     quantityProducts : {
-        Type: Number,
-        require : true,
+        type: Number,
+        required : true,
     },
 
     paymentMethod : {
-        type: string,
-        require : true,
+        type: String,
+        required: true,
     },
 
     idOrders :{
         type: Schema.Types.ObjectId,
    ref: "idOrders", //Referencia a la colección de idOrders
-   require: true},
+   required: true},
 
    orderStatus	 : {
-        Type : string,
-        require : false,
+        type : String
     },
 
   },

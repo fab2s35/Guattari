@@ -1,65 +1,62 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import FormTemplate from '../../components/FormreuEmp/FormreuEmp.jsx';
-import './branch.css';
+import '../addEmp/addEmp.css';
 
-const AgregarSucursal = () => {
-  const navigate = useNavigate(); // Hook para navegación
-
-  const sucursalFields = [
-    {
-      label: 'Sucursal',
-      name: 'nombre',
-      type: 'text',
-      required: true
-    },
-    {
-      label: 'Dirección',
-      name: 'direccion',
-      type: 'text',
-      required: true
-    },
-    {
-      label: 'Teléfono',
-      name: 'telefono',
-      type: 'tel',
-      required: true
-    },
-    {
-  label: 'Posición',
-  name: 'encargado',
-  type: 'accordion',
-  required: true,
-  summary: 'Seleccionar encargado',
-  options: [
-    { label: 'Juan Pérez', value: 'juan_perez' },
-    { label: 'Ana Gómez', value: 'ana_gomez' },
-    { label: 'Luis Martínez', value: 'luis_martinez' }
-  ]
-}
-
-  ];
-
-  // Función que se ejecuta al enviar el formulario
-  const handleSubmit = (formValues) => {
-    console.log('Datos de la sucursal:', formValues);
-    // Aquí puedes agregar la lógica para enviar los datos al backend
-    // Por ejemplo: axios.post('/api/sucursales', formValues);
-
-    // Redireccionar a la página /branch después de guardar
-    navigate('/branch');
-  };
-
+const AgregarEmpleados = () => {
   return (
-    <div className="agregar-sucursal-container">
-      <FormTemplate 
-        title="Agregar sucursal"
-        fields={sucursalFields}
-        submitButtonText="Agregar"
-        onSubmit={handleSubmit}
-      />
+    <div className="agregar-empleados-container">
+      <div className="content-wrapper">
+        <h1 className="page-title">Agregar empleados</h1>
+        
+        <div className="form-container">
+          <div className="form-card">
+            <div className="form-group">
+              <label htmlFor="nombres" className="form-label">Nombres</label>
+              <input 
+                type="text" 
+                id="nombres" 
+                className="form-input"
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="apellidos" className="form-label">Apellidos</label>
+              <input 
+                type="text" 
+                id="apellidos" 
+                className="form-input"
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="telefono" className="form-label">Teléfono</label>
+              <input 
+                type="tel" 
+                id="telefono" 
+                className="form-input"
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="posicion" className="form-label">Posición</label>
+              <div className="select-wrapper">
+                <select id="posicion" className="form-select">
+                  <option value="">Seleccionar posición</option>
+                  <option value="gerente">Gerente</option>
+                  <option value="supervisor">Supervisor</option>
+                  <option value="empleado">Empleado</option>
+                  <option value="asistente">Asistente</option>
+                </select>
+              </div>
+            </div>
+
+            <button type="button" className="submit-button">
+              Agregar
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
 
-export default AgregarSucursal;
+export default AgregarEmpleados;

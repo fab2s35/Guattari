@@ -11,6 +11,9 @@ import Branch from './pages/Addbranch/branch.jsx'
 import Inventory from './pages/Inventory/Inventory.jsx'
 import Reviews from './pages/Reviews/Reviews.jsx'
 import AddEmp from './pages/addEmp/addEmp.jsx';
+import AddInv from './pages/addInv/addInventory.jsx';
+import Employee from './pages/Employees/Employee.jsx';  
+
 
 
 

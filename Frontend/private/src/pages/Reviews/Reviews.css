@@ -6,8 +6,9 @@
     padding: 20px;
   }
   
-  .productos-title {
-    font-size: 24px;
+  .productos-titulo {
+    margin-top: 1%;
+    font-size: 28px;
     font-weight: bold;
     margin-bottom: 10px;
   }
@@ -30,7 +31,7 @@
     position: relative;
     width: 60%;
     height: 60vh;
-    margin-bottom: 1.5%;
+    margin-bottom: 9%;
     justify-self: center;
 }
 
@@ -81,18 +82,6 @@
     font-size: 14px;
   }
   
-  .add-review-btn {
-    background-color: black;
-    color: white;
-    border-radius: 5px;
-    padding: 8px 24px;
-    font-size: 16px;
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-  }
   
   .category-btns-container {
     display: flex;
@@ -265,4 +254,74 @@
       margin-left: 2%;
     }
   }
+
+
+
+  /* ======================= */
+/* Popups de confirmación  */
+/* ======================= */
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  width: 300px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  animation: popupFade 0.3s ease-in-out;
+}
+
+.popup-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.confirm-btn, .cancel-btn {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.confirm-btn {
+  background-color: #d9534f;
+  color: white;
+}
+
+.cancel-btn {
+  background-color: #5bc0de;
+  color: white;
+}
+
+/* Popup de aceptación */
+.popup.accepted {
+  background-color: #dff0d8;
+  color: #3c763d;
+  border: 2px solid #3c763d;
+  font-weight: bold;
+}
+
+/* Animación */
+@keyframes popupFade {
+  from { transform: scale(0.95); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
   

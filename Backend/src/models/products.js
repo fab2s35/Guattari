@@ -18,45 +18,42 @@ const productsSchema = new Schema(
   {
     idproducts: {
       type: Number,
-      require: true,
+      required: true,
     },
     
     nameProduct: {
         type: String,
-        require: true,
+        required: true,
       },
 
     description: {
-        type: string,
-        require : false,
+        type: String
     },
     codeEAN : {
-        Type: Number,
-        require : false,
+        type: Number
     },
     unitPrice : {
         type: Number,
-        require : true,
+        required: true,
     },
 
     amount : {
-        Type : Number,
-        require : false,
+        Type : Number
     },
     idSubCategory :{
          type: Schema.Types.ObjectId,
     ref: "idSubCategory", //Referencia a la colección de idSubCategory
-    require: true},
+    required: true},
 
     idBrand :{
         type: Schema.Types.ObjectId,
    ref: "idBrand", //Referencia a la colección de idBrand
-   require: true},
+   required: true},
    idSubCategory :{
 
     type: Schema.Types.ObjectId,
 ref: "idSuppliers", //Referencia a la colección de idSuppliers
-require: true},
+required: true},
 
   },
   {

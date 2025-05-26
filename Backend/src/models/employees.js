@@ -15,38 +15,33 @@ const employeeSchema = new Schema(
   {
     name: {
       type: String,
-      require: true,
+      required: true,
     },
-
     lastName: {
       type: String,
-      require: true,
+      required: true,
     },
-
     phone: {
-      require: true,
-      min: 8,
+      type: String,  
+      required: true,
+      minlength: 8,
     },
-
     assignedPosition: {
-        type: String,
-        require: true,
-      },
-
-    branchAddressId: {
-        type: String,
-        require: true,
-      },
-
-    passwordUser: {
-      type: Number,
-      require: true,
-      min: 8,
+      type: String,
+      required: true,
     },
-
+    branchAddressId: {
+      type: String,
+      required: true,
+    },
+    passwordUser: {
+      type: String,  
+      required: true,
+      minlength: 8,
+    },
     photoUser: {
-        type: String,
-      },
+      type: String,
+    },
   },
   {
     timestamps: true,

@@ -16,7 +16,7 @@ const subcategorySchema = new Schema(
     },
 
     nameSubCategory: {
-      type: string,
+      type: String,
       require : true,
   },
     
