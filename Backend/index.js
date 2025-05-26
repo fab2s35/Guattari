@@ -1,17 +1,14 @@
-//Importo el archivo app.js
-import app from "./app.js"
-
-//Importar el archivo de conexión de la base de datos 
+// importo el archivo app.js
+import app from "./app.js";
 import "./database.js";
-
-//Importo el archivo config 
 import { config } from "./src/config.js";
 
-//Luego creo una función que ejecuta el servidor 
+// Creo una función
+// que se encarga de ejecutar el servidor
 async function main() {
-    app.listen(config.PORT);
-    console.log("Server running" + config.server.port);
+  //const port = 4000;
+  app.listen(config.server.port);
+  console.log("Server on port " + config.server.port);
 }
-
-//Ejecuto la función
+//Ejecutamos todo
 main();

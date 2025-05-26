@@ -5,13 +5,12 @@ Este archivo tiene los metodos del CRUD (select, insert, update, delete)
 
 //Creo un array de funciones
 const categoriesController = {};
-import Categories from "../models/categories.js"
 import categoriesModel from "../models/categories.js"
 
 // SELECT (antes de hacer el select (o cualquiera) voy a models)
 categoriesController.getCategories = async (req, res) => {
-     const categories = await categoriesModel.find()
-     res.json(categories)
+     const Categories = await categoriesModel.find()
+     res.json(Categories)
 }
 
 
@@ -34,7 +33,7 @@ categoriesController.deleteCategories = async (req, res) =>{
 categoriesController.updateCategories = async (req, res) =>{
     const { nameCategories } = (req.params.id,
         {nameCategories}, {new: true})
-    res.json({message: "Categeory updated successfully"})
+    res.json({message: "Category updated successfully"})
 }
 
 export default categoriesController;
