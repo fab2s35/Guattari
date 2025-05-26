@@ -13,15 +13,42 @@ import subcategoryRoutes from "./src/routes/subcategory.js";
 import clientsRoutes from "./src/routes/clients.js";
 import reviewRoutes from "./src/routes/reviews.js";
 
+import loginRoute from "./src/routes/login.js";
+import logoutRoute from "./src/routes/logout.js";
+import passwordRecoveryRoutes from "./src/routes/passwordRecovery.js";
+import { validateAuthToken } from "./src/middlewares/validateAuthToken.js";
 
+import cors from 'cors';
+import cookieParser from 'cookie-parser';
 
-//Cree una constante que es igual a la libreria
-//que acabo de de importar, y la ejecuto
 const app = express();
+
+app.use(cors({
+  origin: 'http://localhost:5173',
+  credentials: true,
+}));
+app.use(cookieParser());
+app.use(express.json());
+
+
+
+
+//Middlewares
+app.use(
+    cors({
+        origin: "*",
+        //Permitir enviar cookies y creedenciales
+        credentials: true,
+    })
+);
 
 //middleware para que acepte datos json
 app.use(express.json());
 
+//Que acepte cookies 
+app.use(cookieParser());
+
+app.use("/api/products", validateAuthToken(["employee", "admin"]), productsRoutes);
 app.use("/api/categories", categoriesRoutes);
 app.use("/api/shoppingCart", shoppingCartRoutes);
 app.use("/api/orders", ordersRoutes);
@@ -35,6 +62,10 @@ app.use("/api/subcategory", subcategoryRoutes);
 app.use("/api/clients", clientsRoutes);
 app.use("/api/review", reviewRoutes);
 
+
+app.use("/api/login", loginRoute);
+app.use("/api/logout", logoutRoute);
+app.use("/api/passwordRecovery", passwordRecoveryRoutes);
 
 
 //exporto esta constante para usar express en todos lados 

@@ -1,40 +1,58 @@
-//Array de metodos (C R U D)
-const employeesController = {};
-import employeeModel from "../models/employees.js";
+import { useState } from 'react'
+
+import './App.css'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
+{/*Import de las routes para la navegación*/}
+import Proveedores from './pages/Proveedores/Proveedores.jsx';
+import Sucursales from './pages/Sucursales/Sucursales.jsx';
+import Branch from './pages/Addbranch/branch.jsx'
+import Inventory from './pages/Inventory/Inventory.jsx'
+import Reviews from './pages/Reviews/Reviews.jsx'
+import AddEmp from './pages/addEmp/addEmp.jsx';
+import AddInv from './pages/addInv/addInventory.jsx';
+import Employee from './pages/Employees/Employee.jsx';  
+
+import MainPage from './pages/MainPage/mainPage.jsx';
 
 
-// SELECT
-employeesController.getEmployee = async (req, res) => {
-  const employee = await employeeModel.find();
-  res.json(employee);
-};
 
-// INSERT
-employeesController.insertEmployee = async (req, res) => {
-  const { name, lastName, phone, assignedPosition, branchAddressId, passwordUser, photoUser } = req.body;
-  const newEmployee= new employeeModel({ name, lastName, phone, assignedPosition, branchAddressId, passwordUser, photoUser  });
-  await newEmployee.save();
-  res.json({ message: "Employee saved" });
-};
 
-// DELETE
-employeesController.deleteEmployee = async (req, res) => {
-const deletedEmployee = await employeeModel.findByIdAndDelete(req.params.id);
-  if (!deletedEmployee) {
-    return res.status(404).json({ message: "Employee wasn't found" });
-  }
-  res.json({ message: "Employee deleted" });
-};
+{/*Import de los componentes para la navegación*/}
 
-// UPDATE
-employeesController.updateEmployee = async (req, res) => {
-  const { name, lastName, phone, assignedPosition, branchAddressId, passwordUser, photoUser  } = req.body;
-  await employeeModel.findByIdAndUpdate(
-    req.params.id,
-    { name, lastName, phone, assignedPosition, branchAddressId, passwordUser, photoUser },
-    { new: true }
-  );
-  res.json({ message: "employee update" });
-};
+{/*Import de los estilos*/}
 
-export default employeesController;
+{/*Import de las páginas*/}
+
+function App() {
+
+
+  return (
+    <>
+      <Router>
+        <Header />
+        <Routes>
+          <Route path="/proveedores" element={<Proveedores/>} />
+          <Route path="/sucursales" element={<Sucursales/>} />
+          <Route path="/branch" element={<Branch/>} />
+         
+          <Route path="/Inventory" element={<Inventory />} /> 
+           <Route path="/Reviews" element={<Reviews />} /> 
+
+           <Route path="/supplier" element={<Supplier />} /> 
+          <Route path="/addEmp" element={<AddEmp />} /> 
+          <Route path="/addInv" element={<AddInv />} /> 
+          <Route path="/Employee" element={<Employee />} />
+
+          <Route path="/MainPage" element={<MainPage />} />
+
+
+        </Routes>
+        <Footer />
+      </Router>
+    </>
+  )
+}
+
+export default App
