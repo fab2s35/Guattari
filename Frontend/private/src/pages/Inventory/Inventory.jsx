@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
 import "./Inventory.css";
 import useProducts from '../../components/hooks/useProducts';
-
-
+import { useNavigate } from "react-router-dom"; // Agrega este import
+ 
+ 
 /* Importar imágenes de los banners */
 import IbannerGrid1 from "../../img/Banner-Inventory/IbannerGrid1.png";
 import IbannerGrid2 from "../../img/Banner-Inventory/IbannerGrid2.png";
 import IbannerGrid3 from "../../img/Banner-Inventory/IbannerGrid3.png";
 /* Importar imagen de producto */
 import ProductoImg from "../../img/Inventory-Product-List/producto.png";
-
+import { Navigate } from "react-router-dom";
+ 
 const Inventory = () => {
   // --- Productos con hook ---
   const {
@@ -18,7 +20,7 @@ const Inventory = () => {
     addProduct,
     fetchProducts,
   } = useProducts();
-
+ 
   const [showAddProductModal, setShowAddProductModal] = useState(false);
   const [newProduct, setNewProduct] = useState({
     idproducts: "",
@@ -30,12 +32,12 @@ const Inventory = () => {
     idSubCategory: "",
     idBrand: "",
   });
-
+ 
   // Categorías
   const [categories, setCategories] = useState([]);
   const [showAddCategoryModal, setShowAddCategoryModal] = useState(false);
   const [newCategory, setNewCategory] = useState({ nameCategories: "" });
-
+ 
   // Subcategorías
   const [subcategories, setSubcategories] = useState([]);
   const [showAddSubcategoryModal, setShowAddSubcategoryModal] = useState(false);
@@ -45,7 +47,9 @@ const Inventory = () => {
     idCategory: "",
     orderStatus: true,
   });
-
+ 
+  const navigate = useNavigate(); // Hook para navegación
+ 
   // Cargar categorías al montar
   useEffect(() => {
     fetch("http://localhost:4000/api/categories")
@@ -53,7 +57,7 @@ const Inventory = () => {
       .then((data) => setCategories(data))
       .catch((error) => console.error("Error fetching categories:", error));
   }, []);
-
+ 
   // Cargar subcategorías al montar
   useEffect(() => {
     fetch("http://localhost:4000/api/subcategory")
@@ -61,7 +65,7 @@ const Inventory = () => {
       .then((data) => setSubcategories(data))
       .catch((error) => console.error("Error fetching subcategories:", error));
   }, []);
-
+ 
   // Guardar nuevo producto con hook
   const handleSubmitProduct = async (e) => {
     e.preventDefault();
@@ -78,7 +82,7 @@ const Inventory = () => {
       idBrand: "",
     });
   };
-
+ 
   // Guardar nueva categoría
   const handleSubmitCategory = async (e) => {
     e.preventDefault();
@@ -100,7 +104,7 @@ const Inventory = () => {
       console.error("Error al crear categoría:", error);
     }
   };
-
+ 
   // Guardar nueva subcategoría
   const handleSubmitSubcategory = async (e) => {
     e.preventDefault();
@@ -127,35 +131,35 @@ const Inventory = () => {
       console.error("Error al crear subcategoría:", error);
     }
   };
-
+ 
   // Cambios inputs producto
   const handleChangeNewProduct = (e) => {
     const { name, value } = e.target;
     setNewProduct((prev) => ({ ...prev, [name]: value }));
   };
-
+ 
   // Cambios inputs categoría
   const handleChangeNewCategory = (e) => {
     const { name, value } = e.target;
     setNewCategory((prev) => ({ ...prev, [name]: value }));
   };
-
+ 
   // Cambios inputs subcategoría
   const handleChangeNewSubcategory = (e) => {
     const { name, value, type, checked } = e.target;
     const val = type === "checkbox" ? checked : value;
     setNewSubcategory((prev) => ({ ...prev, [name]: val }));
   };
-
+ 
   if (loading) return <p>Cargando productos...</p>;
-
+ 
   return (
     <>
       <div className="container-inventory">
         <h1 className="productos-titulo">Inventario</h1>
         <hr className="productos-divider" />
       </div>
-
+ 
       <div className="banner-grid">
         <div className="banner-grid-left">
           <img src={IbannerGrid1} alt="Banner 1" className="banner-grid-img" />
@@ -169,12 +173,12 @@ const Inventory = () => {
           </div>
         </div>
       </div>
-
+ 
       <div className="container-inventory">
         <h1 className="productos-titulo">Listado de productos</h1>
         <hr className="productos-divider" />
       </div>
-
+ 
       <div className="main-container">
         <div className="product-list-container">
           {/* Header - Buscar y añadir producto */}
@@ -184,17 +188,12 @@ const Inventory = () => {
             </div>
             <button
               className="add-product-btn"
-             onClick={() => {
-  setShowAddProductModal(true);
-  setShowAddCategoryModal(false);
-  setShowAddSubcategoryModal(false);
-}}
-
+              onClick={() => navigate('/addInv')}
             >
               <i className="fas fa-plus"> </i> Agregar Producto
             </button>
           </div>
-
+ 
           {/* Botones de categoría y subcategoría */}
           <div className="category-btns-container">
             <button
@@ -204,7 +203,7 @@ const Inventory = () => {
   setShowAddCategoryModal(true);
   setShowAddSubcategoryModal(false);
 }}
-
+ 
             >
               <i className="fas fa-plus"></i> Agregar Nueva Categoría
             </button>
@@ -215,12 +214,12 @@ const Inventory = () => {
   setShowAddCategoryModal(false);
   setShowAddSubcategoryModal(true);
 }}
-
+ 
             >
               <i className="fas fa-plus"></i> Agregar Nueva Subcategoría
             </button>
           </div>
-
+ 
           {/* Lista de productos */}
           <div className="product-list">
             {products.map((product) => (
@@ -236,7 +235,7 @@ const Inventory = () => {
                     <i className="fas fa-camera camera-icon"></i>
                   </div>
                 </div>
-
+ 
                 {/* Info columnas */}
                 <div className="product-info-columns">
                   <div className="product-column">
@@ -249,7 +248,7 @@ const Inventory = () => {
                       <span className="product-value">{product.description}</span>
                     </div>
                   </div>
-
+ 
                   <div className="product-column">
                     <div className="product-detail">
                       <span className="product-label">Cantidad:</span>
@@ -260,7 +259,7 @@ const Inventory = () => {
                       <span className="product-value">{product.codeEAN}</span>
                     </div>
                   </div>
-
+ 
                   <div className="product-column">
                     <div className="product-detail">
                       <span className="product-label">Precio Unitario:</span>
@@ -277,7 +276,7 @@ const Inventory = () => {
           </div>
         </div>
       </div>
-
+ 
       {/* MODAL AGREGAR PRODUCTO */}
       {showAddProductModal && (
         <div className="modal-overlay">
@@ -386,7 +385,7 @@ const Inventory = () => {
           </div>
         </div>
       )}
-
+ 
       {/* MODAL AGREGAR CATEGORÍA */}
       {showAddCategoryModal && (
         <div className="modal-overlay">
@@ -419,7 +418,7 @@ const Inventory = () => {
           </div>
         </div>
       )}
-
+ 
       {/* MODAL AGREGAR SUBCATEGORÍA */}
       {showAddSubcategoryModal && (
         <div className="modal-overlay">
@@ -490,5 +489,5 @@ const Inventory = () => {
     </>
   );
 };
-
+ 
 export default Inventory;

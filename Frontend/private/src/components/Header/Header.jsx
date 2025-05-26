@@ -52,6 +52,8 @@ function Header() {
             <Link className="nav-item nav-link" to="/proveedores">Proveedores</Link>
             <Link className="nav-item nav-link" to="/sucursales">Sucursales</Link>
             <Link className="nav-item nav-link" to="/Inventory">Inventario</Link>
+            <Link className="nav-item nav-link" to="/Employee">Empleado</Link>
+
             <Link className="nav-item nav-link" to="/Reviews">Reseñas</Link>
           </div>
         </div>
