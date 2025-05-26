@@ -1,6 +1,6 @@
 import React from 'react';
 import './FormreuEmp.css';
-import FormTemplate from '../../components/FormreuEmp/FormreuEmp.jsx';
+/*import FormTemplate from '../../components/FormreuEmp/FormreuEmp.jsx';     Comentario temp*/ 
 import FormreuEmp from '../../components/FormreuEmp/FormreuEmp.jsx';
 
 /**
