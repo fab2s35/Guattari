@@ -36,6 +36,11 @@ function App() {
           <Route path="/branch" element={<Branch/>} />
           <Route path="/Inventory" element={<Inventory />} /> 
            <Route path="/Reviews" element={<Reviews />} /> 
+           <Route path="/AddInv" element={<AddInv />} /> 
+           <Route path="/AddEmp" element={<AddEmp />} />
+           <Route path="/Employee" element={<Employee />} />
+
+           
         </Routes>
         <Footer />
       </Router>
