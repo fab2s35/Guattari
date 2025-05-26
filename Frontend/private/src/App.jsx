@@ -8,7 +8,8 @@ import Footer from './components/Footer/Footer';
 import Proveedores from './pages/Proveedores/Proveedores.jsx';
 import Sucursales from './pages/Sucursales/Sucursales.jsx';
 import Branch from './pages/Addbranch/branch.jsx'
-import Supplier from './pages/addsupplier/supplier.jsx';
+import Inventory from './pages/Inventory/Inventory.jsx'
+import Reviews from './pages/Reviews/Reviews.jsx'
 import AddEmp from './pages/addEmp/addEmp.jsx';
 
 
@@ -30,8 +31,8 @@ function App() {
           <Route path="/proveedores" element={<Proveedores/>} />
           <Route path="/sucursales" element={<Sucursales/>} />
           <Route path="/branch" element={<Branch/>} />
-          <Route path="/supplier" element={<Supplier />} /> 
-           <Route path="/addEmp" element={<AddEmp />} /> 
+          <Route path="/Inventory" element={<Inventory />} /> 
+           <Route path="/Reviews" element={<Reviews />} /> 
         </Routes>
         <Footer />
       </Router>
