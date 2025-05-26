@@ -13,6 +13,7 @@ import Reviews from './pages/Reviews/Reviews.jsx'
 import AddEmp from './pages/addEmp/addEmp.jsx';
 import AddInv from './pages/addInv/addInventory.jsx';
 import Employee from './pages/Employees/Employee.jsx';  
+import MainPage from './pages/MainPage/mainPage.jsx'
 
 
 
@@ -34,6 +35,8 @@ function App() {
           <Route path="/proveedores" element={<Proveedores/>} />
           <Route path="/sucursales" element={<Sucursales/>} />
           <Route path="/branch" element={<Branch/>} />
+          <Route path="/MainPage" element={<MainPage/>} />
+          <Route path="/" element={<MainPage/>} />
           <Route path="/Inventory" element={<Inventory />} /> 
            <Route path="/Reviews" element={<Reviews />} /> 
            <Route path="/AddInv" element={<AddInv />} /> 

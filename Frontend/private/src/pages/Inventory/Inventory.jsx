@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Inventory.css";
 import useProducts from '../../components/hooks/useProducts';
-import { useNavigate } from "react-router-dom"; // Agrega este import
+import { useNavigate } from "react-router-dom"; 
  
  
 /* Importar imágenes de los banners */
@@ -151,7 +151,6 @@ const Inventory = () => {
     setNewSubcategory((prev) => ({ ...prev, [name]: val }));
   };
  
-  if (loading) return <p>Cargando productos...</p>;
  
   return (
     <>
