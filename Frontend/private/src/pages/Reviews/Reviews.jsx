@@ -47,7 +47,7 @@ function Reviews() {
 
   return (
     <>
-      <div className="container-inventory">
+      <div className="container-reviews">
         <h1 className="productos-titulo">Reseñas</h1>
         <hr className="productos-divider" />
       </div>
@@ -56,7 +56,7 @@ function Reviews() {
         <img src={Banner} alt="Banner Principal" className="banner-img" />
       </div>
 
-      <div className="container-inventory">
+      <div className="container-reviews">
         <h1 className="productos-titulo">Listado de reseñas</h1>
         <hr className="productos-divider" />
       </div>

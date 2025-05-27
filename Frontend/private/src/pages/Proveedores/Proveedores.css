@@ -23,14 +23,16 @@
 
 .banner-container {
   width: 100%;
-  max-height: 210px;
+  height: 400px; 
   overflow: hidden;
   margin-bottom: 20px;
+  position: relative;
 }
 
 .banner-image {
-  width: 30%;
-  object-fit: cover;
+  width: 150%;
+  display: block;
+  margin: 0 auto;
 }
 
 .proveedores-subtitle {
@@ -47,9 +49,11 @@
 }
 
 .proveedores-panel {
-  background-color: #eee;
+  background-color: #ffffff;
   border-radius: 5px;
-  padding: 20px;
+  padding: 0px;
+    margin-left: -2%;
+  margin-right: -2%;
 }
 
 .search-add-container {
@@ -57,6 +61,8 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .search-container {
@@ -66,6 +72,8 @@
   border-radius: 4px;
   padding: 5px 10px;
   width: 300px;
+  flex: 1;
+  min-width: 250px;
 }
 
 .search-icon {
@@ -90,6 +98,7 @@
   padding: 8px 15px;
   cursor: pointer;
   font-weight: bold;
+  white-space: nowrap;
 }
 
 .plus-icon {
@@ -98,18 +107,22 @@
 }
 
 .proveedores-table-container {
+  margin-top: 3px;
+  overflow-x: auto;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
   background-color: white;
-  border-radius: 5px;
-  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
 }
 
 .proveedores-table {
   width: 100%;
   border-collapse: collapse;
+  min-width: 600px;
 }
 
 .proveedores-table th {
-  background-color: #f8f8f8;
+  background-color: #ebebeb;
   color: #333;
   text-align: left;
   padding: 12px 15px;
@@ -127,41 +140,133 @@
   justify-content: center;
 }
 
-.action-button {
-  border: none;
-  background-color: transparent;
+.action-buttons {
+  position: static !important;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.edit-btn, .delete-btn {
+  position: static !important;
+  padding: 8px 20px; 
+  min-width: 80px;   
   cursor: pointer;
-  margin: 0 5px;
-}
-
-.edit-button {
-  background-color: #b32525;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-}
-
-.delete-button {
-  background-color: #b32525;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-}
-
-.edit-icon, .delete-icon {
-  color: white;
+  border: none;
+  color: #ffffff;
+  border-radius: 4px;
   font-size: 16px;
+  transition: all 0.2s ease-in-out;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  text-align: center;
 }
 
-/* Estilo alternado para las filas */
+.edit-btn {
+  background-color: #0e0e0e;
+}
+
+.edit-btn:hover {
+  background-color: #000000;
+  transform: scale(1.05);
+}
+
+.delete-btn {
+  background-color: #8B0000;
+}
+
+.delete-btn:hover {
+  background-color: #640000;
+  transform: scale(1.05);
+}
+
+
 .proveedores-table tbody tr:nth-child(even) {
   background-color: #f9f9f9;
+}
+
+
+
+
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+  .proveedores-title {
+    font-size: 26px;
+    text-align: center;
+    font-weight: 500;
+  }
+
+  .proveedores-subtitle {
+    font-size: 22px;
+    text-align: center;
+  }
+
+  .search-add-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .add-button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .search-container {
+    width: 100%;
+  }
+
+  .proveedores-panel {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+  .edit-btn, .delete-btn {
+    min-width: 80px;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .proveedores-title {
+    font-size: 22px;
+    font-weight: 700;
+  }
+
+  .proveedores-subtitle {
+    font-size: 18px;
+  }
+
+  .edit-button,
+  .delete-button {
+    width: auto; 
+    padding: 8px 12px;
+  }
+
+  .edit-icon, .delete-icon {
+    font-size: 14px;
+  }
+
+  .proveedores-panel {
+    padding: 10px;
+    margin-left: -22px;
+    margin-right: -22px; 
+  }
+
+  .search-container {
+    padding: 5px;
+  }
+
+  .add-button {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .edit-btn, .delete-btn {
+    min-width: 100px;
+    padding: 8px 12px;
+    font-size: 14px;
+  }
 }

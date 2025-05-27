@@ -72,18 +72,22 @@ const Sucursales = () => {
                     <td>{sucursal.telefono}</td>
                     <td>{sucursal.encargado}</td>
                     <td className="actions-cell">
-                      <button 
-                        className="action-button edit-button" 
-                        onClick={() => handleEdit(sucursal.id)}
-                      >
-                        <i className="edit-icon">✏️</i>
-                      </button>
-                      <button 
-                        className="action-button delete-button" 
-                        onClick={() => handleDelete(sucursal.id)}
-                      >
-                        <i className="delete-icon">🗑️</i>
-                      </button>
+                      <div className="action-buttons">
+                        <button 
+                          className="edit-btn"
+                          onClick={() => editarEmpleado(empleado)}
+                          title="Editar empleado"
+                        >
+                          ✎
+                        </button>
+                        <button 
+                          className="delete-btn"
+                          onClick={() => eliminarEmpleado(empleado.id)}
+                          title="Eliminar empleado"
+                        >
+                          🗑
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 ))}
