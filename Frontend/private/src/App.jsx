@@ -10,7 +10,6 @@ import Sucursales from './pages/Sucursales/Sucursales.jsx';
 import Branch from './pages/Addbranch/branch.jsx'
 import Inventory from './pages/Inventory/Inventory.jsx'
 import Reviews from './pages/Reviews/Reviews.jsx'
-import AddEmp from './pages/addEmp/addEmp.jsx';
 import AddInv from './pages/addInv/addInventory.jsx';
 import Employee from './pages/Employees/Employee.jsx';  
 import MainPage from './pages/MainPage/mainPage.jsx'
@@ -40,7 +39,6 @@ function App() {
           <Route path="/Inventory" element={<Inventory />} /> 
            <Route path="/Reviews" element={<Reviews />} /> 
            <Route path="/AddInv" element={<AddInv />} /> 
-           <Route path="/AddEmp" element={<AddEmp />} />
            <Route path="/Employee" element={<Employee />} />
 
            
