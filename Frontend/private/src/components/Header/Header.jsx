@@ -9,9 +9,7 @@ function Header() {
   return (
     <>
       <div className="ads-text">
-        <span><Link className="nav-item nav-link registrarse-link active" to="/register">Registrarse</Link></span>
-        <span>/</span>
-        <span className="for-margin"><Link className="nav-item nav-link login-link active" to="/login">Iniciar Sesión</Link></span>
+   
       </div>
 
       <div className="container-fluid header-top d-flex align-items-center justify-content-between flex-wrap">
@@ -29,7 +27,7 @@ function Header() {
 
         <div className="d-flex align-items-center iconos-header">
           <img src={IC_cuenta} alt="Cuenta" className="icono-header" />
-          <img src={IC_cart} alt="Carrito" className="icono-header ms-2" />
+          
         </div>
       </div>
 
