@@ -1,149 +1,115 @@
-import React, { useEffect, useState } from 'react';
-import './Reviews.css';
+import React, { useState, useEffect } from 'react';
 import Banner from '../../img/Banner-Reviews.png';
-import ProductoImg from '../../img/Inventory-Product-List/producto.png';
+import './Reviews.css'; 
 
-const API_URL = 'http://localhost:4000/api/review';
-
-function Reviews() {
+const Reviews = () => {
   const [reviews, setReviews] = useState([]);
-  const [showConfirmDelete, setShowConfirmDelete] = useState(false);
-  const [reviewToDelete, setReviewToDelete] = useState(null);
-  const [showAcceptedPopup, setShowAcceptedPopup] = useState(false);
+  const [cargando, setCargando] = useState(true);
 
-  const fetchReviews = async () => {
+  const ejemploReviews = [
+    {
+      _id: "1",
+      cliente: "Ana López",
+      comentario: "¡Excelente producto! Me encantó la calidad y el servicio fue muy rápido.",
+      producto: "Zapatos de cuero",
+      estado: "pendiente",
+      imagen: "https://images.unsplash.com/photo-1593032465171-d3ba46b1c5b3",
+    },
+    {
+      _id: "2",
+      cliente: "Carlos Rodríguez",
+      comentario: "No era lo que esperaba. La talla no coincidía.",
+      producto: "Camisa formal",
+      estado: "pendiente",
+      imagen: "https://images.unsplash.com/photo-1606813909027-0b37c3f801b8",
+    }
+  ];
+
+  const obtenerReviews = async () => {
     try {
-      const res = await fetch(API_URL);
+      const res = await fetch('/api/reviews');
+      if (!res.ok) throw new Error('Error al obtener reseñas');
       const data = await res.json();
       setReviews(data);
-    } catch (err) {
-      console.error('Error al obtener reseñas:', err);
+    } catch (error) {
+      console.error('Fallo la carga de reseñas, usando datos de ejemplo');
+      setReviews(ejemploReviews);
+    } finally {
+      setCargando(false);
     }
   };
 
-  const deleteReview = async (id) => {
+  const aceptarReview = async (id) => {
+    if (!window.confirm("¿Estás seguro de aceptar esta reseña?")) return;
     try {
-      await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
-      setReviews(reviews.filter((r) => r._id !== id));
-      setShowConfirmDelete(false);
+      await fetch(`http://localhost:4000/api/reviews/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ estado: 'aceptado' })
+      });
+      setReviews(prev => prev.map(r => r._id === id ? { ...r, estado: 'aceptado' } : r));
     } catch (err) {
-      console.error('Error al eliminar reseña:', err);
+      alert("No se pudo aceptar la reseña");
     }
   };
 
-  const acceptReview = async (id) => {
+  const eliminarReview = async (id) => {
+    if (!window.confirm("¿Deseas eliminar esta reseña?")) return;
     try {
-      await fetch(`${API_URL}/${id}/accept`, { method: 'POST' });
-      setShowAcceptedPopup(true);
-      setTimeout(() => setShowAcceptedPopup(false), 2000);
+      await fetch(`http://localhost:4000/api/reviews/${id}`, { method: 'DELETE' });
+      setReviews(prev => prev.filter(r => r._id !== id));
     } catch (err) {
-      console.error('Error al aceptar reseña:', err);
+      alert("Error al eliminar la reseña");
     }
   };
 
   useEffect(() => {
-    fetchReviews();
+    obtenerReviews();
   }, []);
 
   return (
-    <>
-      <div className="container-reviews">
-        <h1 className="productos-titulo">Reseñas</h1>
-        <hr className="productos-divider" />
+    <div className="reviews-container">
+      <h1 className="page-title">Reseñas de Clientes</h1>
+
+      <div className="banner">
+        <img
+          src= {Banner}
+          alt="banner de reseñas"
+          className="banner-img"
+        />
       </div>
 
-      <div className="principalBanner">
-        <img src={Banner} alt="Banner Principal" className="banner-img" />
-      </div>
-
-      <div className="container-reviews">
-        <h1 className="productos-titulo">Listado de reseñas</h1>
-        <hr className="productos-divider" />
-      </div>
-
-      <div className="main-container">
-        <div className="review-list-container">
-          <div className="header">
-            <div className="search-bar">
-              <input type="text" placeholder="Buscar..." className="search-input" />
-            </div>
-          </div>
-
-          <div className="review-list">
-            {reviews.map((review) => (
-              <div key={review._id} className="review-item">
-                <div className="review-image">
-                  <img src={review.image || ProductoImg} alt={review.pro} className="review-img" />
-                </div>
-
-                <div className="review-info-columns">
-                  <div className="review-column">
-                    <div className="review-detail">
-                      <span className="review-label">Usuario:</span>
-                      <span className="review-value">{review.user}</span>
-                    </div>
-                    <div className="review-detail">
-                      <span className="review-label">Reseña:</span>
-                      <span className="review-value">{review.description}</span>
-                    </div>
+      {cargando ? (
+        <p className="cargando">Cargando reseñas...</p>
+      ) : (
+        <div className="reviews-grid">
+          {reviews.length === 0 ? (
+            <p className="no-reviews">No hay reseñas disponibles</p>
+          ) : (
+            reviews.map((review) => (
+              <div className="review-card" key={review._id}>
+                <img src={review.imagen} alt={review.producto} className="product-img" />
+                <div className="review-content">
+                  <h3>{review.producto}</h3>
+                  <p><strong>Cliente:</strong> {review.cliente}</p>
+                  <p className="comentario">"{review.comentario}"</p>
+                  <p className={`estado ${review.estado}`}>Estado: {review.estado}</p>
+                  <div className="review-actions">
+                    <button className="aceptar-btn" onClick={() => aceptarReview(review._id)}>
+                      ✓ Aceptar
+                    </button>
+                    <button className="eliminar-btn" onClick={() => eliminarReview(review._id)}>
+                      🗑 Eliminar
+                    </button>
                   </div>
-
-                  <div className="review-column">
-                    <div className="review-detail">
-                      <span className="review-label">Producto:</span>
-                      <span className="review-value">{review.pro}</span>
-                    </div>
-                    <div className="review-detail">
-                      <span className="review-label">Puntuación:</span>
-                      <span className="review-value">{review.puntuation}</span>
-                    </div>
-                    <div className="review-detail">
-                      <span className="review-label">Fecha:</span>
-                      <span className="review-value">{review.date}</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="action-buttons">
-                  <button className="action-btn delete-btn" onClick={() => {
-                    setReviewToDelete(review._id);
-                    setShowConfirmDelete(true);
-                  }}>
-                    <i className="fas fa-trash"></i>
-                  </button>
-                  <button className="action-btn" onClick={() => acceptReview(review._id)}>
-                    <i className="fas fa-check"></i>
-                  </button>
                 </div>
               </div>
-            ))}
-          </div>
-
-          <div className="scrollbar"></div>
-        </div>
-      </div>
-
-      {showConfirmDelete && (
-        <div className="popup-overlay">
-          <div className="popup">
-            <p>¿Estás seguro de que deseas eliminar esta reseña?</p>
-            <div className="popup-actions">
-              <button onClick={() => deleteReview(reviewToDelete)}>Sí, eliminar</button>
-              <button onClick={() => setShowConfirmDelete(false)}>Cancelar</button>
-            </div>
-          </div>
+            ))
+          )}
         </div>
       )}
-
-      {showAcceptedPopup && (
-        <div className="popup-overlay">
-          <div className="popup">
-            <p>¡Reseña aceptada exitosamente!</p>
-          </div>
-        </div>
-      )}
-    </>
+    </div>
   );
-}
+};
 
 export default Reviews;

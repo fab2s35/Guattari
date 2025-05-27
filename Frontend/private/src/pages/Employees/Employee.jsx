@@ -357,23 +357,23 @@ const EmpleadosCRUD = () => {
                     <td>{empleado.telefono}</td>
                     <td>{empleado.posicion}</td>
                     <td>
-                      <div className="action-buttons">
-                        <button 
-                          className="edit-btn"
-                          onClick={() => editarEmpleado(empleado)}
-                          title="Editar empleado"
-                        >
-                          ✎
-                        </button>
-                        <button 
-                          className="delete-btn"
-                          onClick={() => eliminarEmpleado(empleado.id)}
-                          title="Eliminar empleado"
-                        >
-                          🗑
-                        </button>
-                      </div>
-                    </td>
+                    <div className="action-buttons">
+                      <button 
+                        className="edit-btn"
+                        onClick={() => editarEmpleado(empleado)}
+                        title="Editar empleado"
+                      >
+                        ✎
+                      </button>
+                      <button 
+                        className="delete-btn"
+                        onClick={() => eliminarEmpleado(empleado.id)}
+                        title="Eliminar empleado"
+                      >
+                        🗑
+                      </button>
+                    </div>
+                  </td>
 
                   </tr>
                 ))
