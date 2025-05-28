@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import '../Employees/employees.css';
-
+import './employe.css';
+ 
 const EmployeesCRUD = () => {
   const [employees, setEmployees] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -14,12 +14,12 @@ const EmployeesCRUD = () => {
     passwordUser: ''
   });
   const [loading, setLoading] = useState(false);
-
+ 
   // Cargar empleados al montar el componente
   useEffect(() => {
     fetchEmployees();
   }, []);
-
+ 
   const fetchEmployees = async () => {
     setLoading(true);
     try {
@@ -35,7 +35,7 @@ const EmployeesCRUD = () => {
       setLoading(false);
     }
   };
-
+ 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -43,7 +43,7 @@ const EmployeesCRUD = () => {
       [name]: value
     }));
   };
-
+ 
   const resetForm = () => {
     setFormData({
       name: '',
@@ -55,7 +55,7 @@ const EmployeesCRUD = () => {
     });
     setEditingEmployee(null);
   };
-
+ 
   const openModal = (employee = null) => {
     if (employee) {
       setEditingEmployee(employee);
@@ -72,15 +72,15 @@ const EmployeesCRUD = () => {
     }
     setIsModalOpen(true);
   };
-
+ 
   const closeModal = () => {
     setIsModalOpen(false);
     resetForm();
   };
-
+ 
   const handleSubmit = async () => {
     setLoading(true);
-
+ 
     try {
       if (editingEmployee) {
         // UPDATE
@@ -89,14 +89,14 @@ const EmployeesCRUD = () => {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(formData)
         });
-
+ 
         if (!response.ok) {
           throw new Error(`Error updating employee: ${response.status}`);
         }
-        
+       
         // Actualizar el empleado editado en el estado
-        setEmployees(prev => prev.map(employee => 
-          employee._id === editingEmployee._id 
+        setEmployees(prev => prev.map(employee =>
+          employee._id === editingEmployee._id
             ? { ...employee, ...formData }
             : employee
         ));
@@ -107,14 +107,14 @@ const EmployeesCRUD = () => {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(formData)
         });
-        
+       
         if (!response.ok) {
           throw new Error(`Error creating employee: ${response.status}`);
         }
-
+ 
         const newEmployee = await response.json();
         console.log('New employee created:', newEmployee);
-        
+       
         // Verificar que el empleado tenga _id
         if (newEmployee && newEmployee._id) {
           setEmployees(prev => [...prev, newEmployee]);
@@ -124,7 +124,7 @@ const EmployeesCRUD = () => {
           await fetchEmployees();
         }
       }
-      
+     
       closeModal();
     } catch (error) {
       console.error('Error saving employee:', error);
@@ -133,19 +133,19 @@ const EmployeesCRUD = () => {
       setLoading(false);
     }
   };
-
+ 
   const handleDelete = async (id) => {
     if (window.confirm('¿Estás seguro de que deseas eliminar este empleado?')) {
       setLoading(true);
       try {
-        const response = await fetch(`http://localhost:4000/api/employees/${id}`, { 
-          method: 'DELETE' 
+        const response = await fetch(`http://localhost:4000/api/employees/${id}`, {
+          method: 'DELETE'
         });
-        
+       
         if (!response.ok) {
           throw new Error(`Error deleting employee: ${response.status}`);
         }
-        
+       
         setEmployees(prev => prev.filter(employee => employee._id !== id));
       } catch (error) {
         console.error('Error deleting employee:', error);
@@ -155,7 +155,7 @@ const EmployeesCRUD = () => {
       }
     }
   };
-
+ 
   return (
     <div className="employees-crud-container">
       <div className="employees-crud-wrapper">
@@ -164,7 +164,7 @@ const EmployeesCRUD = () => {
           <h1>Gestión de Empleados</h1>
           <p>Administra tu equipo de trabajo</p>
         </div>
-
+ 
         {/* Add Employee Button */}
         <div className="add-button-container">
           <button
@@ -176,7 +176,7 @@ const EmployeesCRUD = () => {
             Agregar Empleado
           </button>
         </div>
-
+ 
         {/* Employees Grid */}
         {loading && employees.length === 0 ? (
           <div className="loading-container">
@@ -195,7 +195,7 @@ const EmployeesCRUD = () => {
                     </span>
                   </div>
                 </div>
-                
+               
                 <div className="employee-details">
                   <div className="detail-item">
                     <span className="label">📞 Teléfono:</span>
@@ -206,7 +206,7 @@ const EmployeesCRUD = () => {
                     <span className="value">{employee.branchAddressId}</span>
                   </div>
                 </div>
-
+ 
                 <div className="employee-actions">
                   <button
                     onClick={() => openModal(employee)}
@@ -227,14 +227,14 @@ const EmployeesCRUD = () => {
             ))}
           </div>
         )}
-
+ 
         {employees.length === 0 && !loading && (
           <div className="empty-state">
             <p className="empty-title">No hay empleados registrados</p>
             <p className="empty-subtitle">Agrega tu primer empleado para comenzar</p>
           </div>
         )}
-
+ 
         {/* Modal */}
         {isModalOpen && (
           <div className="modal-overlay">
@@ -248,7 +248,7 @@ const EmployeesCRUD = () => {
                   ✕
                 </button>
               </div>
-
+ 
               <div className="modal-form">
                 <div className="form-row">
                   <div className="form-group">
@@ -262,7 +262,7 @@ const EmployeesCRUD = () => {
                       required
                     />
                   </div>
-
+ 
                   <div className="form-group">
                     <label>Apellido</label>
                     <input
@@ -275,7 +275,7 @@ const EmployeesCRUD = () => {
                     />
                   </div>
                 </div>
-
+ 
                 <div className="form-group">
                   <label>Teléfono</label>
                   <input
@@ -287,7 +287,7 @@ const EmployeesCRUD = () => {
                     required
                   />
                 </div>
-
+ 
                 <div className="form-group">
                   <label>Posición Asignada</label>
                   <select
@@ -306,7 +306,7 @@ const EmployeesCRUD = () => {
                     <option value="Recepcionista">Recepcionista</option>
                   </select>
                 </div>
-
+ 
                 <div className="form-group">
                   <label>ID de Sucursal</label>
                   <input
@@ -318,7 +318,7 @@ const EmployeesCRUD = () => {
                     required
                   />
                 </div>
-
+ 
                 <div className="form-group">
                   <label>Contraseña</label>
                   <input
@@ -330,7 +330,7 @@ const EmployeesCRUD = () => {
                     required
                   />
                 </div>
-
+ 
                 <div className="modal-actions">
                   <button
                     onClick={closeModal}
@@ -361,5 +361,5 @@ const EmployeesCRUD = () => {
     </div>
   );
 };
-
+ 
 export default EmployeesCRUD;

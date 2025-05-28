@@ -8,9 +8,9 @@
         passwordUser
         photoUser
 */
-
+ 
 import { Schema, model } from "mongoose";
-
+ 
 const employeeSchema = new Schema(
   {
     name: {
@@ -30,23 +30,20 @@ const employeeSchema = new Schema(
       type: String,
       required: true,
     },
-    branchAddressId: {
-      type: String,
-      required: true,
-    },
+ 
     passwordUser: {
       type: String,  
       required: true,
       minlength: 8,
     },
-    photoUser: {
-      type: String,
-    },
+ 
   },
   {
     timestamps: true,
     strict: false,
   }
 );
-
+ 
 export default model("employee", employeeSchema);
+ 
+ 
