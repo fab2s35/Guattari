@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
 import "./Inventory.css";
-import useProducts from '../../components/hooks/useProducts';
+import useProducts from '../../../private/src/components/hooks/useProducts';
 import { useNavigate } from "react-router-dom"; 
 
 /* Importar imágenes de los banners */
-import IbannerGrid1 from "../../img/Banner-Inventory/IbannerGrid1.png";
-import IbannerGrid2 from "../../img/Banner-Inventory/IbannerGrid2.png";
-import IbannerGrid3 from "../../img/Banner-Inventory/IbannerGrid3.png";
+import IbannerGrid1 from "../../../img/imgPrivate/Banner-Inventory/IbannerGrid1.png";
+import IbannerGrid2 from "../../../img/imgPrivate/Banner-Inventory/IbannerGrid2.png";
+import IbannerGrid3 from "../../../img/imgPrivate/Banner-Inventory/IbannerGrid3.png";
 /* Importar imagen de producto */
-import ProductoImg from "../../img/Inventory-Product-List/producto.png";
+import ProductoImg from "../../../img/imgPrivate/Inventory-Product-List/producto.png";
+
+import containerImage from '../../../img/imgPrivate/Banner-Inventory/map.png';
 
 const Inventory = () => {
   // --- Productos con hook ---

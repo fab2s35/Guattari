@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Agrega este import
 import './Sucursales.css';
-import containerImage from '../../img/map.png'; // Asegúrate de tener la imagen en esta ruta
+import containerImage from '../../../img/imgPrivate/Banner-Inventory/map.png';
 
 const Sucursales = () => {
   const [sucursales, setSucursales] = useState([

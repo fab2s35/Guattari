@@ -1,20 +1,20 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import FormTemplate from '../../components/FormReu/Form.jsx';
-import './branch.css';
+import FormTemplate from '../../../../../private/src/components/FormReu/Form.jsx';
+import './supplier.css';
 
-const AgregarSucursal = () => {
+const AgregarProvedor = () => {
   const navigate = useNavigate(); // Hook para navegación
 
-  const sucursalFields = [
+  const proveedorFields = [
     {
-      label: 'Sucursal',
+      label: 'Proveedor',
       name: 'nombre',
       type: 'text',
       required: true
     },
     {
-      label: 'Dirección',
+      label: 'Email',
       name: 'direccion',
       type: 'text',
       required: true
@@ -26,8 +26,8 @@ const AgregarSucursal = () => {
       required: true
     },
     {
-      label: 'Encargado',
-      name: 'encargado',
+      label: 'Ubicación',
+      name: 'ubicacion',
       type: 'text',
       required: true
     }
@@ -35,19 +35,19 @@ const AgregarSucursal = () => {
 
   // Función que se ejecuta al enviar el formulario
   const handleSubmit = (formValues) => {
-    console.log('Datos de la sucursal:', formValues);
+    console.log('Datos del proveedor:', formValues);
     // Aquí puedes agregar la lógica para enviar los datos al backend
     // Por ejemplo: axios.post('/api/sucursales', formValues);
 
     // Redireccionar a la página /branch después de guardar
-    navigate('/branch');
+    navigate('/supplier');
   };
 
   return (
     <div className="agregar-sucursal-container">
       <FormTemplate 
-        title="Agregar sucursal"
-        fields={sucursalFields}
+        title="Agregar Proveedor"
+        fields={proveedorFields}
         submitButtonText="Agregar"
         onSubmit={handleSubmit}
       />
@@ -55,4 +55,4 @@ const AgregarSucursal = () => {
   );
 };
 
-export default AgregarSucursal;
+export default AgregarProvedor;

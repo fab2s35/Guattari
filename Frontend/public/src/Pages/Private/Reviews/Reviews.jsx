@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Banner from '../../img/Banner-Reviews.png';
+import Banner from '../../../img/imgPrivate/Banner-Inventory/map.png';
 import './Reviews.css'; 
 
 const Reviews = () => {
