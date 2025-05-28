@@ -1,389 +1,365 @@
 import React, { useState, useEffect } from 'react';
-import '../Employees/Employe.css';
+import '../Employees/employees.css';
 
-const EmpleadosCRUD = () => {
-  const [empleados, setEmpleados] = useState([
-    {
-      id: 1,
-      nombres: "Mariana",
-      apellidos: "López",
-      edad: 26,
-      email: "marit.o@gmail.com",
-      telefono: "7123 4567",
-      posicion: "Vendedora",
-      contrasena: "***********"
-    },
-    {
-      id: 2,
-      nombres: "Carlos",
-      apellidos: "Martínez",
-      edad: 30,
-      email: "carlos.m@gmail.com",
-      telefono: "7123 8901",
-      posicion: "Gerente",
-      contrasena: "***********"
-    },
-    {
-      id: 3,
-      nombres: "Ana",
-      apellidos: "García",
-      edad: 28,
-      email: "ana.g@gmail.com",
-      telefono: "7123 2345",
-      posicion: "Supervisor",
-      contrasena: "***********"
-    }
-  ]);
-
-  const [mostrarFormulario, setMostrarFormulario] = useState(false);
-  const [empleadoEditando, setEmpleadoEditando] = useState(null);
-  const [busqueda, setBusqueda] = useState('');
-  const [formulario, setFormulario] = useState({
-    nombres: '',
-    apellidos: '',
-    telefono: '',
-    posicion: '',
-    email: '',
-    edad: '',
-    contrasena: ''
+const EmployeesCRUD = () => {
+  const [employees, setEmployees] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editingEmployee, setEditingEmployee] = useState(null);
+  const [formData, setFormData] = useState({
+    name: '',
+    lastName: '',
+    phone: '',
+    assignedPosition: '',
+    branchAddressId: '',
+    passwordUser: ''
   });
+  const [loading, setLoading] = useState(false);
 
-  // Filtrar empleados por búsqueda
-  const empleadosFiltrados = empleados.filter(empleado =>
-    empleado.nombres.toLowerCase().includes(busqueda.toLowerCase()) ||
-    empleado.apellidos.toLowerCase().includes(busqueda.toLowerCase()) ||
-    empleado.email.toLowerCase().includes(busqueda.toLowerCase()) ||
-    empleado.posicion.toLowerCase().includes(busqueda.toLowerCase())
-  );
+  // Cargar empleados al montar el componente
+  useEffect(() => {
+    fetchEmployees();
+  }, []);
 
-  // Manejar cambios en el formulario
-  const manejarCambio = (e) => {
+  const fetchEmployees = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch('http://localhost:4000/api/employees');
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      setEmployees(data);
+    } catch (error) {
+      console.error('Error fetching employees:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormulario(prev => ({
+    setFormData(prev => ({
       ...prev,
       [name]: value
     }));
   };
 
-  // Limpiar formulario
-  const limpiarFormulario = () => {
-    setFormulario({
-      nombres: '',
-      apellidos: '',
-      telefono: '',
-      posicion: '',
-      email: '',
-      edad: '',
-      contrasena: ''
+  const resetForm = () => {
+    setFormData({
+      name: '',
+      lastName: '',
+      phone: '',
+      assignedPosition: '',
+      branchAddressId: '',
+      passwordUser: ''
     });
-    setEmpleadoEditando(null);
+    setEditingEmployee(null);
   };
 
-  // Agregar nuevo empleado
-  const agregarEmpleado = () => {
-    if (!formulario.nombres || !formulario.apellidos || !formulario.telefono || !formulario.posicion) {
-      alert('Por favor, completa todos los campos obligatorios');
-      return;
-    }
-
-    const nuevoEmpleado = {
-      id: Date.now(),
-      ...formulario,
-      email: formulario.email || `${formulario.nombres.toLowerCase()}.${formulario.apellidos.toLowerCase()}@empresa.com`,
-      edad: formulario.edad || Math.floor(Math.random() * 20) + 25,
-      contrasena: formulario.contrasena || '***********'
-    };
-
-    setEmpleados(prev => [...prev, nuevoEmpleado]);
-    limpiarFormulario();
-    setMostrarFormulario(false);
-    alert('Empleado agregado exitosamente');
-  };
-
-  // Editar empleado
-  const editarEmpleado = (empleado) => {
-    setFormulario({
-      nombres: empleado.nombres,
-      apellidos: empleado.apellidos,
-      telefono: empleado.telefono,
-      posicion: empleado.posicion,
-      email: empleado.email,
-      edad: empleado.edad.toString(),
-      contrasena: empleado.contrasena
-    });
-    setEmpleadoEditando(empleado.id);
-    setMostrarFormulario(true);
-  };
-
-  // Actualizar empleado
-  const actualizarEmpleado = () => {
-    if (!formulario.nombres || !formulario.apellidos || !formulario.telefono || !formulario.posicion) {
-      alert('Por favor, completa todos los campos obligatorios');
-      return;
-    }
-
-    setEmpleados(prev => prev.map(emp => 
-      emp.id === empleadoEditando 
-        ? { ...emp, ...formulario, edad: parseInt(formulario.edad) || emp.edad }
-        : emp
-    ));
-    
-    limpiarFormulario();
-    setMostrarFormulario(false);
-    alert('Empleado actualizado exitosamente');
-  };
-
-  // Eliminar empleado
-  const eliminarEmpleado = (id) => {
-    if (window.confirm('¿Estás seguro de que deseas eliminar este empleado?')) {
-      setEmpleados(prev => prev.filter(emp => emp.id !== id));
-      alert('Empleado eliminado exitosamente');
-    }
-  };
-
-  // Manejar envío del formulario
-  const manejarEnvio = (e) => {
-    e.preventDefault();
-    if (empleadoEditando) {
-      actualizarEmpleado();
+  const openModal = (employee = null) => {
+    if (employee) {
+      setEditingEmployee(employee);
+      setFormData({
+        name: employee.name,
+        lastName: employee.lastName,
+        phone: employee.phone,
+        assignedPosition: employee.assignedPosition,
+        branchAddressId: employee.branchAddressId,
+        passwordUser: employee.passwordUser
+      });
     } else {
-      agregarEmpleado();
+      resetForm();
+    }
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    resetForm();
+  };
+
+  const handleSubmit = async () => {
+    setLoading(true);
+
+    try {
+      if (editingEmployee) {
+        // UPDATE
+        const response = await fetch(`http://localhost:4000/api/employees/${editingEmployee._id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        });
+
+        if (!response.ok) {
+          throw new Error(`Error updating employee: ${response.status}`);
+        }
+        
+        // Actualizar el empleado editado en el estado
+        setEmployees(prev => prev.map(employee => 
+          employee._id === editingEmployee._id 
+            ? { ...employee, ...formData }
+            : employee
+        ));
+      } else {
+        // CREATE
+        const response = await fetch('http://localhost:4000/api/employees', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        });
+        
+        if (!response.ok) {
+          throw new Error(`Error creating employee: ${response.status}`);
+        }
+
+        const newEmployee = await response.json();
+        console.log('New employee created:', newEmployee);
+        
+        // Verificar que el empleado tenga _id
+        if (newEmployee && newEmployee._id) {
+          setEmployees(prev => [...prev, newEmployee]);
+        } else {
+          // Si no viene el _id completo, refrescar todos los empleados
+          console.warn('New employee missing _id, refreshing all employees');
+          await fetchEmployees();
+        }
+      }
+      
+      closeModal();
+    } catch (error) {
+      console.error('Error saving employee:', error);
+      alert('Error al guardar el empleado. Por favor, intenta de nuevo.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleDelete = async (id) => {
+    if (window.confirm('¿Estás seguro de que deseas eliminar este empleado?')) {
+      setLoading(true);
+      try {
+        const response = await fetch(`http://localhost:4000/api/employees/${id}`, { 
+          method: 'DELETE' 
+        });
+        
+        if (!response.ok) {
+          throw new Error(`Error deleting employee: ${response.status}`);
+        }
+        
+        setEmployees(prev => prev.filter(employee => employee._id !== id));
+      } catch (error) {
+        console.error('Error deleting employee:', error);
+        alert('Error al eliminar el empleado. Por favor, intenta de nuevo.');
+      } finally {
+        setLoading(false);
+      }
     }
   };
 
   return (
-    <div className="empleados-container">
-      <div className="content-wrapper">
-        <h1 className="page-title">Gestión de Empleados</h1>
-        
-        {/* Imagen Hero */}
-        <div className="hero-image">
-          <img 
-            src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80"
-            alt="Equipo de trabajo colaborativo"
-            className="hero-img"
-          />
+    <div className="employees-crud-container">
+      <div className="employees-crud-wrapper">
+        {/* Header */}
+        <div className="header">
+          <h1>Gestión de Empleados</h1>
+          <p>Administra tu equipo de trabajo</p>
         </div>
 
-        {/* Formulario Modal */}
-        {mostrarFormulario && (
-          <div className="modal-overlay" onClick={() => {
-            setMostrarFormulario(false);
-            limpiarFormulario();
-          }}>
-            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-              <div className="form-container">
-                <div className="form-card">
-                  <div className="form-header">
-                    <h2>{empleadoEditando ? 'Editar Empleado' : 'Agregar Empleado'}</h2>
-                    <button 
-                      className="close-btn"
-                      onClick={() => {
-                        setMostrarFormulario(false);
-                        limpiarFormulario();
-                      }}
-                    >
-                      ×
-                    </button>
-                  </div>
-                  
-                  <form onSubmit={manejarEnvio}>
-                    <div className="form-group">
-                      <label htmlFor="nombres" className="form-label">Nombres *</label>
-                      <input 
-                        type="text" 
-                        id="nombres"
-                        name="nombres"
-                        value={formulario.nombres}
-                        onChange={manejarCambio}
-                        className="form-input"
-                        required
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label htmlFor="apellidos" className="form-label">Apellidos *</label>
-                      <input 
-                        type="text" 
-                        id="apellidos"
-                        name="apellidos"
-                        value={formulario.apellidos}
-                        onChange={manejarCambio}
-                        className="form-input"
-                        required
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label htmlFor="telefono" className="form-label">Teléfono *</label>
-                      <input 
-                        type="tel" 
-                        id="telefono"
-                        name="telefono"
-                        value={formulario.telefono}
-                        onChange={manejarCambio}
-                        className="form-input"
-                        required
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label htmlFor="email" className="form-label">Email</label>
-                      <input 
-                        type="email" 
-                        id="email"
-                        name="email"
-                        value={formulario.email}
-                        onChange={manejarCambio}
-                        className="form-input"
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label htmlFor="edad" className="form-label">Edad</label>
-                      <input 
-                        type="number" 
-                        id="edad"
-                        name="edad"
-                        value={formulario.edad}
-                        onChange={manejarCambio}
-                        className="form-input"
-                        min="18"
-                        max="65"
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label htmlFor="posicion" className="form-label">Posición *</label>
-                      <div className="select-wrapper">
-                        <select 
-                          id="posicion" 
-                          name="posicion"
-                          value={formulario.posicion}
-                          onChange={manejarCambio}
-                          className="form-select"
-                          required
-                        >
-                          <option value="">Seleccionar posición</option>
-                          <option value="Gerente">Gerente</option>
-                          <option value="Supervisor">Supervisor</option>
-                          <option value="Empleado">Empleado</option>
-                          <option value="Asistente">Asistente</option>
-                          <option value="Vendedora">Vendedora</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <div className="form-buttons">
-                      <button type="button" className="cancel-button" onClick={() => {
-                        setMostrarFormulario(false);
-                        limpiarFormulario();
-                      }}>
-                        Cancelar
-                      </button>
-                      <button type="submit" className="submit-button">
-                        {empleadoEditando ? 'Actualizar' : 'Agregar'}
-                      </button>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-
-        <h2 className="section-title">Listado de empleados ({empleadosFiltrados.length})</h2>
-
-        {/* Barra de búsqueda y botón agregar */}
-        <div className="search-section" >
-          <div className="search-container">
-            <div className="search-input-wrapper">
-              <svg className="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M21 21L16.514 16.506L21 21ZM19 10.5C19 15.194 15.194 19 10.5 19C5.806 19 2 15.194 2 10.5C2 5.806 5.806 2 10.5 2C15.194 2 19 5.806 19 10.5Z" stroke="#666" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-              <input 
-                type="text" 
-                placeholder="Buscar empleados..." 
-                className="search-input"
-                value={busqueda}
-                onChange={(e) => setBusqueda(e.target.value)}
-              />
-            </div>
-          </div>
+        {/* Add Employee Button */}
+        <div className="add-button-container">
           <button
-            className="add-employee-btn"
-            onClick={() => setMostrarFormulario(true)}
+            onClick={() => openModal()}
+            className="add-button"
+            disabled={loading}
           >
             <span className="plus-icon">+</span>
             Agregar Empleado
           </button>
         </div>
 
-        {/* Tabla de empleados */}
-        <div className="table-container">
-          <table className="employees-table">
-            <thead>
-              <tr>
-                <th>Foto</th>
-                <th>Nombre Completo</th>
-                <th>Edad</th>
-                <th>Email</th>
-                <th>Teléfono</th>
-                <th>Puesto</th>
-                <th>Acciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              {empleadosFiltrados.length === 0 ? (
-                <tr>
-                  <td colSpan="7" style={{ textAlign: 'center', padding: '20px' }}>
-                    {busqueda ? 'No se encontraron empleados que coincidan con la búsqueda' : 'No hay empleados registrados'}
-                  </td>
-                </tr>
-              ) : (
-                empleadosFiltrados.map((empleado) => (
-                  <tr key={empleado.id}>
-                    <td>
-                      <div className="avatar">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21" stroke="#666" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                          <path d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11Z" stroke="#666" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
-                      </div>
-                    </td>
-                    <td>{`${empleado.nombres} ${empleado.apellidos}`}</td>
-                    <td>{empleado.edad}</td>
-                    <td>{empleado.email}</td>
-                    <td>{empleado.telefono}</td>
-                    <td>{empleado.posicion}</td>
-                    <td>
-                    <div className="action-buttons">
-                      <button 
-                        className="edit-btn"
-                        onClick={() => editarEmpleado(empleado)}
-                        title="Editar empleado"
-                      >
-                        ✎
-                      </button>
-                      <button 
-                        className="delete-btn"
-                        onClick={() => eliminarEmpleado(empleado.id)}
-                        title="Eliminar empleado"
-                      >
-                        🗑
-                      </button>
-                    </div>
-                  </td>
+        {/* Employees Grid */}
+        {loading && employees.length === 0 ? (
+          <div className="loading-container">
+            <div className="spinner"></div>
+            <p>Cargando empleados...</p>
+          </div>
+        ) : (
+          <div className="employees-grid">
+            {employees.map((employee) => (
+              <div key={employee._id} className="employee-card">
+                <div className="employee-header">
+                  <div className="employee-name">
+                    <h3>{employee.name} {employee.lastName}</h3>
+                    <span className="position-badge">
+                      {employee.assignedPosition}
+                    </span>
+                  </div>
+                </div>
+                
+                <div className="employee-details">
+                  <div className="detail-item">
+                    <span className="label">📞 Teléfono:</span>
+                    <span className="value">{employee.phone}</span>
+                  </div>
+                  <div className="detail-item">
+                    <span className="label">🏢 Sucursal ID:</span>
+                    <span className="value">{employee.branchAddressId}</span>
+                  </div>
+                </div>
 
-                  </tr>
-                ))
-              )}
-            </tbody>
-          </table>
-        </div>
+                <div className="employee-actions">
+                  <button
+                    onClick={() => openModal(employee)}
+                    className="edit-button"
+                    disabled={loading}
+                  >
+                    ✏️ Editar
+                  </button>
+                  <button
+                    onClick={() => handleDelete(employee._id)}
+                    className="delete-button"
+                    disabled={loading}
+                  >
+                    🗑️ Eliminar
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {employees.length === 0 && !loading && (
+          <div className="empty-state">
+            <p className="empty-title">No hay empleados registrados</p>
+            <p className="empty-subtitle">Agrega tu primer empleado para comenzar</p>
+          </div>
+        )}
+
+        {/* Modal */}
+        {isModalOpen && (
+          <div className="modal-overlay">
+            <div className="modal">
+              <div className="modal-header">
+                <h2>{editingEmployee ? 'Editar Empleado' : 'Nuevo Empleado'}</h2>
+                <button
+                  onClick={closeModal}
+                  className="close-button"
+                >
+                  ✕
+                </button>
+              </div>
+
+              <div className="modal-form">
+                <div className="form-row">
+                  <div className="form-group">
+                    <label>Nombre</label>
+                    <input
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      placeholder="Ej: Juan"
+                      required
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label>Apellido</label>
+                    <input
+                      type="text"
+                      name="lastName"
+                      value={formData.lastName}
+                      onChange={handleInputChange}
+                      placeholder="Ej: Pérez"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="form-group">
+                  <label>Teléfono</label>
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    placeholder="Ej: +1234567890"
+                    required
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label>Posición Asignada</label>
+                  <select
+                    name="assignedPosition"
+                    value={formData.assignedPosition}
+                    onChange={handleInputChange}
+                    required
+                  >
+                    <option value="">Seleccionar posición</option>
+                    <option value="Gerente">Gerente</option>
+                    <option value="Supervisor">Supervisor</option>
+                    <option value="Cajero">Cajero</option>
+                    <option value="Dealer">Dealer</option>
+                    <option value="Seguridad">Seguridad</option>
+                    <option value="Limpieza">Limpieza</option>
+                    <option value="Recepcionista">Recepcionista</option>
+                  </select>
+                </div>
+
+                <div className="form-group">
+                  <label>ID de Sucursal</label>
+                  <input
+                    type="text"
+                    name="branchAddressId"
+                    value={formData.branchAddressId}
+                    onChange={handleInputChange}
+                    placeholder="Ej: BRANCH-001"
+                    required
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label>Contraseña</label>
+                  <input
+                    type="password"
+                    name="passwordUser"
+                    value={formData.passwordUser}
+                    onChange={handleInputChange}
+                    placeholder="Contraseña del usuario"
+                    required
+                  />
+                </div>
+
+                <div className="modal-actions">
+                  <button
+                    onClick={closeModal}
+                    className="cancel-button"
+                    disabled={loading}
+                  >
+                    Cancelar
+                  </button>
+                  <button
+                    onClick={handleSubmit}
+                    disabled={loading}
+                    className="save-button"
+                  >
+                    {loading ? (
+                      <div className="button-spinner"></div>
+                    ) : (
+                      <>
+                        💾 {editingEmployee ? 'Actualizar' : 'Guardar'}
+                      </>
+                    )}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
 };
 
-export default EmpleadosCRUD;
+export default EmployeesCRUD;
