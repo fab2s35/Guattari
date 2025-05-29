@@ -15,10 +15,7 @@ registerEmployeesController.register = async (req, res) => {
 
   try {
 
-    // Validar que los campos requeridos no esten vacios
-    if (!name || !phone || !assignedPosition || !passwordUser) {
-      return res.status(400).json({ message: "Faltan datos" });
-    }
+
 
     // Encriptar la contraseña
     const passwordHash = await bcryptjs.hash(password, 10);
