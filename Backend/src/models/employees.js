@@ -1,49 +1,39 @@
 /*
-    Fields:
-        name
-        lasName
-        phone
-        assignedPosition
-        branchAddressId
-        passwordUser
-        photoUser
+    Campos:
+        
 */
- 
+
 import { Schema, model } from "mongoose";
- 
+
 const employeeSchema = new Schema(
   {
     name: {
       type: String,
-      required: true,
+      require: true,
     },
-    lastName: {
+
+    lastname: {
       type: String,
-      required: true,
     },
+
     phone: {
-      type: String,  
-      required: true,
-      minlength: 8,
+      type: String,
+      require: true,
     },
+
     assignedPosition: {
       type: String,
-      required: true,
     },
- 
+
     passwordUser: {
-      type: String,  
-      required: true,
-      minlength: 8,
+      type: String,
     },
- 
+
   },
   {
     timestamps: true,
     strict: false,
   }
 );
- 
-export default model("employee", employeeSchema);
- 
- 
+
+export default model("employees", employeeSchema);

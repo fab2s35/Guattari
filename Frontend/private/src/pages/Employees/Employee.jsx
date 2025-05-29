@@ -1,41 +1,41 @@
 import React, { useState, useEffect } from 'react';
-import './employe.css';
- 
-const EmployeesCRUD = () => {
-  const [employees, setEmployees] = useState([]);
+import './Employe.css';
+
+const CustomersCRUD = () => {
+  const [customers, setCustomers] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [editingEmployee, setEditingEmployee] = useState(null);
+  const [editingCustomer, setEditingCustomer] = useState(null);
   const [formData, setFormData] = useState({
     name: '',
-    lastName: '',
+    lastname: '',
+    password: '',
     phone: '',
-    assignedPosition: '',
-    branchAddressId: '',
-    passwordUser: ''
+    assignedPosition: ''
   });
   const [loading, setLoading] = useState(false);
- 
-  // Cargar empleados al montar el componente
+
+  // Cargar clientes al montar el componente
   useEffect(() => {
-    fetchEmployees();
+    fetchCustomers();
   }, []);
- 
-  const fetchEmployees = async () => {
+
+  const fetchCustomers = async () => {
     setLoading(true);
     try {
       const response = await fetch('http://localhost:4000/api/employees');
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
       const data = await response.json();
-      setEmployees(data);
+      // Filter out any customers with missing required fields
+      const validCustomers = data.filter(customer => 
+        customer && customer.name && customer.lastname
+      );
+      setCustomers(validCustomers);
     } catch (error) {
-      console.error('Error fetching employees:', error);
+      console.error('Error fetching customers:', error);
     } finally {
       setLoading(false);
     }
   };
- 
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -43,62 +43,63 @@ const EmployeesCRUD = () => {
       [name]: value
     }));
   };
- 
+
   const resetForm = () => {
     setFormData({
-      name: '',
-      lastName: '',
-      phone: '',
-      assignedPosition: '',
-      branchAddressId: '',
-      passwordUser: ''
+    name: '',
+    lastname: '',
+    password: '',
+    phone: '',
+    assignedPosition: ''
     });
-    setEditingEmployee(null);
+    setEditingCustomer(null);
   };
- 
-  const openModal = (employee = null) => {
-    if (employee) {
-      setEditingEmployee(employee);
+
+  const openModal = (customer = null) => {
+    if (customer) {
+      setEditingCustomer(customer);
       setFormData({
-        name: employee.name,
-        lastName: employee.lastName,
-        phone: employee.phone,
-        assignedPosition: employee.assignedPosition,
-        branchAddressId: employee.branchAddressId,
-        passwordUser: employee.passwordUser
+        name: customer.name || '',
+        lastname: customer.lastname || '',
+        password: '',
+        phone: customer.phone || '',
+        assignedPosition: customer.assignedPosition || ''
       });
     } else {
       resetForm();
     }
     setIsModalOpen(true);
   };
- 
+
   const closeModal = () => {
     setIsModalOpen(false);
     resetForm();
   };
- 
+
   const handleSubmit = async () => {
     setLoading(true);
- 
+
     try {
-      if (editingEmployee) {
-        // UPDATE
-        const response = await fetch(`http://localhost:4000/api/employees/${editingEmployee._id}`, {
+      if (editingCustomer) {
+        // UPDATE - no actualizar email ya que no está en tu controlador
+        const updateData = {
+          name: formData.name,
+          passwordUser: formData.passwordUser,
+          lastname: formData.lastname,
+          phone: formData.phone,
+          assignedPosition: formData.assignedPosition
+        };
+        
+        await fetch(`http://localhost:4000/api/employees/${editingCustomer._id}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(formData)
+          body: JSON.stringify(updateData)
         });
- 
-        if (!response.ok) {
-          throw new Error(`Error updating employee: ${response.status}`);
-        }
-       
-        // Actualizar el empleado editado en el estado
-        setEmployees(prev => prev.map(employee =>
-          employee._id === editingEmployee._id
-            ? { ...employee, ...formData }
-            : employee
+        
+        setCustomers(prev => prev.map(customer => 
+          customer._id === editingCustomer._id 
+            ? { ...customer, ...updateData }
+            : customer
         ));
       } else {
         // CREATE
@@ -107,118 +108,102 @@ const EmployeesCRUD = () => {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(formData)
         });
-       
-        if (!response.ok) {
-          throw new Error(`Error creating employee: ${response.status}`);
-        }
- 
-        const newEmployee = await response.json();
-        console.log('New employee created:', newEmployee);
-       
-        // Verificar que el empleado tenga _id
-        if (newEmployee && newEmployee._id) {
-          setEmployees(prev => [...prev, newEmployee]);
-        } else {
-          // Si no viene el _id completo, refrescar todos los empleados
-          console.warn('New employee missing _id, refreshing all employees');
-          await fetchEmployees();
-        }
+        
+        const newCustomer = await response.json();
+        setCustomers(prev => [...prev, newCustomer]);
       }
-     
+      
       closeModal();
     } catch (error) {
-      console.error('Error saving employee:', error);
-      alert('Error al guardar el empleado. Por favor, intenta de nuevo.');
+      console.error('Error saving Empleado:', error);
     } finally {
       setLoading(false);
     }
   };
- 
+
   const handleDelete = async (id) => {
-    if (window.confirm('¿Estás seguro de que deseas eliminar este empleado?')) {
+    if (window.confirm('¿Estás seguro de que deseas eliminar este Empleado?')) {
       setLoading(true);
       try {
-        const response = await fetch(`http://localhost:4000/api/employees/${id}`, {
-          method: 'DELETE'
-        });
-       
-        if (!response.ok) {
-          throw new Error(`Error deleting employee: ${response.status}`);
-        }
-       
-        setEmployees(prev => prev.filter(employee => employee._id !== id));
+        await fetch(`http://localhost:4000/api/employees/${id}`, { method: 'DELETE' });
+        setCustomers(prev => prev.filter(customer => customer._id !== id));
       } catch (error) {
-        console.error('Error deleting employee:', error);
-        alert('Error al eliminar el empleado. Por favor, intenta de nuevo.');
+        console.error('Error deleting Empleado:', error);
       } finally {
         setLoading(false);
       }
     }
   };
- 
+
+  // Helper function to get customer initial safely
+  const getCustomerInitial = (name) => {
+    if (!name || typeof name !== 'string' || name.trim() === '') {
+      return '?';
+    }
+    return name.trim().charAt(0).toUpperCase();
+  };
+
   return (
-    <div className="employees-crud-container">
-      <div className="employees-crud-wrapper">
+    <div className="customers-crud-container">
+      <div className="customers-crud-wrapper">
         {/* Header */}
         <div className="header">
-          <h1>Gestión de Empleados</h1>
-          <p>Administra tu equipo de trabajo</p>
+          <h1>Gestión de Empledos</h1>
+          <p>Administra tus registros de Empleados</p>
         </div>
- 
-        {/* Add Employee Button */}
+
+        {/* Add Customer Button */}
         <div className="add-button-container">
           <button
             onClick={() => openModal()}
             className="add-button"
-            disabled={loading}
           >
             <span className="plus-icon">+</span>
             Agregar Empleado
           </button>
         </div>
- 
-        {/* Employees Grid */}
-        {loading && employees.length === 0 ? (
+
+        {/* Customers Grid */}
+        {loading && customers.length === 0 ? (
           <div className="loading-container">
             <div className="spinner"></div>
-            <p>Cargando empleados...</p>
+            <p>Cargando Empleados...</p>
           </div>
         ) : (
-          <div className="employees-grid">
-            {employees.map((employee) => (
-              <div key={employee._id} className="employee-card">
-                <div className="employee-header">
-                  <div className="employee-name">
-                    <h3>{employee.name} {employee.lastName}</h3>
-                    <span className="position-badge">
-                      {employee.assignedPosition}
-                    </span>
+          <div className="customers-grid">
+            {customers.map((customer) => (
+              <div key={customer._id} className="customer-card">
+                <div className="customer-header">
+                  <div className="customer-avatar">
+                    <span>{getCustomerInitial(customer.name)}</span>
+                  </div>
+                  <div className="customer-info">
+                    <h3>{customer.name || 'Sin nombre'}</h3>
+                    <p className="customer-email">{customer.lastname || 'apellido'}</p>
                   </div>
                 </div>
-               
-                <div className="employee-details">
+                
+                <div className="customer-details">
                   <div className="detail-item">
-                    <span className="label">📞 Teléfono:</span>
-                    <span className="value">{employee.phone}</span>
+                    <span className="detail-label">Cargo:</span>
+                    <span className="detail-value">{customer.assignedPosition || 'N/A'} Cargo</span>
                   </div>
                   <div className="detail-item">
-                    <span className="label">🏢 Sucursal ID:</span>
-                    <span className="value">{employee.branchAddressId}</span>
+                    <span className="detail-label">Telefono:</span>
+                    <span className="detail-value origin-badge">{customer.phone || 'No especificado'}</span>
                   </div>
                 </div>
- 
-                <div className="employee-actions">
+
+                <div className="customer-actions">
                   <button
-                    onClick={() => openModal(employee)}
+                    onClick={() => openModal(customer)}
                     className="edit-button"
-                    disabled={loading}
                   >
                     ✏️ Editar
                   </button>
                   <button
-                    onClick={() => handleDelete(employee._id)}
+                    onClick={() => handleDelete(customer._id)}
                     className="delete-button"
-                    disabled={loading}
                   >
                     🗑️ Eliminar
                   </button>
@@ -227,20 +212,20 @@ const EmployeesCRUD = () => {
             ))}
           </div>
         )}
- 
-        {employees.length === 0 && !loading && (
+
+        {customers.length === 0 && !loading && (
           <div className="empty-state">
-            <p className="empty-title">No hay empleados registrados</p>
-            <p className="empty-subtitle">Agrega tu primer empleado para comenzar</p>
+            <p className="empty-title">No hay Empleados registrados</p>
+            <p className="empty-subtitle">Agrega tu primer Empleado para comenzar</p>
           </div>
         )}
- 
+
         {/* Modal */}
         {isModalOpen && (
           <div className="modal-overlay">
             <div className="modal">
               <div className="modal-header">
-                <h2>{editingEmployee ? 'Editar Empleado' : 'Nuevo Empleado'}</h2>
+                <h2>{editingCustomer ? 'Editar Empleado' : 'Nuevo Empleado'}</h2>
                 <button
                   onClick={closeModal}
                   className="close-button"
@@ -248,77 +233,22 @@ const EmployeesCRUD = () => {
                   ✕
                 </button>
               </div>
- 
+
               <div className="modal-form">
-                <div className="form-row">
-                  <div className="form-group">
-                    <label>Nombre</label>
-                    <input
-                      type="text"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      placeholder="Ej: Juan"
-                      required
-                    />
-                  </div>
- 
-                  <div className="form-group">
-                    <label>Apellido</label>
-                    <input
-                      type="text"
-                      name="lastName"
-                      value={formData.lastName}
-                      onChange={handleInputChange}
-                      placeholder="Ej: Pérez"
-                      required
-                    />
-                  </div>
-                </div>
- 
                 <div className="form-group">
-                  <label>Teléfono</label>
-                  <input
-                    type="tel"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleInputChange}
-                    placeholder="Ej: +1234567890"
-                    required
-                  />
-                </div>
- 
-                <div className="form-group">
-                  <label>Posición Asignada</label>
-                  <select
-                    name="assignedPosition"
-                    value={formData.assignedPosition}
-                    onChange={handleInputChange}
-                    required
-                  >
-                    <option value="">Seleccionar posición</option>
-                    <option value="Gerente">Gerente</option>
-                    <option value="Supervisor">Supervisor</option>
-                    <option value="Cajero">Cajero</option>
-                    <option value="Dealer">Dealer</option>
-                    <option value="Seguridad">Seguridad</option>
-                    <option value="Limpieza">Limpieza</option>
-                    <option value="Recepcionista">Recepcionista</option>
-                  </select>
-                </div>
- 
-                <div className="form-group">
-                  <label>ID de Sucursal</label>
+                  <label>Nombre Completo</label>
                   <input
                     type="text"
-                    name="branchAddressId"
-                    value={formData.branchAddressId}
+                    name="name"
+                    value={formData.name}
                     onChange={handleInputChange}
-                    placeholder="Ej: BRANCH-001"
+                    placeholder="Ej: Juan Pérez García"
                     required
                   />
                 </div>
- 
+
+           
+
                 <div className="form-group">
                   <label>Contraseña</label>
                   <input
@@ -326,16 +256,59 @@ const EmployeesCRUD = () => {
                     name="passwordUser"
                     value={formData.passwordUser}
                     onChange={handleInputChange}
-                    placeholder="Contraseña del usuario"
-                    required
+                    placeholder={editingCustomer ? "Nueva contraseña (opcional)" : "Contraseña"}
+                    required={!editingCustomer}
                   />
+                  {editingCustomer && (
+                    <small className="field-note">Dejar vacío para mantener la actual</small>
+                  )}
                 </div>
- 
+
+                <div className="form-row">
+                  <div className="form-group">
+                    <label>Telefono</label>
+                    <input
+                      type="number"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      placeholder="25"
+                      min="7"
+                      max="8"
+                      required
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label>País de Origen</label>
+                    <select
+                      name="assignedPosition"
+                      value={formData.assignedPosition}
+                      onChange={handleInputChange}
+                      required
+                    >
+                      <option value="">Seleccionar país</option>
+                      <option value="Argentina">Argentina</option>
+                      <option value="Bolivia">Bolivia</option>
+                      <option value="Brasil">Brasil</option>
+                      <option value="Chile">Chile</option>
+                      <option value="Colombia">Colombia</option>
+                      <option value="Costa Rica">Costa Rica</option>
+                      <option value="Ecuador">Ecuador</option>
+                      <option value="El Salvador">El Salvador</option>
+                      <option value="España">España</option>
+                      <option value="Guatemala">Guatemala</option>
+                      <option value="Honduras">Honduras</option>
+                      <option value="México">México</option>
+                      <option value="Nicaragua">Nicaragua</option>
+                    </select>
+                  </div>
+                </div>
+
                 <div className="modal-actions">
                   <button
                     onClick={closeModal}
                     className="cancel-button"
-                    disabled={loading}
                   >
                     Cancelar
                   </button>
@@ -348,7 +321,7 @@ const EmployeesCRUD = () => {
                       <div className="button-spinner"></div>
                     ) : (
                       <>
-                        💾 {editingEmployee ? 'Actualizar' : 'Guardar'}
+                        👤 {editingCustomer ? 'Actualizar' : 'Registrar'}
                       </>
                     )}
                   </button>
@@ -361,5 +334,5 @@ const EmployeesCRUD = () => {
     </div>
   );
 };
- 
-export default EmployeesCRUD;
+
+export default CustomersCRUD;

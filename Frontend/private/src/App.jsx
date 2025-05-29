@@ -28,25 +28,8 @@ function App() {
 
   return (
     <>
-      <Router>
-        <Header />
-        <Routes>
-          <Route path="/proveedores" element={<Proveedores/>} />
-          <Route path="/sucursales" element={<Sucursales/>} />
-          <Route path="/branch" element={<Branch/>} />
-          <Route path="/MainPage" element={<MainPage/>} />
-          <Route path="/" element={<MainPage/>} />
-          <Route path="/Inventory" element={<Inventory />} /> 
-           <Route path="/Reviews" element={<Reviews />} /> 
-           <Route path="/AddInv" element={<AddInv />} /> 
-           <Route path="/Employee" element={<Employee />} />
-
-           
-        </Routes>
-        <Footer />
-      </Router>
+      <Employee/>
     </>
   )
 }
-
 export default App

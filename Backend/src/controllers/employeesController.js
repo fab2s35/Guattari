@@ -1,40 +1,44 @@
 //Array de metodos (C R U D)
 const employeesController = {};
-import employeeModel from "../models/employees.js";
- 
- 
+import employeesModel from "../models/employees.js";
+
 // SELECT
 employeesController.getEmployee = async (req, res) => {
-  const employee = await employeeModel.find();
-  res.json(employee);
+  const employees = await employeesModel.find();
+  res.json(employees);
 };
- 
+
 // INSERT
-employeesController.insertEmployee = async (req, res) => {
-  const { name, lastName, phone, assignedPosition,  passwordUser,  } = req.body;
-  const newEmployee= new employeeModel({ name, lastName, phone, assignedPosition,  passwordUser,   });
+employeesController.createEmployee = async (req, res) => {
+  const {  name, lastname, phone, assignedPosition, passwordUser } = req.body;
+  const newEmployee = new employeesModelModel({  name, lastname, phone, assignedPosition, passwordUser});
   await newEmployee.save();
-  res.json({ message: "Employee saved" });
+  res.json({ message: "Employee save" });
 };
- 
+
 // DELETE
 employeesController.deleteEmployee = async (req, res) => {
-const deletedEmployee = await employeeModel.findByIdAndDelete(req.params.id);
-  if (!deletedEmployee) {
-    return res.status(404).json({ message: "Employee wasn't found" });
+const deletedemployee = await employeesModel.findByIdAndDelete(req.params.id);
+  if (!deletedemployee) {
+    return res.status(404).json({ message: "Employee dont find" });
   }
   res.json({ message: "Employee deleted" });
 };
- 
+
 // UPDATE
 employeesController.updateEmployee = async (req, res) => {
-  const { name, lastName, phone, assignedPosition,  passwordUser,   } = req.body;
-  await employeeModel.findByIdAndUpdate(
+  // Solicito todos los valores
+  const { name, lastname, phone, assignedPosition, passwordUser } = req.body;
+  // Actualizo
+  await employeesModel.findByIdAndUpdate(
     req.params.id,
-    { name, lastName, phone, assignedPosition,  passwordUser,  },
+    {
+        name, lastname, phone, assignedPosition, passwordUser
+    },
     { new: true }
   );
+  // muestro un mensaje que todo se actualizo
   res.json({ message: "employee update" });
 };
- 
+
 export default employeesController;
