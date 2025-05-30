@@ -46,7 +46,7 @@ function Header() {
 
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div className="navbar-nav">
-            <Link className="nav-item nav-link inicio-link active" to="/MainPage">Inicio</Link>
+            <Link className="nav-item nav-link inicio-link active" to="/bienvenidaAdmin">Inicio</Link>
             <Link className="nav-item nav-link" to="/proveedores">Proveedores</Link>
             <Link className="nav-item nav-link" to="/sucursales">Sucursales</Link>
             <Link className="nav-item nav-link" to="/Inventory">Inventario</Link>

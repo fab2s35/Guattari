@@ -1,74 +1,93 @@
-//Importamos las tablas de los usuario
-import clientssModel from "../models/clients.js";
-import employeesModel from "../models/employees.js";
-import bcryptjs from "bcryptjs"; // encriptar
-import jsonwebtoken from "jsonwebtoken"; //Token
-import { config } from "../config.js";
+import CustomersModel from "../models/clients.js"
+import EmployeesModel from "../models/employees.js"
+import bcrypt from "bcrypt"
+import jsonwebtoken from "jsonwebtoken" // Corregido: era "jswonwebtoken"
+import {config} from "../config.js"
 
 const loginController = {};
 
-loginController.login = async (req, res) => {
-  const { email, password } = req.body;
+loginController.login = async (req,res) => {
 
-  try {
-    let userFound; //Para guardar el usuario encontrado
-    let userType; //Para guardar el tipo usuario encontrado
+    const {email,password} = req.body;
 
-    // 1. ADMIN
-    if (
-      email === config.emailAdmin.email &&
-      password === config.emailAdmin.password
-    ) {
-      (userType = "admin"), (userFound = { _id: "admin" });
-    } else {
-      //2-EMPLEADO
-      userFound = await employeesModel.findOne({ email });
-      userType = "employee";
+    try {
 
-      if (!userFound) {
-        userFound = await clienstModel.findOne({ email });
-        userType = "clients";
-      }
+        //Validamos los 3 posibles niveles
+        //1 admin, 2, Empleado, 3, Cliente
+     let userFound; //Valida si se encontro el usuario
+     let userType; //Indica el tipo de usuario
+
+     //1-Admin
+     //Verifiquemos si quien esta ingresando es admin
+     
+     if(email === config.emailAdmin.email && password === config.emailAdmin.password) {
+
+        userType = "Admin"
+        userFound = {_id:"Admin"}
+     }else {
+
+             //2- Empleado
+
+        userFound = await EmployeesModel.findOne({email})
+        if (userFound) {
+            userType = "Employee";
+        } else {
+            //3- Cliente
+            userFound = await CustomersModel.findOne({email})
+            if (userFound) {
+                userType = "Customer";
+            }
+        }
+     }
+
+     if(!userFound){
+        return res.status(401).json({message: "User not found", success: false})
+     }
+
+     //si no es administrador validamos la contraseña
+     if(userType !== "Admin") {
+        const isMatch = await bcrypt.compare(password, userFound.password);
+        console.log("password encontrada" + userFound.password )
+                console.log("password insertada" + password )
+
+        if (!isMatch) {
+            return res.status(401).json({message: "Invalid Password", success: false})
+        }
+     }
+
+     //Generar el token
+     jsonwebtoken.sign(
+        //1- Que se va a guardar
+        {id: userFound._id, userType},
+        //2 Clave secreta
+        config.JWT.secret,
+        //3-cuando expira
+        {expiresIn: "30d"},
+        //4- Función flecha
+        (error, token) => {
+            if (error) {
+                console.log(error)
+                return res.status(500).json({message: "Error generating token", success: false})
+            }
+            
+            res.cookie("authToken", token)
+            
+            // Enviar información del tipo de usuario para la redirección
+            res.json({
+              message: "Login successful", 
+              success: true,
+              token: token, // <-- Asegúrate de enviar el token si lo necesitas
+              userType: userType,
+              redirectTo: userType === "Customer" ? "/MainPage" : "/bienvenidaAdmin"
+            });
+            
+        }
+     )
+
+    } catch(error) {
+        console.log(error)
+        res.status(500).json({message: "Server error", success: false})
     }
+}
 
-    //Usuario no encontrado
-    if (!userFound) {
-      console.log("A pesar de buscar en todos lados, no existe");
-      return res.json({ message: "User not found" });
-    }
-
-    // Validar la contraseña
-    // Solo si no es Admin
-    if (userType !== "admin") {
-      //veamos si la contraseña que están escribiendo
-      // en el login
-      // Es la misma, que la que está en la BD (encriptada)
-      const isMatch = await bcryptjs.compare(password, userFound.password);
-      if (!isMatch) {
-        console.log("no matchea");
-        return res.json({ message: "Contraseña incorrecta" });
-      }
-    }
-
-    // --> TOKEN <--
-    jsonwebtoken.sign(
-      //1-Que voy a guardar
-      { id: userFound._id, userType },
-      //2-Secreto
-      config.JWT.secret,
-      //3- cuando expira
-      { expiresIn: config.JWT.expiresIn },
-      //4-funcion flecha
-      (error, token) => {
-        if (error) console.log(error);
-
-        res.cookie("authToken", token);
-        res.json({ message: "login successful" });
-      }
-    );
-  } catch (error) {
-    res.json({ message: "error" });
-  }
-};
-
-export default loginController;
+export default loginController

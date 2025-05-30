@@ -1,7 +1,8 @@
 import './App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import PublicLayout from './layouts/PublicLayout.jsx';
 import PrivateLayout from './layouts/PrivateLayout.jsx';
+import { useEffect, useState } from 'react';
 
 // --- Páginas públicas ---
 import MainPage from './Pages/Public/MainPage/MainPage';
@@ -20,8 +21,24 @@ import Branch from './Pages/Private/Addbranch/branch';
 import Reviews from './Pages/Private/Reviews/Reviews';
 import AddInv from './Pages/Private/addInv/addInventory';
 import Employee from './Pages/Private/Employees/Employee';
+import AdminHome from './Pages/Private/MainPage/mainPage'; 
+import NavAdmin from './components/HeaderPrivate/Header' // Página de bienvenida admin
+
+// --- Componente para proteger rutas privadas ---
+const PrivateRoute = ({ children }) => {
+  const token = localStorage.getItem('token');
+  return token ? children : <Navigate to="/login" />;
+};
 
 function App() {
+  const [userType, setUserType] = useState(null);
+
+  useEffect(() => {
+    // Recupera tipo de usuario desde localStorage si lo guardas allí
+    const storedUserType = localStorage.getItem('userType');
+    setUserType(storedUserType);
+  }, []);
+
   return (
     <Router>
       <Routes>
@@ -39,8 +56,24 @@ function App() {
           <Route path="/login" element={<Login />} />
         </Route>
 
-        {/* Layout privado */}
-        <Route element={<PrivateLayout />}>
+        {/* Página de bienvenida para admin */}
+        <Route
+          path="/bienvenidaAdmin"
+          element={
+            <PrivateRoute>
+              <AdminHome />
+            </PrivateRoute>
+          }
+        />
+
+        {/* Layout privado (empleados u otros roles) */}
+        <Route
+          element={
+            <PrivateRoute>
+              <PrivateLayout />
+            </PrivateRoute>
+          }
+        >
           <Route path="/inventory" element={<Inventory />} />
           <Route path="/proveedores" element={<Proveedores />} />
           <Route path="/sucursales" element={<Sucursales />} />

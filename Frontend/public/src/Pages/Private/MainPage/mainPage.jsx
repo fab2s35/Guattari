@@ -1,10 +1,14 @@
 import './mainPage.css';
-import MainPageImg from '../../img/Img-MainPage/MainPage-Img.jpg';
-import MainPageImg2 from '../../img/Img-MainPage/MainPage-Img2.webp';
-import MainPageImg3 from '../../img/Img-MainPage/MainPageImg3.png';
+import MainPageImg from '../../../img/imgPrivate/Img-MainPage/MainPage-Img.jpg'; //../../img/Img-MainPage/MainPage-Img.jpg
+import MainPageImg2 from '../../../img/imgPrivate/Img-MainPage/MainPage-Img2.webp';
+import MainPageImg3 from '../../../img/imgPrivate/Img-MainPage/MainPageImg3.png';
+import NavAdmin from '../../../components/HeaderPrivate/Header'
 
 const HomeSection = () => {
   return (
+    <>
+    <NavAdmin/>
+
     <div className="home-section">
       <div className="layout-container">
         <div className="left-column">
@@ -25,6 +29,7 @@ const HomeSection = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
