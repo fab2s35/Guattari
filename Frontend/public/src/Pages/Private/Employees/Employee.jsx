@@ -1,389 +1,351 @@
 import React, { useState, useEffect } from 'react';
-import '../Employees/Employe.css';
+import './Employe.css';
 
-const EmpleadosCRUD = () => {
-  const [empleados, setEmpleados] = useState([
-    {
-      id: 1,
-      nombres: "Mariana",
-      apellidos: "López",
-      edad: 26,
-      email: "marit.o@gmail.com",
-      telefono: "7123 4567",
-      posicion: "Vendedora",
-      contrasena: "***********"
-    },
-    {
-      id: 2,
-      nombres: "Carlos",
-      apellidos: "Martínez",
-      edad: 30,
-      email: "carlos.m@gmail.com",
-      telefono: "7123 8901",
-      posicion: "Gerente",
-      contrasena: "***********"
-    },
-    {
-      id: 3,
-      nombres: "Ana",
-      apellidos: "García",
-      edad: 28,
-      email: "ana.g@gmail.com",
-      telefono: "7123 2345",
-      posicion: "Supervisor",
-      contrasena: "***********"
-    }
-  ]);
-
-  const [mostrarFormulario, setMostrarFormulario] = useState(false);
-  const [empleadoEditando, setEmpleadoEditando] = useState(null);
-  const [busqueda, setBusqueda] = useState('');
-  const [formulario, setFormulario] = useState({
-    nombres: '',
-    apellidos: '',
-    telefono: '',
-    posicion: '',
-    email: '',
-    edad: '',
-    contrasena: ''
+const CustomersCRUD = () => {
+  const [customers, setCustomers] = useState([]);
+  const [ismodelOpen, setIsmodelOpen] = useState(false);
+  const [editingCustomer, setEditingCustomer] = useState(null);
+  const [showPassword, setShowPassword] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    lastname: '',
+    passwordUser: '',
+    phone: '',
+    assignedPosition: ''
   });
+  const [loading, setLoading] = useState(false);
 
-  // Filtrar empleados por búsqueda
-  const empleadosFiltrados = empleados.filter(empleado =>
-    empleado.nombres.toLowerCase().includes(busqueda.toLowerCase()) ||
-    empleado.apellidos.toLowerCase().includes(busqueda.toLowerCase()) ||
-    empleado.email.toLowerCase().includes(busqueda.toLowerCase()) ||
-    empleado.posicion.toLowerCase().includes(busqueda.toLowerCase())
-  );
+  useEffect(() => {
+    fetchCustomers();
+  }, []);
 
-  // Manejar cambios en el formulario
-  const manejarCambio = (e) => {
+  const fetchCustomers = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch('http://localhost:4000/api/employees');
+      const data = await response.json();
+      const validCustomers = data.filter(customer =>
+        customer && customer.name && customer.lastname
+      );
+      setCustomers(validCustomers);
+    } catch (error) {
+      console.error('Error fetching customers:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormulario(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
 
-  // Limpiar formulario
-  const limpiarFormulario = () => {
-    setFormulario({
-      nombres: '',
-      apellidos: '',
-      telefono: '',
-      posicion: '',
-      email: '',
-      edad: '',
-      contrasena: ''
-    });
-    setEmpleadoEditando(null);
-  };
-
-  // Agregar nuevo empleado
-  const agregarEmpleado = () => {
-    if (!formulario.nombres || !formulario.apellidos || !formulario.telefono || !formulario.posicion) {
-      alert('Por favor, completa todos los campos obligatorios');
-      return;
-    }
-
-    const nuevoEmpleado = {
-      id: Date.now(),
-      ...formulario,
-      email: formulario.email || `${formulario.nombres.toLowerCase()}.${formulario.apellidos.toLowerCase()}@empresa.com`,
-      edad: formulario.edad || Math.floor(Math.random() * 20) + 25,
-      contrasena: formulario.contrasena || '***********'
-    };
-
-    setEmpleados(prev => [...prev, nuevoEmpleado]);
-    limpiarFormulario();
-    setMostrarFormulario(false);
-    alert('Empleado agregado exitosamente');
-  };
-
-  // Editar empleado
-  const editarEmpleado = (empleado) => {
-    setFormulario({
-      nombres: empleado.nombres,
-      apellidos: empleado.apellidos,
-      telefono: empleado.telefono,
-      posicion: empleado.posicion,
-      email: empleado.email,
-      edad: empleado.edad.toString(),
-      contrasena: empleado.contrasena
-    });
-    setEmpleadoEditando(empleado.id);
-    setMostrarFormulario(true);
-  };
-
-  // Actualizar empleado
-  const actualizarEmpleado = () => {
-    if (!formulario.nombres || !formulario.apellidos || !formulario.telefono || !formulario.posicion) {
-      alert('Por favor, completa todos los campos obligatorios');
-      return;
-    }
-
-    setEmpleados(prev => prev.map(emp => 
-      emp.id === empleadoEditando 
-        ? { ...emp, ...formulario, edad: parseInt(formulario.edad) || emp.edad }
-        : emp
-    ));
-    
-    limpiarFormulario();
-    setMostrarFormulario(false);
-    alert('Empleado actualizado exitosamente');
-  };
-
-  // Eliminar empleado
-  const eliminarEmpleado = (id) => {
-    if (window.confirm('¿Estás seguro de que deseas eliminar este empleado?')) {
-      setEmpleados(prev => prev.filter(emp => emp.id !== id));
-      alert('Empleado eliminado exitosamente');
-    }
-  };
-
-  // Manejar envío del formulario
-  const manejarEnvio = (e) => {
-    e.preventDefault();
-    if (empleadoEditando) {
-      actualizarEmpleado();
+    // Solo permitir números en el campo de teléfono
+    if (name === 'phone') {
+      const numbersOnly = value.replace(/\D/g, '');
+      if (numbersOnly.length <= 10) {
+        setFormData(prev => ({
+          ...prev,
+          [name]: numbersOnly
+        }));
+      }
     } else {
-      agregarEmpleado();
+      setFormData(prev => ({
+        ...prev,
+        [name]: value
+      }));
     }
+  };
+
+  const resetForm = () => {
+    setFormData({
+      name: '',
+      lastname: '',
+      passwordUser: '',
+      phone: '',
+      assignedPosition: ''
+    });
+    setEditingCustomer(null);
+    setShowPassword(false);
+  };
+
+  const openmodel = (customer = null) => {
+    if (customer) {
+      setEditingCustomer(customer);
+      setFormData({
+        name: customer.name || '',
+        lastname: customer.lastname || '',
+        passwordUser: '',
+        phone: customer.phone || '',
+        assignedPosition: customer.assignedPosition || ''
+      });
+    } else {
+      resetForm();
+    }
+    setIsmodelOpen(true);
+  };
+
+  const closemodel = () => {
+    setIsmodelOpen(false);
+    resetForm();
+  };
+
+  const handleSubmit = async () => {
+  const { name, lastname, passwordUser, phone, assignedPosition } = formData;
+
+  // Validación de campos vacíos
+  if (
+    !name.trim() ||
+    !lastname.trim() ||
+    (!editingCustomer && !passwordUser.trim()) ||
+    !phone.trim() ||
+    !assignedPosition.trim()
+  ) {
+    alert('Por favor, completa todos los campos obligatorios.');
+    return;
+  }
+
+  setLoading(true);
+  try {
+    if (editingCustomer) {
+      const updateData = {
+        name,
+        lastname,
+        passwordUser,
+        phone,
+        assignedPosition
+      };
+
+      await fetch(`http://localhost:4000/api/employees/${editingCustomer._id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updateData)
+      });
+
+      setCustomers(prev => prev.map(customer =>
+        customer._id === editingCustomer._id
+          ? { ...customer, ...updateData }
+          : customer
+      ));
+    } else {
+      await fetch('http://localhost:4000/api/employees', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+
+      await fetchCustomers(); // Recarga la lista completa
+    }
+
+    closemodel();
+  } catch (error) {
+    console.error('Error saving Empleado:', error);
+  } finally {
+    setLoading(false);
+  }
+};
+
+
+
+  const handleDelete = async (id) => {
+    if (window.confirm('¿Estás seguro de que deseas eliminar este Empleado?')) {
+      setLoading(true);
+      try {
+        await fetch(`http://localhost:4000/api/employees/${id}`, { method: 'DELETE' });
+        setCustomers(prev => prev.filter(customer => customer._id !== id));
+      } catch (error) {
+        console.error('Error deleting Empleado:', error);
+      } finally {
+        setLoading(false);
+      }
+    }
+  };
+
+  const getCustomerInitial = (name) => {
+    if (!name || typeof name !== 'string' || name.trim() === '') {
+      return '?';
+    }
+    return name.trim().charAt(0).toUpperCase();
   };
 
   return (
-    <div className="empleados-container">
-      <div className="content-wrapper">
-        <h1 className="page-title">Gestión de Empleados</h1>
-        
-        {/* Imagen Hero */}
-        <div className="hero-image">
-          <img 
-            src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80"
-            alt="Equipo de trabajo colaborativo"
-            className="hero-img"
-          />
+    <div className="customers-crud-container">
+      <div className="customers-crud-wrapper">
+        <div className="header">
+          <h1>Gestión de Empleados</h1>
+          <p>Administra tus registros de Empleados</p>
         </div>
 
-        {/* Formulario Modal */}
-        {mostrarFormulario && (
-          <div className="modal-overlay" onClick={() => {
-            setMostrarFormulario(false);
-            limpiarFormulario();
-          }}>
-            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-              <div className="form-container">
-                <div className="form-card">
-                  <div className="form-header">
-                    <h2>{empleadoEditando ? 'Editar Empleado' : 'Agregar Empleado'}</h2>
-                    <button 
-                      className="close-btn"
-                      onClick={() => {
-                        setMostrarFormulario(false);
-                        limpiarFormulario();
-                      }}
-                    >
-                      ×
-                    </button>
-                  </div>
-                  
-                  <form onSubmit={manejarEnvio}>
-                    <div className="form-group">
-                      <label htmlFor="nombres" className="form-label">Nombres *</label>
-                      <input 
-                        type="text" 
-                        id="nombres"
-                        name="nombres"
-                        value={formulario.nombres}
-                        onChange={manejarCambio}
-                        className="form-input"
-                        required
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label htmlFor="apellidos" className="form-label">Apellidos *</label>
-                      <input 
-                        type="text" 
-                        id="apellidos"
-                        name="apellidos"
-                        value={formulario.apellidos}
-                        onChange={manejarCambio}
-                        className="form-input"
-                        required
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label htmlFor="telefono" className="form-label">Teléfono *</label>
-                      <input 
-                        type="tel" 
-                        id="telefono"
-                        name="telefono"
-                        value={formulario.telefono}
-                        onChange={manejarCambio}
-                        className="form-input"
-                        required
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label htmlFor="email" className="form-label">Email</label>
-                      <input 
-                        type="email" 
-                        id="email"
-                        name="email"
-                        value={formulario.email}
-                        onChange={manejarCambio}
-                        className="form-input"
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label htmlFor="edad" className="form-label">Edad</label>
-                      <input 
-                        type="number" 
-                        id="edad"
-                        name="edad"
-                        value={formulario.edad}
-                        onChange={manejarCambio}
-                        className="form-input"
-                        min="18"
-                        max="65"
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label htmlFor="posicion" className="form-label">Posición *</label>
-                      <div className="select-wrapper">
-                        <select 
-                          id="posicion" 
-                          name="posicion"
-                          value={formulario.posicion}
-                          onChange={manejarCambio}
-                          className="form-select"
-                          required
-                        >
-                          <option value="">Seleccionar posición</option>
-                          <option value="Gerente">Gerente</option>
-                          <option value="Supervisor">Supervisor</option>
-                          <option value="Empleado">Empleado</option>
-                          <option value="Asistente">Asistente</option>
-                          <option value="Vendedora">Vendedora</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <div className="form-buttons">
-                      <button type="button" className="cancel-button" onClick={() => {
-                        setMostrarFormulario(false);
-                        limpiarFormulario();
-                      }}>
-                        Cancelar
-                      </button>
-                      <button type="submit" className="submit-button">
-                        {empleadoEditando ? 'Actualizar' : 'Agregar'}
-                      </button>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-
-        <h2 className="section-title">Listado de empleados ({empleadosFiltrados.length})</h2>
-
-        {/* Barra de búsqueda y botón agregar */}
-        <div className="search-section" >
-          <div className="search-container">
-            <div className="search-input-wrapper">
-              <svg className="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M21 21L16.514 16.506L21 21ZM19 10.5C19 15.194 15.194 19 10.5 19C5.806 19 2 15.194 2 10.5C2 5.806 5.806 2 10.5 2C15.194 2 19 5.806 19 10.5Z" stroke="#666" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-              <input 
-                type="text" 
-                placeholder="Buscar empleados..." 
-                className="search-input"
-                value={busqueda}
-                onChange={(e) => setBusqueda(e.target.value)}
-              />
-            </div>
-          </div>
-          <button
-            className="add-employee-btn"
-            onClick={() => setMostrarFormulario(true)}
-          >
+        <div className="add-button-container">
+          <button onClick={() => openmodel()} className="add-button">
             <span className="plus-icon">+</span>
             Agregar Empleado
           </button>
         </div>
 
-        {/* Tabla de empleados */}
-        <div className="table-container">
-          <table className="employees-table">
-            <thead>
-              <tr>
-                <th>Foto</th>
-                <th>Nombre Completo</th>
-                <th>Edad</th>
-                <th>Email</th>
-                <th>Teléfono</th>
-                <th>Puesto</th>
-                <th>Acciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              {empleadosFiltrados.length === 0 ? (
-                <tr>
-                  <td colSpan="7" style={{ textAlign: 'center', padding: '20px' }}>
-                    {busqueda ? 'No se encontraron empleados que coincidan con la búsqueda' : 'No hay empleados registrados'}
-                  </td>
-                </tr>
-              ) : (
-                empleadosFiltrados.map((empleado) => (
-                  <tr key={empleado.id}>
-                    <td>
-                      <div className="avatar">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21" stroke="#666" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                          <path d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11Z" stroke="#666" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
-                      </div>
-                    </td>
-                    <td>{`${empleado.nombres} ${empleado.apellidos}`}</td>
-                    <td>{empleado.edad}</td>
-                    <td>{empleado.email}</td>
-                    <td>{empleado.telefono}</td>
-                    <td>{empleado.posicion}</td>
-                    <td>
-                    <div className="action-buttons">
-                      <button 
-                        className="edit-btn"
-                        onClick={() => editarEmpleado(empleado)}
-                        title="Editar empleado"
-                      >
-                        ✎
-                      </button>
-                      <button 
-                        className="delete-btn"
-                        onClick={() => eliminarEmpleado(empleado.id)}
-                        title="Eliminar empleado"
-                      >
-                        🗑
-                      </button>
-                    </div>
-                  </td>
+        {loading && customers.length === 0 ? (
+          <div className="loading-container">
+            <div className="spinner"></div>
+            <p>Cargando Empleados...</p>
+          </div>
+        ) : (
+          <div className="customers-grid">
+            {customers.map((customer) => (
+              <div key={customer._id} className="customer-card">
+                <div className="customer-header">
+                  <div className="customer-avatar">
+                    <span>{getCustomerInitial(customer.name)}</span>
+                  </div>
+                  <div className="customer-info">
+                    <h3>{`${customer.name || ''} ${customer.lastname || ''}`.trim() || 'Sin nombre'}</h3>
+                  </div>
+                </div>
 
-                  </tr>
-                ))
-              )}
-            </tbody>
-          </table>
-        </div>
+                <div className="customer-details">
+                  <div className="detail-item">
+                    <span className="detail-label">Cargo:</span>
+                    <span className="detail-value">{customer.assignedPosition || 'N/A'}</span>
+                  </div>
+                  <div className="detail-item">
+                    <span className="detail-label">Teléfono:</span>
+                    <span className="detail-value origin-badge">{customer.phone || 'No especificado'}</span>
+                  </div>
+                </div>
+
+                <div className="customer-actions">
+                  <button onClick={() => openmodel(customer)} className="edit-button">✏️ Editar</button>
+                  <button onClick={() => handleDelete(customer._id)} className="delete-button">🗑️ Eliminar</button>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {customers.length === 0 && !loading && (
+          <div className="empty-state">
+            <p className="empty-title">No hay Empleados registrados</p>
+            <p className="empty-subtitle">Agrega tu primer Empleado para comenzar</p>
+          </div>
+        )}
+
+        {ismodelOpen && (
+          <div className="model-overlay">
+            <div className="model">
+              <div className="model-header">
+                <h2>{editingCustomer ? 'Editar Empleado' : 'Nuevo Empleado'}</h2>
+                <button onClick={closemodel} className="close-button">✕</button>
+              </div>
+
+              <div className="model-form">
+                <div className="form-group">
+                  <label>Nombre</label>
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    placeholder="Ej: Juan"
+                    required
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label>Apellido</label>
+                  <input
+                    type="text"
+                    name="lastname"
+                    value={formData.lastname}
+                    onChange={handleInputChange}
+                    placeholder="Ej: Pérez"
+                    required
+                  />
+                </div>
+
+                <div className="form-group password-group">
+                  <label>Contraseña</label>
+                  <div className="password-wrapper">
+                    <input
+                      type={showPassword ? 'text' : 'password'}
+                      name="passwordUser"
+                      value={formData.passwordUser}
+                      onChange={handleInputChange}
+                      placeholder={editingCustomer ? "Nueva contraseña (opcional)" : "Contraseña"}
+                      required={!editingCustomer}
+                      maxLength={10}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(prev => !prev)}
+                      className="show-password-button"
+                    >
+                      {showPassword ? '🙈' : '👁️'}
+                    </button>
+                  </div>
+                  {editingCustomer && (
+                    <small className="field-note">Dejar vacío para mantener la actual</small>
+                  )}
+                </div>
+
+                <div className="form-row">
+                  <div className="form-group">
+                    <label>Teléfono</label>
+                    <input
+                      type="text"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      placeholder="Número de Teléfono"
+                      maxLength={10}
+                      required
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label>Puesto de Trabajo</label>
+                    <select
+                      name="assignedPosition"
+                      value={formData.assignedPosition}
+                      onChange={handleInputChange}
+                      required
+                    >
+                      <option value="">Seleccionar puesto</option>
+                      <option value="Administrador">Administrador</option>
+                      <option value="Analista">Analista</option>
+                      <option value="Asistente">Asistente</option>
+                      <option value="Contador">Contador</option>
+                      <option value="Desarrollador">Desarrollador</option>
+                      <option value="Diseñador">Diseñador</option>
+                      <option value="Ejecutivo de ventas">Ejecutivo de ventas</option>
+                      <option value="Gerente">Gerente</option>
+                      <option value="Ingeniero">Ingeniero</option>
+                      <option value="Jefe de proyecto">Jefe de proyecto</option>
+                      <option value="Recepcionista">Recepcionista</option>
+                      <option value="Recursos Humanos">Recursos Humanos</option>
+                      <option value="Técnico">Técnico</option>
+                      <option value="Otro">Otro</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="model-actions">
+                  <button onClick={closemodel} className="cancel-button">Cancelar</button>
+                  <button
+                    onClick={handleSubmit}
+                    disabled={loading}
+                    className="save-button"
+                  >
+                    {loading ? (
+                      <div className="button-spinner"></div>
+                    ) : (
+                      <>👤 {editingCustomer ? 'Actualizar' : 'Registrar'}</>
+                    )}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
 };
 
-export default EmpleadosCRUD;
+export default CustomersCRUD;
