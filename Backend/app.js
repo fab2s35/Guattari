@@ -18,24 +18,29 @@ import reviewRoutes from "./src/routes/reviews.js";
 
 import loginRoute from "./src/routes/login.js";
 import logoutRoute from "./src/routes/logout.js";
+import registerClient from "./src/routes/registerClients.js";
 import passwordRecoveryRoutes from "./src/routes/passwordRecovery.js";
+
 import { validateAuthToken } from "./src/middlewares/validateAuthToken.js";
+
+// Importa el controlador para verificar el código
+import registerClientsController from "./src/controllers/registerClientsController.js";
 
 const app = express();
 
-// ✅ Middleware para permitir peticiones del frontend (Vite)
+// Middleware para permitir peticiones desde frontend (Vite)
 app.use(cors({
-  origin: 'http://localhost:5173', // URL del frontend
-  credentials: true               // Permite enviar cookies
+  origin: 'http://localhost:5173',
+  credentials: true
 }));
 
 app.use(cookieParser());
 app.use(express.json());
 
-// ✅ Rutas protegidas (según roles con middleware)
+// Rutas protegidas (según roles con middleware)
 app.use("/api/products", validateAuthToken(["employee", "admin"]), productsRoutes);
 
-// ✅ Rutas públicas y otras rutas
+// Rutas públicas y otras rutas
 app.use("/api/categories", categoriesRoutes);
 app.use("/api/shoppingCart", shoppingCartRoutes);
 app.use("/api/orders", ordersRoutes);
@@ -50,5 +55,9 @@ app.use("/api/review", reviewRoutes);
 app.use("/api/login", loginRoute);
 app.use("/api/logout", logoutRoute);
 app.use("/api/passwordRecovery", passwordRecoveryRoutes);
+app.use("/api/registerClients", registerClient);
+
+// Aquí defines la ruta para verificar código con el método POST usando app, no router
+app.post("/api/verify", registerClientsController.verifyEmailCode);
 
 export default app;

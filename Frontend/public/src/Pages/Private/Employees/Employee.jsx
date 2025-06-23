@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './Employe.css';
 
-const CustomersCRUD = () => {
-  const [customers, setCustomers] = useState([]);
+const clientsCRUD = () => {
+  const [clients, setclients] = useState([]);
   const [ismodelOpen, setIsmodelOpen] = useState(false);
   const [editingCustomer, setEditingCustomer] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
@@ -16,20 +16,20 @@ const CustomersCRUD = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    fetchCustomers();
+    fetchclients();
   }, []);
 
-  const fetchCustomers = async () => {
+  const fetchclients = async () => {
     setLoading(true);
     try {
       const response = await fetch('http://localhost:4000/api/employees');
       const data = await response.json();
-      const validCustomers = data.filter(customer =>
+      const validclients = data.filter(customer =>
         customer && customer.name && customer.lastname
       );
-      setCustomers(validCustomers);
+      setclients(validclients);
     } catch (error) {
-      console.error('Error fetching customers:', error);
+      console.error('Error fetching clients:', error);
     } finally {
       setLoading(false);
     }
@@ -120,7 +120,7 @@ const CustomersCRUD = () => {
         body: JSON.stringify(updateData)
       });
 
-      setCustomers(prev => prev.map(customer =>
+      setclients(prev => prev.map(customer =>
         customer._id === editingCustomer._id
           ? { ...customer, ...updateData }
           : customer
@@ -132,7 +132,7 @@ const CustomersCRUD = () => {
         body: JSON.stringify(formData)
       });
 
-      await fetchCustomers(); // Recarga la lista completa
+      await fetchclients(); // Recarga la lista completa
     }
 
     closemodel();
@@ -150,7 +150,7 @@ const CustomersCRUD = () => {
       setLoading(true);
       try {
         await fetch(`http://localhost:4000/api/employees/${id}`, { method: 'DELETE' });
-        setCustomers(prev => prev.filter(customer => customer._id !== id));
+        setclients(prev => prev.filter(customer => customer._id !== id));
       } catch (error) {
         console.error('Error deleting Empleado:', error);
       } finally {
@@ -167,8 +167,8 @@ const CustomersCRUD = () => {
   };
 
   return (
-    <div className="customers-crud-container">
-      <div className="customers-crud-wrapper">
+    <div className="clients-crud-container">
+      <div className="clients-crud-wrapper">
         <div className="header">
           <h1>Gestión de Empleados</h1>
           <p>Administra tus registros de Empleados</p>
@@ -181,14 +181,14 @@ const CustomersCRUD = () => {
           </button>
         </div>
 
-        {loading && customers.length === 0 ? (
+        {loading && clients.length === 0 ? (
           <div className="loading-container">
             <div className="spinner"></div>
             <p>Cargando Empleados...</p>
           </div>
         ) : (
-          <div className="customers-grid">
-            {customers.map((customer) => (
+          <div className="clients-grid">
+            {clients.map((customer) => (
               <div key={customer._id} className="customer-card">
                 <div className="customer-header">
                   <div className="customer-avatar">
@@ -219,7 +219,7 @@ const CustomersCRUD = () => {
           </div>
         )}
 
-        {customers.length === 0 && !loading && (
+        {clients.length === 0 && !loading && (
           <div className="empty-state">
             <p className="empty-title">No hay Empleados registrados</p>
             <p className="empty-subtitle">Agrega tu primer Empleado para comenzar</p>
@@ -348,4 +348,4 @@ const CustomersCRUD = () => {
   );
 };
 
-export default CustomersCRUD;
+export default clientsCRUD;
