@@ -22,7 +22,7 @@ function AddCode() {
     }
 
     try {
-      const response = await fetch('http://localhost:4000/api/verifyCode', {
+      const response = await fetch('http://localhost:4000/api/passwordRecovery/verifyCode', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, code }),
@@ -38,7 +38,7 @@ function AddCode() {
         setError(data.message || 'Código incorrecto o expirado.');
       }
     } catch (err) {
-      setError('Error al conectar con el servidor.');
+      setError('Error al conectar con el servidor.', err);
     }
   };
 
