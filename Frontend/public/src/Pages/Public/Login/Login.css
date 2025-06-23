@@ -1,33 +1,223 @@
-/* Base responsive para celular (imagen arriba y texto abajo) */
-.conteiner-Login {
+/* Fondo oscuro y difuminado */
+.register-fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(30, 30, 30, 0.85); /* gris oscuro semitransparente */
+    backdrop-filter: blur(10px); /* difuminado */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  /* Botón "X" para cerrar */
+  .close-button {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 28px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #ffffff;
+    z-index: 10000;
+  }
+  
+  /* Contenedor general sin bordes redondeados */
+  .register-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-#img-Login {
+    background: #ffffff;
+    border-radius: 0;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
     width: 100%;
-    height: auto;
-    margin-bottom: 20px;
-}
-
-
-.btn-Login { 
-    height: 50px;
-    width: 20%; 
-
-    margin-right: 80px;
-    float: right;
-    padding: 40px;
+    max-width: 900px;
+  }
+  
+  /* Imagen lateral (solo en Login) */
+  .register-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  
+  /* En pantallas grandes se pone a un lado la imagen */
+  @media (min-width: 768px) {
+    .register-container {
+      flex-direction: row;
+      height: 600px;
+    }
+  
+    .register-img {
+      width: 50%;
+      height: 100%;
+    }
+  }
+  
+  /* Contenido del formulario */
+  .form-content {
+    width: 100%;
+    padding: 40px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Logo */
+  .register-logo {
+    width: 300px;
+    margin-top: 60px;
+    padding-bottom: 60px;
+    object-fit: contain;
+    border-radius: 0;
+  }
+  
+  /* Formulario */
+  .register-form {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espacio entre inputs */
+    /* No usar transform en RecoverPassword para que quede normal */
+  }
+  
+  /* Grupos de inputs */
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .form-group label {
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .form-control {
+    padding: 10px 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+  
+  .form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    outline: none;
+  }
+  
+  /* Estados de error */
+  .input-error {
+    border-color: #dc3545 !important;
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+  }
+  
+  .error-message {
+    color: #dc3545;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    padding: 8px 12px;
+    border-radius: 4px;
+    margin-top: 5px;
+    font-size: 13px;
+  }
+  
+  /* Mensaje de éxito */
+  .success-message {
+    color: #28a745;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 10px;
+    font-size: 14px;
+    text-align: center;
+  }
+  
+  /* Botón principal */
+  .btn-register {
+    margin-top: 10px;
     background-color: #923922;
+    border: none;
     color: white;
-    border-radius: 5px; 
-}
+    padding: 12px;
+    font-weight: bold;
+    width: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 50px;
+    font-size: 16px;
+  }
+  
+  .btn-register:hover {
+    background-color: #772d19;
+  }
+  
+  .btn-register:disabled,
+  .btn-register.loading {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  
+  /* Link para recuperación de contraseña */
+  .form-content p {
+    padding-top: -50px;
+    font-size: 14px;
+    text-align: center;
+  }
+  
+  .form-content p a {
+    color: #474040;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
+  .form-content p a:hover {
+    color: #dc3545;
+  }
+  
+  /* Responsive específico para iPhone 14 Pro Max */
+  @media only screen and (max-width: 430px) and (max-height: 932px) {
+    .form-content {
+      padding: 30px 20px;
+    }
+  
+    .register-logo {
+      width: 140px;
+      margin-bottom: 30px;
+    }
+  
+    .btn-register {
+      font-size: 15px;
+      padding: 10px;
+    }
+  
+    .close-button {
+      top: 15px;
+      right: 20px;
+      font-size: 26px;
+    }
+  }
+  
+  /* Animaciones suaves */
+  .form-control,
+  .btn-register {
+    transition: all 0.15s ease-in-out;
+  }
 
-.btn-Login p{
-    position: absolute;
-  transform: translate(-50%, -50%);
-}
 
 
 .text-Login {

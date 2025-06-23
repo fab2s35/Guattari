@@ -63,9 +63,6 @@ function Header() {
             <Link className="nav-item nav-link" to="/estancias">Estancias</Link>
             <Link className="nav-item nav-link" to="/aboutUs">Sobre Nosotros</Link>
             <Link className="nav-item nav-link" to="/contactanos">Contáctanos</Link>
-            <Link className="nav-item nav-link" to="/code">Code</Link>
-            <Link className="nav-item nav-link" to="/recoverPassword">Correo Contra</Link>
-            <Link className="nav-item nav-link" to="/newPassword">Nueva Contra</Link>
           </div>
         </div>
       </nav>

@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 
-// Rutas
+// Importar rutas
 import categoriesRoutes from "./src/routes/categories.js";
 import shoppingCartRoutes from "./src/routes/shoppingCart.js";
 import ordersRoutes from "./src/routes/orders.js";
@@ -23,12 +23,12 @@ import passwordRecoveryRoutes from "./src/routes/passwordRecovery.js";
 
 import { validateAuthToken } from "./src/middlewares/validateAuthToken.js";
 
-// Importa el controlador para verificar el código
+// Importar controlador adicional (solo si usas esta ruta independiente)
 import registerClientsController from "./src/controllers/registerClientsController.js";
 
 const app = express();
 
-// Middleware para permitir peticiones desde frontend (Vite)
+// Middleware CORS (ajusta origen según tu frontend)
 app.use(cors({
   origin: 'http://localhost:5173',
   credentials: true
@@ -37,10 +37,10 @@ app.use(cors({
 app.use(cookieParser());
 app.use(express.json());
 
-// Rutas protegidas (según roles con middleware)
+// Rutas protegidas (requieren token y roles)
 app.use("/api/products", validateAuthToken(["employee", "admin"]), productsRoutes);
 
-// Rutas públicas y otras rutas
+// Rutas públicas
 app.use("/api/categories", categoriesRoutes);
 app.use("/api/shoppingCart", shoppingCartRoutes);
 app.use("/api/orders", ordersRoutes);
@@ -54,10 +54,16 @@ app.use("/api/clients", clientsRoutes);
 app.use("/api/review", reviewRoutes);
 app.use("/api/login", loginRoute);
 app.use("/api/logout", logoutRoute);
-app.use("/api/passwordRecovery", passwordRecoveryRoutes);
 app.use("/api/registerClients", registerClient);
 
-// Aquí defines la ruta para verificar código con el método POST usando app, no router
+// Aquí montas el router para password recovery
+// Dentro de passwordRecoveryRoutes están definidas las rutas:
+// POST /requestCode, POST /verifyCode, POST /newPassword
+app.use("/api/passwordRecovery", passwordRecoveryRoutes);
+
+// Si tienes una ruta independiente para verificar código diferente, la agregas así:
+// (Ejemplo: POST /api/verify)
 app.post("/api/verify", registerClientsController.verifyEmailCode);
 
 export default app;
+

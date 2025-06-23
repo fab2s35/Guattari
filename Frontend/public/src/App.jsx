@@ -14,6 +14,9 @@ import Register from './Pages/Public/Register/Register';
 import Login from './Pages/Public/Login/Login';
 import Profile from './Pages/Public/Profile/Profile'; // nombre corregido
 import VerifyCode from './Pages/Public/VerifyCode/VerifyCode';
+import RecoverPassword from './Pages/Public/RecoverPassword/RecoverPassword';
+import AddCode from './Pages/Public/AddCode/AddCode';
+import NewPassword from './Pages/Public/NewPassword/NewPassword';
 
 // --- Páginas privadas ---
 import Inventory from './Pages/Private/Inventory/Inventory';
@@ -56,6 +59,9 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/profile" element={<Profile />} /> 
           <Route path="/verify-code" element={<VerifyCode />} />
+          <Route path="/RecoverPassword" element={<RecoverPassword />} />
+          <Route path="/AddCode" element={<AddCode />} />
+          <Route path="/NewPassword" element={<NewPassword />} />
         </Route>
 
         {/* Página de bienvenida para admin */}

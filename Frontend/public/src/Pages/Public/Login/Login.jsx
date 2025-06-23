@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './login.css';
 
 import LoginC from '../../../img/register-login-profile/login-img.png';
@@ -37,7 +37,10 @@ function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+
     if (!validateForm()) return;
+
+    setError(''); // Limpia error previo antes de intentar login
 
     try {
       const response = await fetch('http://localhost:4000/api/login', {
@@ -51,7 +54,8 @@ function Login() {
 
       if (response.ok) {
         localStorage.setItem('token', data.token);
-        window.location.href = data.redirectTo || '/';
+        // Mejor usar navigate en lugar de cambiar location para SPA
+        navigate(data.redirectTo || '/');
       } else {
         setError(data.message || 'Error de autenticación');
       }
@@ -62,7 +66,14 @@ function Login() {
 
   return (
     <div className="register-fullscreen">
-      <button className="close-button" onClick={() => navigate(-1)}>✕</button>
+      <button
+        className="close-button"
+        onClick={() => navigate(-1)}
+        aria-label="Cerrar"
+        type="button"
+      >
+        ✕
+      </button>
 
       <div className="register-container">
         <img src={LoginC} alt="Imagen de login" className="register-img" />
@@ -70,18 +81,23 @@ function Login() {
         <div className="form-content">
           <img src={Logo} alt="Logo Guattari" className="register-logo" />
 
-          <form className="register-form" onSubmit={handleLogin}>
+          <form className="register-form" onSubmit={handleLogin} noValidate>
             <div className="form-group">
               <label htmlFor="email">Correo electrónico</label>
               <input
                 type="email"
                 id="email"
-                className="form-control"
+                className={`form-control ${emailError ? 'input-error' : ''}`}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
+                aria-describedby="emailError"
               />
-              {emailError && <p style={{ color: 'red' }}>{emailError}</p>}
+              {emailError && (
+                <p id="emailError" className="error-message">
+                  {emailError}
+                </p>
+              )}
             </div>
 
             <div className="form-group">
@@ -89,23 +105,37 @@ function Login() {
               <input
                 type="password"
                 id="password"
-                className="form-control"
+                className={`form-control ${passwordError ? 'input-error' : ''}`}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
+                aria-describedby="passwordError"
               />
-              {passwordError && <p style={{ color: 'red' }}>{passwordError}</p>}
+              {passwordError && (
+                <p id="passwordError" className="error-message">
+                  {passwordError}
+                </p>
+              )}
             </div>
 
-            {error && <p style={{ color: 'red', marginBottom: '10px' }}>{error}</p>}
+
+            <p style={{ marginTop: '15px', fontSize: '14px' }}>
+            <Link
+              to="/RecoverPassword"
+              
+            >
+              ¿Olvidó su contraseña?
+            </Link>
+          </p>
+
+            {error && <p className="error-message" style={{ marginBottom: '10px' }}>{error}</p>}
 
             <button type="submit" className="btn-register">
               Iniciar Sesión
             </button>
           </form>
 
-          {/* Enlace a recuperar contraseña (opcional) */}
-          {/* <Link to="/recoverPassword" className="forgot-link">¿Olvidó su contraseña?</Link> */}
+          
         </div>
       </div>
     </div>
@@ -113,3 +143,4 @@ function Login() {
 }
 
 export default Login;
+
