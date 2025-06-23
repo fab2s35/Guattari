@@ -120,5 +120,6 @@ npm run dev
 
 * Registro y login de usuarios con validaciones.
 * Panel administrativo web con manejo de productos, usuarios y pedidos.
-* Aplicación móvil responsiva con componentes nativos
+* Interfaces creativas y intuitivas para los usuarios
+  
 
