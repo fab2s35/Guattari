@@ -2,6 +2,7 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import PublicLayout from './layouts/PublicLayout.jsx';
 import PrivateLayout from './layouts/PrivateLayout.jsx';
+import { Toaster } from 'react-hot-toast';
 import { useEffect, useState } from 'react';
 
 // --- Páginas públicas ---
@@ -46,6 +47,8 @@ function App() {
 
   return (
     <Router>
+      <Toaster position="top-right" />
+
       <Routes>
 
         {/* Layout público */}

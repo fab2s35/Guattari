@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Header.css'; 
 import logoGuattari from '../../img/GUATTARI_logo-ver1.png';
 import IC_cuenta from '../../img/user.png';
+import IC_carrito from '../../img/shopping-cart.png';
 import { Link, useNavigate } from 'react-router-dom';
+import SidebarCart from '../Cart/Sidecart'; // 👈 importa tu carrito lateral
 
 function Header() {
-  const navigate = useNavigate(); // Hook para navegar entre rutas
+  const navigate = useNavigate();
+  const [showCart, setShowCart] = useState(false); // 👈 estado para abrir/cerrar carrito
 
   return (
     <>
@@ -33,12 +36,18 @@ function Header() {
         </div>
 
         <div className="d-flex align-items-center iconos-esquina">
-          {/* Al hacer clic redirige al perfil */}
           <img
             src={IC_cuenta}
             alt="Cuenta"
             className="icono-header"
             onClick={() => navigate('/Profile')}
+            style={{ cursor: 'pointer' }} 
+          />
+          <img
+            src={IC_carrito}
+            alt="Carrito"
+            className="icono-header"
+            onClick={() => setShowCart(true)} // 👈 abre carrito al hacer clic
             style={{ cursor: 'pointer' }} 
           />
         </div>
@@ -66,9 +75,11 @@ function Header() {
           </div>
         </div>
       </nav>
+
+      {/* 👇 SidebarCart se renderiza aquí */}
+      <SidebarCart isOpen={showCart} onClose={() => setShowCart(false)} />
     </>
   );
 }
 
 export default Header;
-
