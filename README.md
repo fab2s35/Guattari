@@ -45,28 +45,46 @@ Ambos productos están diseñados para adaptarse a la nueva era digital, ofrecie
 
 ```bash
 Guattari/
-├── backend/                # API REST con Express y MongoDB
-│   ├── controllers/
-│   ├── models/
-│   ├── routes/
-│   └── index.js
-│
-├── frontend/               # Sitio web en React (versión administrativa)
+├── Backend/
+│   ├── node_modules/                # Dependencias de backend
+│   ├── .env                         # Variables de entorno
+│   ├── package.json                 # Dependencias y scripts
+│   ├── package-lock.json
+│   ├── app.js                       # Configuración principal de Express
+│   ├── index.js                     # Punto de entrada del servidor
+│   ├── database.js                  # Conexión a MongoDB
+│   └── src/
+│       ├── controllers/             # Lógica de negocio de las rutas
+│       ├── middlewares/            # Funciones de middleware (auth, errores, etc.)
+│       ├── models/                  # Modelos de Mongoose
+│       ├── routes/                  # Definición de endpoints API
+│       ├── utils/                   # Utilidades y funciones auxiliares
+│       └── config.js                # Configuraciones generales
+
+├── Frontend/
+│   ├── public/                      # Archivos públicos
+│   │   └── node_modules/           # (Puede ignorarse en el repositorio)
 │   ├── src/
-│   │   ├── components/
-│   │   ├── pages/
-│   │   └── App.js
-│   └── public/
-│
-├── mobile-app/            # Aplicación en React Native
-│   ├── src/
-│   │   ├── screens/
-│   │   └── navigation/
-│   └── App.js
-│
-├── .env                   # Variables de entorno
-├── package.json           # Dependencias generales
-└── README.md              # Documentación del proyecto
+│   │   ├── assets/                 # Recursos (fuentes, íconos, etc.)
+│   │   ├── components/             # Componentes reutilizables de UI
+│   │   ├── img/                    # Imágenes del proyecto
+│   │   ├── layouts/                # Estructura base de páginas (navbar, footer, etc.)
+│   │   └── Pages/
+│   │       ├── Private/            # Vistas privadas protegidas
+│   │       └── Public/             # Vistas públicas
+│   │           ├── AboutUs/
+│   │           ├── AddCode/
+│   │           ├── Contactanos/
+│   │           ├── Estancias/
+│   │           ├── Login/
+│   │           ├── MainPage/
+│   │           ├── NewPassword/
+│   │           ├── Productos/
+│   │           ├── Profile/
+│   │           └── RecoverPassword/
+│   │               └── recoverPassword.css
+│   └── package.json               # Dependencias del frontend
+
 ```
 
 ---
