@@ -10,7 +10,7 @@ subcategoryController.getSubcategory = async (req, res) => {
 // INSERT
 subcategoryController.createSubcategory = async (req, res) => {
   const {idsubcategory, nameSubCategory, idCategory, orderStatus} = req.body;
-  const newSubcategory = new SubcategoryModel({ idsubcategory, nameSubCategory, idCategory, orderStatus});
+  const newSubcategory = new subcategoryModel({ idsubcategory, nameSubCategory, idCategory, orderStatus});
   await newSubcategory.save();
   res.json({ message: "Subcategory saved" });
 };

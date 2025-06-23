@@ -2,17 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Estancias.css';
 
-
 const Estancias = () => {
   // Estancias
   const categorias = [
-    { id: 1, nombre: 'Salas', imagen: '/src/img/Estancias/1.png' },
-    { id: 2, nombre: 'Dormitorios', imagen: '/src/img/Estancias/2.png' },
-    { id: 3, nombre: 'Comedores', imagen: '/src/img/Estancias/3.png' },
-    { id: 4, nombre: 'Cocina + Bar', imagen: '/src/img/Estancias/4.png' },
-    { id: 5, nombre: 'Decoraciones del hogar', imagen: '/src/img/Estancias/5.png' },
-    { id: 6, nombre: 'Baño', imagen: '/src/img/Estancias/6.png' },
-    { id: 7, nombre: 'Iluminación', imagen: '/src/img/Estancias/7.png' },
+    { id: 1, nombre: 'Salas', imagen: '/src/img/Estancias/1.png', ruta: '/sofas' },
+    { id: 2, nombre: 'Dormitorios', imagen: '/src/img/Estancias/2.png', ruta: '/dormitorios' },
+    { id: 3, nombre: 'Comedores', imagen: '/src/img/Estancias/3.png', ruta: '/comedores' },
+    { id: 4, nombre: 'Cocina + Bar', imagen: '/src/img/Estancias/4.png', ruta: '/cocina-bar' },
+    { id: 5, nombre: 'Decoraciones del hogar', imagen: '/src/img/Estancias/5.png', ruta: '/decoraciones' },
+    { id: 6, nombre: 'Baño', imagen: '/src/img/Estancias/6.png', ruta: '/bano' },
+    { id: 7, nombre: 'Iluminación', imagen: '/src/img/Estancias/7.png', ruta: '/iluminacion' },
   ];
 
   // Datos de la sección promocional
@@ -44,7 +43,7 @@ const Estancias = () => {
       <div className="categorias-grid">
         {categorias.map((categoria) => (
           <Link 
-            to="/productos" /* Cambié la ruta para que siempre apunte a /productos */
+            to={categoria.ruta} // Cambia la ruta para que apunte a la ruta específica de cada categoría
             className="categoria-item" 
             key={categoria.id}
           >

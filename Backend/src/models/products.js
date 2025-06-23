@@ -29,6 +29,11 @@ const productsSchema = new Schema(
     description: {
         type: String
     },
+
+    photo: {
+      type: String,
+    },
+
     codeEAN : {
         type: Number
     },
@@ -38,22 +43,22 @@ const productsSchema = new Schema(
     },
 
     amount : {
-        Type : Number
+        type : Number
     },
     idSubCategory :{
-         type: Schema.Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: "idSubCategory", //Referencia a la colección de idSubCategory
     required: true},
 
     idBrand :{
-        type: Schema.Types.ObjectId,
-   ref: "idBrand", //Referencia a la colección de idBrand
-   required: true},
-   idSubCategory :{
-
     type: Schema.Types.ObjectId,
-ref: "idSuppliers", //Referencia a la colección de idSuppliers
-required: true},
+    ref: "idBrand", //Referencia a la colección de idBrand
+    required: true},
+
+   idSupplier :{
+    type: Schema.Types.ObjectId,
+    ref: "idSuppliers", //Referencia a la colección de idSuppliers
+    required: true},
 
   },
   {

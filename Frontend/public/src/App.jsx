@@ -9,7 +9,8 @@ import MainPage from './Pages/Public/MainPage/MainPage';
 import AboutUs from './Pages/Public/AboutUs/AboutUs';
 import Estancias from './Pages/Public/Estancias/Estancias';
 import Contactanos from './Pages/Public/Contactanos/Contactanos';
-import Productos from './Pages/Public/Productos/Productos';
+import Sofas from './Pages/Public/Productos/Sofas/Sofas.jsx';
+import Dormitorios from './Pages/Public/Productos/Dormitorios/Dormitorios.jsx';
 import Register from './Pages/Public/Register/Register';
 import Login from './Pages/Public/Login/Login';
 
@@ -50,8 +51,8 @@ function App() {
           <Route path="/aboutUs" element={<AboutUs />} />
           <Route path="/estancias" element={<Estancias />} />
           <Route path="/contactanos" element={<Contactanos />} />
-          <Route path="/productos" element={<Productos />} />
-          <Route path="/categorias/:id" element={<Productos />} />
+          <Route path="/Sofas" element={<Sofas />} />
+          <Route path="/dormitorios" element={<Dormitorios />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
         </Route>

@@ -1,8 +1,8 @@
 import React from 'react';
-import './Productos.css'; // Asegúrate de tener este archivo CSS para los estilos 
+import './Sofas.css'; // Asegúrate de tener este archivo CSS para los estilos 
 
 
-const Procuctos = () => {
+const Sofas = () => {
   // Datos estáticos de productos
   const productos = [
     {
@@ -159,4 +159,4 @@ const Procuctos = () => {
   );
 };
 
-export default Procuctos;
+export default Sofas;

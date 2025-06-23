@@ -33,7 +33,7 @@ app.use(cookieParser());
 app.use(express.json());
 
 // ✅ Rutas protegidas (según roles con middleware)
-app.use("/api/products", validateAuthToken(["employee", "admin"]), productsRoutes);
+app.use("/api/products", productsRoutes);
 
 // ✅ Rutas públicas y otras rutas
 app.use("/api/categories", categoriesRoutes);
