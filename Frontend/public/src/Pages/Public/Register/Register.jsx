@@ -1,49 +1,52 @@
 import React from 'react';
-import './Register.css'; //Conectar CSS
+import { useNavigate } from 'react-router-dom';
+import './Register.css';
 
 import RegisterIMG from '../../../img/register-login-profile/register-img.png';
 import Logo from '../../../img/register-login-profile/logo-Guattari.png';
 
-function Register(){
-    return(
-        <>  
-            <div className="conteiner-Register">
-            <img src={RegisterIMG} id="img-Register" class="img-fluid" alt="..."/>
+function Register() {
+  const navigate = useNavigate();
 
-            <div className="centrar"> 
-            <img src={Logo} id="img-logo" alt="" />
-            <form  className="text-Register">
-           
-           <div className="conteiner-Text-Conteiner">
+  return (
+    <div className="register-fullscreen">
+      <button className="close-button" onClick={() => navigate(-1)}>✕</button>
 
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Nombre</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
-                </div>
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
-                </div>
-                <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1"/>
-                </div>
-                <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Confirmar Contraseña</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1"/>
-                </div>
+      <div className="register-container">
+        <img src={RegisterIMG} alt="Imagen de registro" className="register-img" />
 
-           </div>
-           
-            <button class="btn-register" type="submit" ><p>Crear Cuenta</p></button>
-            </form>
-            
-            </div>
+        <div className="form-content">
+          <img src={Logo} alt="Logo" className="register-logo" />
+
+          <form className="register-form">
+            <div className="form-group">
+              <label htmlFor="name">Nombre</label>
+              <input type="text" id="name" className="form-control" />
             </div>
 
-        </>  
+            <div className="form-group">
+              <label htmlFor="email">Correo electrónico</label>
+              <input type="email" id="email" className="form-control" />
+            </div>
 
-    );
+            <div className="form-group">
+              <label htmlFor="password">Contraseña</label>
+              <input type="password" id="password" className="form-control" />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="confirmPassword">Confirmar Contraseña</label>
+              <input type="password" id="confirmPassword" className="form-control" />
+            </div>
+
+            <button type="submit" className="btn-register">
+              Crear Cuenta
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default Register;
