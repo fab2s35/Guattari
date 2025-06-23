@@ -17,11 +17,14 @@ passwordRecoveryController.requestCode = async (req, res) => {
     let userFound;
     let userType;
 
+    //console.log("LLega aquí antes de generar el código")
+
     // Buscamos si el correo está
     // en la colección de clientes
     userFound = await clientsModel.findOne({ email });
     if (userFound) {
       userType = "client";
+      console.log("Es cliente y entro aquí")
     } else {
       userFound = await employeeModel.findOne({ email });
       if (userFound) {
@@ -34,8 +37,10 @@ passwordRecoveryController.requestCode = async (req, res) => {
       return res.json({ message: "User not found" });
     }
 
+
+  
     // Generar un código aleatorio
-    const code = Math.floor(10000 + Math.random() * 90000).toString();
+    const code = Math.floor(10000 + Math.random() * 50000).toString();
 
     //Crear un token que guarde todo
     const token = jsonwebtoken.sign(

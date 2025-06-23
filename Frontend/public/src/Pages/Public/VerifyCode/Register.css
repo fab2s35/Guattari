@@ -1,170 +1,351 @@
 /* Fondo oscuro y difuminado */
 .register-fullscreen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(30, 30, 30, 0.85); /* gris oscuro semitransparente */
-    backdrop-filter: blur(10px);        /* difuminado */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    padding: 20px;
-    box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(30, 30, 30, 0.85); /* gris oscuro semitransparente */
+  backdrop-filter: blur(10px);        /* difuminado */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Botón "X" para cerrar */
+.close-button {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 28px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #ffffff;
+  z-index: 10000;
+}
+
+/* Contenedor general sin bordes redondeados */
+.register-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 0;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  width: 100%;
+  max-width: 900px;
+}
+
+ /* Botón de crear cuenta */
+ .btn-register {
+  margin-top: 10px;
+  background-color: #923922;
+  border: none;
+  color: white;
+  padding: 12px;
+  font-weight: bold;
+  width: 100%;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: -50px;
+}
+
+/* Imagen */
+  .register-img {
+      width: 100%;
+      height: 100%;          
+      object-fit: cover;    
+      display: block;
   }
-  
-  /* Botón "X" para cerrar */
-  .close-button {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    font-size: 28px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    color: #ffffff;
-    z-index: 10000;
-  }
-  
-  /* Contenedor general sin bordes redondeados */
+
+@media (min-width: 768px) {
   .register-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: #ffffff;
-    border-radius: 0;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-    width: 100%;
-    max-width: 900px;
+    flex-direction: row;
+    height: 600px;
   }
 
-   /* Botón de crear cuenta */
-   .btn-register {
-    margin-top: 10px;
-    background-color: #923922;
-    border: none;
-    color: white;
-    padding: 12px;
-    font-weight: bold;
-    width: 100%;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-bottom: 50px;
+  .register-img {
+    width: 50%;
+    height: 100%;
   }
-  
-  /* Imagen a */
-    .register-img {
-        width: 100%;
-        height: 100%;          
-        object-fit: cover;    
-        display: block;
-    }
-  
-  @media (min-width: 768px) {
-    .register-container {
-      flex-direction: row;
-      height: 600px;
-    }
-  
-    .register-img {
-      width: 50%;
-      height: 100%;
-    }
-  }
-  
-  
-  /* Contenido del formulario */
+}
+
+
+/* Contenido del formulario */
+.form-content {
+  width: 100%;
+  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Logo */
+.register-logo {
+  width: 300px;
+  margin-top: 60px;
+  padding-bottom: 60px;
+  border-radius: 0;
+  object-fit: contain;
+}
+
+.register-form {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: -55px; /* Menor espacio entre campos */
+  transform: translateY(-120px); /* Lo sube un poco */
+}
+
+/* Estilos de formulario que faltaban */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #333;
+  font-size: 14px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e1e5e9;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.form-control:disabled {
+  background-color: #e9ecef;
+  opacity: 1;
+}
+
+.btn-register:hover {
+  background-color: #772d19;
+}
+
+/* Responsive específico para iPhone 14 Pro Max */
+@media only screen and (max-width: 430px) and (max-height: 932px) {
   .form-content {
-    width: 100%;
-    padding: 40px 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    padding: 30px 20px;
   }
-  
-  /* Logo */
-  .register-logo {
-    width: 300px;
-    margin-top: 60px;
-    padding-bottom: 60px;
-    border-radius: 0;
-    object-fit: contain;
-  }
-  
-  .register-form {
-    width: 100%;
-    max-width: 400px;
-    display: flex;
-    flex-direction: column;
-    gap: -55px; /* Menor espacio entre campos */
-    transform: translateY(-120px); /* Lo sube un poco */
-  }
-  
-  
- 
-  
-  .btn-register:hover {
-    background-color: #772d19;
-  }
-  
-  /* Responsive específico para iPhone 14 Pro Max */
-  @media only screen and (max-width: 430px) and (max-height: 932px) {
-    .form-content {
-      padding: 30px 20px;
-    }
-  
-    .register-logo {
-      width: 140px;
-      margin-bottom: 30px;
-    }
-  
-    .btn-register {
-      font-size: 15px;
-      padding: 10px;
-    }
-  
-    .close-button {
-      top: 15px;
-      right: 20px;
-      font-size: 26px;
-    }
-  }
-  
-  /*Validaciones*/
 
-  /* Estilo para mensajes de error */
+  .register-logo {
+    width: 140px;
+    margin-bottom: 30px;
+  }
+
+  .btn-register {
+    font-size: 15px;
+    padding: 10px;
+  }
+
+  .close-button {
+    top: 15px;
+    right: 20px;
+    font-size: 26px;
+  }
+}
+
+/*Validaciones*/
+
+/* Estilo para mensajes de error */
 .error-message {
-    color: #d9534f;
-    background-color: #f8d7da;
-    border-left: 4px solid #d9534f;
-    padding: 8px 12px;
-    margin-top: 6px;
-    border-radius: 4px;
-    font-size: 0.85rem;
-    animation: fadeIn 0.3s ease-in-out;
-  }
-  
-  /* Animación suave al aparecer el mensaje */
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-4px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  
-  /* Input en estado de error */
-  .input-error {
-    border-color: #d9534f !important;
-    box-shadow: 0 0 0 0.2rem rgba(217, 83, 79, 0.25);
-  }
-  
-  /* Focus mejorado para inputs */
-  .form-control:focus {
-    border-color: #007bff;
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-    transition: all 0.2s ease-in-out;
-  }
-  
+  color: #d9534f;
+  background-color: #f8d7da;
+  border-left: 4px solid #d9534f;
+  padding: 8px 12px;
+  margin-top: 6px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Animación suave al aparecer el mensaje */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Input en estado de error */
+.input-error {
+  border-color: #d9534f !important;
+  box-shadow: 0 0 0 0.2rem rgba(217, 83, 79, 0.25);
+}
+
+/* Focus mejorado para inputs */
+.form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  transition: all 0.2s ease-in-out;
+}
+
+
+/*Extra*/
+
+/* Agregar estos estilos a tu Register.css existente */
+
+/* Estados de error en inputs */
+.form-control.error {
+border-color: #dc3545;
+box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+
+/* Mensajes de éxito */
+.success-message {
+color: #28a745;
+background-color: #d4edda;
+border: 1px solid #c3e6cb;
+padding: 10px;
+border-radius: 4px;
+margin-top: 10px;
+font-size: 14px;
+text-align: center;
+}
+
+/* Mensajes de error mejorados */
+.error-message {
+color: #dc3545;
+background-color: #f8d7da;
+border: 1px solid #f5c6cb;
+padding: 8px;
+border-radius: 4px;
+margin-top: 5px;
+font-size: 13px;
+}
+
+/* Hint para contraseña */
+.password-hint {
+color: #6c757d;
+font-size: 12px;
+margin-top: 5px;
+display: block;
+}
+
+/* Botón de carga */
+.btn-register.loading {
+opacity: 0.7;
+cursor: not-allowed;
+position: relative;
+}
+
+.btn-register:disabled {
+opacity: 0.6;
+cursor: not-allowed;
+}
+
+/* Spinner de carga */
+.spinner {
+display: inline-block;
+width: 16px;
+height: 16px;
+border: 2px solid #ffffff;
+border-radius: 50%;
+border-top-color: transparent;
+animation: spin 1s ease-in-out infinite;
+margin-right: 8px;
+}
+
+@keyframes spin {
+to { transform: rotate(360deg); }
+}
+
+/* Footer del formulario */
+.form-footer {
+text-align: center;
+margin-top: 20px;
+padding-top: 20px;
+border-top: 1px solid #e9ecef;
+}
+
+.form-footer p {
+margin: 0;
+color: #6c757d;
+font-size: 14px;
+}
+
+/* Botón de enlace */
+.link-button {
+background: none;
+border: none;
+color: #007bff;
+text-decoration: underline;
+cursor: pointer;
+font-size: 14px;
+padding: 0;
+}
+
+.link-button:hover {
+color: #0056b3;
+}
+
+.link-button:disabled {
+color: #6c757d;
+cursor: not-allowed;
+text-decoration: none;
+}
+
+/* Mejoras para el botón de cerrar */
+.close-button:disabled {
+opacity: 0.5;
+cursor: not-allowed;
+}
+
+/* Animaciones suaves */
+.form-control {
+transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.btn-register {
+transition: all 0.15s ease-in-out;
+}
+
+/* Estados focus mejorados */
+.form-control:focus {
+border-color: #80bdff;
+outline: 0;
+box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.form-control.error:focus {
+border-color: #dc3545;
+box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+.error-message,
+.success-message {
+  font-size: 12px;
+  padding: 6px;
+}
+
+.password-hint {
+  font-size: 11px;
+}
+
+.form-footer {
+  margin-top: 15px;
+  padding-top: 15px;
+}
+}

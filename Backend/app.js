@@ -39,10 +39,10 @@ app.use(cors({
 app.use(cookieParser());
 app.use(express.json());
 
-// ✅ Rutas protegidas (según roles con middleware)
+// Rutas protegidas (según roles con middleware)
 app.use("/api/products", productsRoutes);
 
-// ✅ Rutas públicas y otras rutas
+// Rutas públicas y otras rutas
 /* 
   ============================
   RUTAS PÚBLICAS
@@ -77,7 +77,7 @@ app.use("/api/sale", validateAuthToken(["Admin", "Employee"]), saleRoutes);
 app.use("/api/orders", validateAuthToken(["Admin", "Employee"]), ordersRoutes);
 
 // Cliente autenticado (por ejemplo, perfil de cliente)
-app.use("/api/profile", validateAuthToken(["Customer", "Admin", "Employee"]), clientsRoutes);
+app.use("/api/profile", validateAuthToken(["Clients", "Admin", "Employee"]), clientsRoutes);
 
 // Ruta exclusiva de prueba para Admin
 app.get("/api/adminOnly", validateAuthToken(["Admin"]), (req, res) => {

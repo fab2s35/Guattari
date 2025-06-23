@@ -16,30 +16,18 @@ const clientsSchema = new Schema(
       type: Number,
       required: true,
     },
-    
-    nameClient: {
+    name: {
         type: String,
         required: true,
       },
+      email:{
+        type:String,
+        required:true
+      },
 
-      lastNameClient: {
-        type: String,
-        required : true,
-    },
-
-   dui : {
-        type: Number,
-        required : true,
-    },
-
-    phone : {
-        type: Number,
-        required : true,
-    },
-
-    address	 : {
+    password	 : {
         type : String,
-        required : false,
+        required : true,
     },
 
   },

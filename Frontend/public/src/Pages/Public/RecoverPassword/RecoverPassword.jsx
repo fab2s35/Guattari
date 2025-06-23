@@ -24,7 +24,7 @@ function RecoverPassword() {
     }
 
     try {
-      const response = await fetch('http://localhost:4000/api/requestCode', {
+      const response = await fetch('http://localhost:4000/api/passwordRecovery/requestCode', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),
