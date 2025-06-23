@@ -2,9 +2,11 @@ import React from 'react';
 import './Header.css'; 
 import logoGuattari from '../../img/GUATTARI_logo-ver1.png';
 import IC_cuenta from '../../img/user.png';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Header() {
+  const navigate = useNavigate(); // Hook para navegar entre rutas
+
   return (
     <>
       <div className="ads-text">
@@ -31,7 +33,14 @@ function Header() {
         </div>
 
         <div className="d-flex align-items-center iconos-esquina">
-          <img src={IC_cuenta} alt="Cuenta" className="icono-header" />
+          {/* Al hacer clic redirige al perfil */}
+          <img
+            src={IC_cuenta}
+            alt="Cuenta"
+            className="icono-header"
+            onClick={() => navigate('/Profile')}
+            style={{ cursor: 'pointer' }} 
+          />
         </div>
       </div>
 
@@ -54,9 +63,6 @@ function Header() {
             <Link className="nav-item nav-link" to="/estancias">Estancias</Link>
             <Link className="nav-item nav-link" to="/aboutUs">Sobre Nosotros</Link>
             <Link className="nav-item nav-link" to="/contactanos">Contáctanos</Link>
-            <Link className="nav-item nav-link" to="/code">Code</Link>
-            <Link className="nav-item nav-link" to="/recoverPassword">Correo Contra</Link>
-            <Link className="nav-item nav-link" to="/newPassword">Nueva Contra</Link>
           </div>
         </div>
       </nav>
@@ -65,3 +71,4 @@ function Header() {
 }
 
 export default Header;
+

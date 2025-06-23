@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import './login.css';
 
 import LoginC from '../../../img/register-login-profile/login-img.png';
 import Logo from '../../../img/register-login-profile/logo-Guattari.png';
 
 function Login() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -38,26 +40,22 @@ function Login() {
 
     if (!validateForm()) return;
 
+    setError(''); // Limpia error previo antes de intentar login
+
     try {
       const response = await fetch('http://localhost:4000/api/login', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        credentials: 'include', // para permitir cookies del backend
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
         body: JSON.stringify({ email, password }),
       });
 
       const data = await response.json();
 
       if (response.ok) {
-        localStorage.setItem('token', data.token); // opcional si usas token en frontend
-        // Redirige según el rol
-        if (data.redirectTo) {
-          window.location.href = data.redirectTo;
-        } else {
-          window.location.href = '/';
-        }
+        localStorage.setItem('token', data.token);
+        // Mejor usar navigate en lugar de cambiar location para SPA
+        navigate(data.redirectTo || '/');
       } else {
         setError(data.message || 'Error de autenticación');
       }
@@ -67,48 +65,78 @@ function Login() {
   };
 
   return (
-    <div className="conteiner-Login">
-      <img src={LoginC} id="img-Login" className="img-fluid" alt="Imagen login" />
+    <div className="register-fullscreen">
+      <button
+        className="close-button"
+        onClick={() => navigate(-1)}
+        aria-label="Cerrar"
+        type="button"
+      >
+        ✕
+      </button>
 
-      <div className="centrar">
-        <form className="text-Login" onSubmit={handleLogin}>
-          <img src={Logo} id="img-logo2" alt="Logo Guattari" />
-          <h2>Iniciar Sesión</h2>
+      <div className="register-container">
+        <img src={LoginC} alt="Imagen de login" className="register-img" />
 
-          <div className="conteiner-Text-Conteiner">
-            <div className="mb-3">
-              <label htmlFor="email" className="form-label">Email</label>
+        <div className="form-content">
+          <img src={Logo} alt="Logo Guattari" className="register-logo" />
+
+          <form className="register-form" onSubmit={handleLogin} noValidate>
+            <div className="form-group">
+              <label htmlFor="email">Correo electrónico</label>
               <input
                 type="email"
-                className="form-control"
                 id="email"
+                className={`form-control ${emailError ? 'input-error' : ''}`}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
+                aria-describedby="emailError"
               />
-              {emailError && <p style={{ color: 'red' }}>{emailError}</p>}
+              {emailError && (
+                <p id="emailError" className="error-message">
+                  {emailError}
+                </p>
+              )}
             </div>
 
-            <div className="mb-3">
-              <label htmlFor="password" className="form-label">Contraseña</label>
+            <div className="form-group">
+              <label htmlFor="password">Contraseña</label>
               <input
                 type="password"
-                className="form-control"
                 id="password"
+                className={`form-control ${passwordError ? 'input-error' : ''}`}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
+                aria-describedby="passwordError"
               />
-              {passwordError && <p style={{ color: 'red' }}>{passwordError}</p>}
+              {passwordError && (
+                <p id="passwordError" className="error-message">
+                  {passwordError}
+                </p>
+              )}
             </div>
 
-            <button className="btn-Login" type="submit">
-              <p>Iniciar Sesión</p>
-            </button>
 
-            {error && <p style={{ color: 'red' }}>{error}</p>}
-          </div>
-        </form>
+            <p style={{ marginTop: '15px', fontSize: '14px' }}>
+            <Link
+              to="/RecoverPassword"
+              
+            >
+              ¿Olvidó su contraseña?
+            </Link>
+          </p>
+
+            {error && <p className="error-message" style={{ marginBottom: '10px' }}>{error}</p>}
+
+            <button type="submit" className="btn-register">
+              Iniciar Sesión
+            </button>
+          </form>
+
+          
+        </div>
       </div>
     </div>
   );
@@ -116,12 +144,3 @@ function Login() {
 
 export default Login;
 
-
-
-
-
-/*<Link to="/recoverPassword" className="p2">
-¿Olvidó su contraseña?
-</Link>*/
-
-/*<Link className="nav-item nav-link" id="p2" to="/recoverPassword">¿Olvidó su contraseña?</Link> */

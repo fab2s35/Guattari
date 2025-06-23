@@ -1,4 +1,4 @@
-import CustomersModel from "../models/clients.js"
+import clientsModel from "../models/clients.js"
 import EmployeesModel from "../models/employees.js"
 import bcrypt from "bcrypt"
 import jsonwebtoken from "jsonwebtoken" // Corregido: era "jswonwebtoken"
@@ -33,7 +33,7 @@ loginController.login = async (req,res) => {
             userType = "Employee";
         } else {
             //3- Cliente
-            userFound = await CustomersModel.findOne({email})
+            userFound = await clientsModel.findOne({email})
             if (userFound) {
                 userType = "Customer";
             }
