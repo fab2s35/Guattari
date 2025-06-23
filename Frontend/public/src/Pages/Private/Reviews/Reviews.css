@@ -1,33 +1,44 @@
-.page-title {
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-  text-align: left;
+/* Reviews.css */
+
+.reviews-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
+  font-family: Arial, sans-serif;
 }
 
-.banner {
-  margin: 1rem 0;
+.page-title {
   text-align: center;
+  font-size: 2rem;
+  margin-bottom: 20px;
 }
 
 .banner-img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 10px;
+  width: 100%;
+  max-height: 250px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.cargando, .no-reviews {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #555;
 }
 
 .reviews-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
 }
 
 .review-card {
-  background-color: #fff;
+  background: #fff;
   border: 1px solid #ddd;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   display: flex;
   flex-direction: column;
 }
@@ -36,168 +47,80 @@
   width: 100%;
   height: 180px;
   object-fit: cover;
-  border-bottom: 1px solid #ddd;
 }
 
 .review-content {
-  padding: 1rem;
+  padding: 15px;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  flex: 1;
 }
 
 .review-content h3 {
-  font-size: 1.1rem;
-  margin: 0;
+  margin: 0 0 8px;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.review-content p {
+  margin: 4px 0;
+  font-size: 0.95rem;
+  color: #555;
 }
 
 .comentario {
   font-style: italic;
-  color: #555;
+  color: #666;
+}
+
+.qualification {
+  font-weight: bold;
+  color: #f39c12;
 }
 
 .estado {
   font-weight: bold;
-  font-size: 0.9rem;
+  margin-top: 5px;
 }
 
 .estado.pendiente {
-  color: #f0ad4e;
+  color: #e67e22;
 }
 
 .estado.aceptado {
-  color: #5cb85c;
+  color: #27ae60;
 }
 
 .review-actions {
+  margin-top: auto;
   display: flex;
-  justify-content: space-between;
-  margin-top: 1rem;
+  gap: 10px;
 }
 
 .aceptar-btn, .eliminar-btn {
   flex: 1;
-  padding: 0.5rem 0.75rem;
-  margin: 0 0.25rem;
-  font-size: 0.9rem;
-  border-radius: 4px;
+  padding: 8px;
   border: none;
+  border-radius: 5px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  font-size: 0.9rem;
+  transition: background 0.3s ease;
 }
 
 .aceptar-btn {
-  background-color: #5cb85c;
-  color: white;
+  background: #27ae60;
+  color: #fff;
 }
 
 .aceptar-btn:hover {
-  background-color: #449d44;
+  background: #219150;
 }
 
 .eliminar-btn {
-  background-color: #d9534f;
-  color: white;
+  background: #e74c3c;
+  color: #fff;
 }
 
 .eliminar-btn:hover {
-  background-color: #c9302c;
-}
-
-.cargando, .no-reviews {
-  text-align: center;
-  font-size: 1rem;
-  color: #777;
-  margin: 2rem 0;
-}
-
-/* Popups */
-.popup-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.4);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.popup {
-  background-color: white;
-  padding: 30px;
-  border-radius: 10px;
-  text-align: center;
-  width: 300px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  animation: popupFade 0.3s ease-in-out;
-}
-
-.popup-actions {
-  margin-top: 20px;
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-}
-
-.popup-actions button {
-  padding: 10px 18px;
-  border: none;
-  border-radius: 6px;
-  font-weight: bold;
-  cursor: pointer;
-  font-size: 15px;
-}
-
-.popup-actions button:first-child {
-  background-color: #d9534f;
-  color: white;
-}
-
-.popup-actions button:last-child {
-  background-color: #5bc0de;
-  color: white;
-}
-
-/* Popup de aceptación */
-.popup.accepted {
-  background-color: #dff0d8;
-  color: #3c763d;
-  border: 2px solid #3c763d;
-  font-weight: bold;
-}
-
-/* Animación popup */
-@keyframes popupFade {
-  from {
-    transform: scale(0.95);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .review-card {
-    flex-direction: column;
-  }
-
-  .product-img {
-    height: auto;
-  }
-
-  .review-actions {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .aceptar-btn, .eliminar-btn {
-    width: 100%;
-    margin: 0;
-  }
+  background: #c0392b;
 }

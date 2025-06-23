@@ -46,7 +46,7 @@ app.use("/api/suppliers", suppliersRoutes);
 app.use("/api/sale", saleRoutes);
 app.use("/api/subcategory", subcategoryRoutes);
 app.use("/api/clients", clientsRoutes);
-app.use("/api/review", reviewRoutes);
+app.use("/api/reviews", reviewRoutes);
 app.use("/api/login", loginRoute);
 app.use("/api/logout", logoutRoute);
 app.use("/api/passwordRecovery", passwordRecoveryRoutes);
