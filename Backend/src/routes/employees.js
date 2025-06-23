@@ -7,7 +7,7 @@ import employeesController from "../controllers/employeesController.js";
 router
   .route("/")
   .get(employeesController.getEmployee)
-  .post(employeesController.insertEmployee);
+  .post(employeesController.createEmployee);
 
 router
   .route("/:id")

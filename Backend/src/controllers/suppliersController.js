@@ -1,32 +1,63 @@
+import suppliersModel from "../models/suppliers.js";
+
 const suppliersController = {};
-import suppliers from "../models/suppliers.js"
-import suppliersModel from "../models/suppliers.js"
 
-//SELECT 
+// SELECT - Obtener todos los suppliers
 suppliersController.getSuppliers = async (req, res) => {
-     const suppliers = await suppliersModel.find()
-     res.json(suppliers)
-}
+  try {
+    const suppliers = await suppliersModel.find();
+    res.json(suppliers);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error fetching suppliers" });
+  }
+};
 
-//INSERT
-suppliersController.insertSuppliers = async (req, res) =>{
-    const {nameSuppliers, emailSuppliers, phoneSuppliers, countryOriginSuppliers} = req.body;
-    const newSuppliers = new suppliersModel({nameSuppliers, emailSuppliers, phoneSuppliers, countryOriginSuppliers})
-    await newSuppliers.save()
-    res.json({message: "Supplierssaved"})
-}   
+// INSERT - Crear un nuevo supplier
+suppliersController.insertSuppliers = async (req, res) => {
+  try {
+    const { nameSuppliers, emailSuppliers, phoneSuppliers, nationality } = req.body;
+    const newSupplier = new suppliersModel({ nameSuppliers, emailSuppliers, phoneSuppliers, nationality });
+    await newSupplier.save();
+    res.json({ message: "Supplier saved" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error saving supplier" });
+  }
+};
 
-//DELETE
-suppliersController.deleteSuppliers= async (req, res) =>{
-    await SuppliersModel.findByIdAndDelete(req.params.id)
-    res.json({message: "Suppliers deleted"}) 
-}
+// DELETE - Eliminar supplier por ID
+suppliersController.deleteSuppliers = async (req, res) => {
+  try {
+    await suppliersModel.findByIdAndDelete(req.params.id);
+    res.json({ message: "Supplier deleted" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error deleting supplier" });
+  }
+};
 
-//UPDATE
-suppliersController.updateSuppliers = async (req, res) =>{
-    const {nameSuppliers, emailSuppliers, phoneSuppliers, countryOriginSuppliers} = (req.params.id,
-        {nameSuppliers, emailSuppliers, phoneSuppliers, countryOriginSuppliers}, {new: true})
-    res.json({message: "Suppliers updated successfully"})
-}
+// UPDATE - Actualizar supplier por ID
+suppliersController.updateSuppliers = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { nameSuppliers, emailSuppliers, phoneSuppliers, nationality } = req.body;
+
+    const updatedSupplier = await suppliersModel.findByIdAndUpdate(
+      id,
+      { nameSuppliers, emailSuppliers, phoneSuppliers, nationality },
+      { new: true }
+    );
+
+    if (!updatedSupplier) {
+      return res.status(404).json({ message: "Supplier not found" });
+    }
+
+    res.json({ message: "Supplier updated successfully", updatedSupplier });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error updating supplier" });
+  }
+};
 
 export default suppliersController;

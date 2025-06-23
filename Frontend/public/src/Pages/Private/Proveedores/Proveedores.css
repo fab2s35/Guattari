@@ -1,272 +1,215 @@
-/* Proveedores.css */
-
 .proveedores-container {
-  padding: 0 20px;
-  max-width: 100%;
-  background-color: #f7f7f7;
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
 }
 
 .proveedores-title {
-  font-size: 34px;
-  font-weight: bold;
-  color: #333;
-  margin-top: 20px;
+  font-size: 2rem;
+  text-align: center;
   margin-bottom: 10px;
 }
 
 .divider {
   border: none;
-  height: 1px;
-  background-color: #ddd;
+  border-top: 2px solid #ccc;
   margin-bottom: 20px;
 }
 
 .banner-container {
-  width: 100%;
-  height: 400px; 
-  overflow: hidden;
+  text-align: center;
   margin-bottom: 20px;
-  position: relative;
 }
 
 .banner-image {
-  width: 150%;
-  display: block;
-  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
 }
 
 .proveedores-subtitle {
-  font-size: 29px;
-  font-weight: normal;
-  color: #333;
-  margin-bottom: 15px;
-}
-
-.proveedores-content {
-  background-color: #f7f7f7;
-  padding: 15px;
-  border-radius: 5px;
-}
-
-.proveedores-panel {
-  background-color: #ffffff;
-  border-radius: 5px;
-  padding: 0px;
-    margin-left: -2%;
-  margin-right: -2%;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
 }
 
 .search-add-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   flex-wrap: wrap;
-  gap: 10px;
 }
 
 .search-container {
-  display: flex;
-  align-items: center;
-  background-color: white;
-  border-radius: 4px;
-  padding: 5px 10px;
-  width: 300px;
   flex: 1;
-  min-width: 250px;
-}
-
-.search-icon {
-  margin-right: 8px;
-  color: #666;
+  margin-right: 10px;
 }
 
 .search-input {
-  border: none;
-  outline: none;
   width: 100%;
-  padding: 5px;
+  padding: 8px 12px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
 }
 
 .add-button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 15px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
   display: flex;
   align-items: center;
-  background-color: #333;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  padding: 8px 15px;
-  cursor: pointer;
-  font-weight: bold;
-  white-space: nowrap;
+  gap: 6px;
 }
 
-.plus-icon {
-  font-size: 18px;
-  margin-right: 5px;
+.add-button:hover {
+  background-color: #0056b3;
 }
 
 .proveedores-table-container {
-  margin-top: 3px;
   overflow-x: auto;
-  border-radius: 8px;
-  border: 1px solid #e5e7eb;
-  background-color: white;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
 }
 
 .proveedores-table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 600px;
+}
+
+.proveedores-table th,
+.proveedores-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
 }
 
 .proveedores-table th {
-  background-color: #ebebeb;
-  color: #333;
-  text-align: left;
-  padding: 12px 15px;
-  font-weight: normal;
-  border-bottom: 1px solid #ddd;
-}
-
-.proveedores-table td {
-  padding: 12px 15px;
-  border-bottom: 1px solid #eee;
+  background-color: #f2f2f2;
 }
 
 .actions-cell {
   display: flex;
-  justify-content: center;
+  gap: 5px;
 }
 
 .action-buttons {
-  position: static !important;
   display: flex;
-  justify-content: center;
-  gap: 10px;
+  gap: 5px;
 }
 
 .edit-btn, .delete-btn {
-  position: static !important;
-  padding: 8px 20px; 
-  min-width: 80px;   
-  cursor: pointer;
   border: none;
-  color: #ffffff;
+  padding: 5px 8px;
+  cursor: pointer;
   border-radius: 4px;
-  font-size: 16px;
-  transition: all 0.2s ease-in-out;
-  justify-content: center;
-  display: flex;
-  align-items: center;
-  text-align: center;
+  font-size: 1rem;
 }
 
 .edit-btn {
-  background-color: #0e0e0e;
+  background-color: #ffc107;
+  color: #000;
 }
 
 .edit-btn:hover {
-  background-color: #000000;
-  transform: scale(1.05);
+  background-color: #e0a800;
 }
 
 .delete-btn {
-  background-color: #8B0000;
+  background-color: #dc3545;
+  color: #fff;
 }
 
 .delete-btn:hover {
-  background-color: #640000;
-  transform: scale(1.05);
+  background-color: #c82333;
 }
 
-
-.proveedores-table tbody tr:nth-child(even) {
-  background-color: #f9f9f9;
+/* Modal styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
 }
 
+.modal {
+  background: #fff;
+  padding: 20px 25px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
 
+.modal h2 {
+  margin-top: 0;
+}
 
+.form-group {
+  margin-bottom: 15px;
+}
 
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
 
-/* RESPONSIVE */
+.form-group input {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
 
-@media (max-width: 768px) {
-  .proveedores-title {
-    font-size: 26px;
-    text-align: center;
-    font-weight: 500;
-  }
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 15px;
+}
 
-  .proveedores-subtitle {
-    font-size: 22px;
-    text-align: center;
-  }
+.cancel-button {
+  background-color: #6c757d;
+  color: #fff;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
 
+.cancel-button:hover {
+  background-color: #5a6268;
+}
+
+.save-button {
+  background-color: #28a745;
+  color: #fff;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.save-button:hover {
+  background-color: #218838;
+}
+
+.plus-icon {
+  font-size: 1.2rem;
+}
+
+@media (max-width: 600px) {
   .search-add-container {
     flex-direction: column;
-    align-items: stretch;
-  }
-
-  .add-button {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .search-container {
-    width: 100%;
-  }
-
-  .proveedores-panel {
-    margin-left: 5px;
-    margin-right: 5px;
-  }
-
-  .edit-btn, .delete-btn {
-    min-width: 80px;
-    justify-content: center;
-  }
-}
-
-@media (max-width: 480px) {
-  .proveedores-title {
-    font-size: 22px;
-    font-weight: 700;
-  }
-
-  .proveedores-subtitle {
-    font-size: 18px;
-  }
-
-  .edit-button,
-  .delete-button {
-    width: auto; 
-    padding: 8px 12px;
-  }
-
-  .edit-icon, .delete-icon {
-    font-size: 14px;
-  }
-
-  .proveedores-panel {
-    padding: 10px;
-    margin-left: -22px;
-    margin-right: -22px; 
-  }
-
-  .search-container {
-    padding: 5px;
-  }
-
-  .add-button {
-    padding: 8px;
-    font-size: 14px;
-  }
-
-  .edit-btn, .delete-btn {
-    min-width: 100px;
-    padding: 8px 12px;
-    font-size: 14px;
+    gap: 10px;
   }
 }

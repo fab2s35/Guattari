@@ -13,6 +13,11 @@ import Sofas from './Pages/Public/Productos/Sofas/Sofas.jsx';
 import Dormitorios from './Pages/Public/Productos/Dormitorios/Dormitorios.jsx';
 import Register from './Pages/Public/Register/Register';
 import Login from './Pages/Public/Login/Login';
+import Profile from './Pages/Public/Profile/Profile';
+import VerifyCode from './Pages/Public/VerifyCode/VerifyCode';
+import RecoverPassword from './Pages/Public/RecoverPassword/RecoverPassword';
+import AddCode from './Pages/Public/AddCode/AddCode';
+import NewPassword from './Pages/Public/NewPassword/NewPassword';
 
 // --- Páginas privadas ---
 import Inventory from './Pages/Private/Inventory/Inventory';
@@ -22,20 +27,19 @@ import Branch from './Pages/Private/Addbranch/branch';
 import Reviews from './Pages/Private/Reviews/Reviews';
 import AddInv from './Pages/Private/addInv/addInventory';
 import Employee from './Pages/Private/Employees/Employee';
-import AdminHome from './Pages/Private/MainPage/mainPage'; 
-import NavAdmin from './components/HeaderPrivate/Header' // Página de bienvenida admin
+import AdminHome from './Pages/Private/MainPage/mainPage';
 
-// --- Componente para proteger rutas privadas ---
-const PrivateRoute = ({ children }) => {
-  const token = localStorage.getItem('token');
-  return token ? children : <Navigate to="/login" />;
-};
+// --- Rutas protegidas por rol ---
+import AdminRoute from './routes/AdminRoute';
+import EmployeeRoute from './routes/EmployeeRoute';
+import ClientRoute from './routes/ClientRoute';
+import NotAuthorized from './routes/NotAuthorized';
+
 
 function App() {
   const [userType, setUserType] = useState(null);
 
   useEffect(() => {
-    // Recupera tipo de usuario desde localStorage si lo guardas allí
     const storedUserType = localStorage.getItem('userType');
     setUserType(storedUserType);
   }, []);
@@ -55,24 +59,47 @@ function App() {
           <Route path="/dormitorios" element={<Dormitorios />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/verify-code" element={<VerifyCode />} />
+          <Route path="/RecoverPassword" element={<RecoverPassword />} />
+          <Route path="/AddCode" element={<AddCode />} />
+          <Route path="/NewPassword" element={<NewPassword />} />
         </Route>
 
-        {/* Página de bienvenida para admin */}
+        {/* Rutas protegidas por rol */}
         <Route
           path="/bienvenidaAdmin"
           element={
-            <PrivateRoute>
+            <AdminRoute>
               <AdminHome />
-            </PrivateRoute>
+            </AdminRoute>
           }
         />
 
-        {/* Layout privado (empleados u otros roles) */}
+        <Route
+          path="/bienvenidaEmpleado"
+          element={
+            <EmployeeRoute>
+              <Employee />
+            </EmployeeRoute>
+          }
+        />
+
+        <Route
+          path="/MainPage"
+          element={
+            <ClientRoute>
+              <MainPage />
+            </ClientRoute>
+          }
+        />
+
+        {/* Layout privado */}
         <Route
           element={
-            <PrivateRoute>
+            <EmployeeRoute>
               <PrivateLayout />
-            </PrivateRoute>
+            </EmployeeRoute>
           }
         >
           <Route path="/inventory" element={<Inventory />} />
@@ -84,10 +111,12 @@ function App() {
           <Route path="/employee" element={<Employee />} />
         </Route>
 
+        {/* Ruta de acceso denegado */}
+        <Route path="/not-authorized" element={<NotAuthorized />} />
+
       </Routes>
     </Router>
   );
 }
 
 export default App;
-
