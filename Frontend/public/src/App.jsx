@@ -32,7 +32,8 @@ import AdminHome from './Pages/Private/MainPage/mainPage';
 import AdminRoute from './routes/AdminRoute';
 import EmployeeRoute from './routes/EmployeeRoute';
 import ClientRoute from './routes/ClientRoute';
-import NotAuthorized from './pages/NotAuthorized';
+import NotAuthorized from './routes/NotAuthorized';
+
 
 function App() {
   const [userType, setUserType] = useState(null);
