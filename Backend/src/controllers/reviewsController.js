@@ -1,36 +1,35 @@
 const reviewController = {};
-import reviewModel from  "../models/reviews.js";
+import reviewModel from "../models/Review.js";
 
-//SELECT 
+// SELECT
 reviewController.getReview = async (req, res) => {
-  const review = await reviewModel.find().populate("idClient");
-  res.json(review);
+  const reviews = await reviewModel.find().populate("idClient idProduct");
+  res.json(reviews);
 };
 
-//INSERT
-
+// INSERT
 reviewController.insertReview = async (req, res) => {
-    const {comment, rating, idClient} = req.body;
-    const newReview = new reviewModel({comment,rating, idClient});
-    await newReview.save()
-    res.json({message:"review saved"})
-}
+  const { qualification, comment, idClient, idProduct } = req.body;
+  const newReview = new reviewModel({ qualification, comment, idClient, idProduct });
+  await newReview.save();
+  res.json({ message: "Review saved" });
+};
 
-//DELETE
+// DELETE
 reviewController.deleteReview = async (req, res) => {
   await reviewModel.findByIdAndDelete(req.params.id);
-  res.json({ message: "review deleted" });
+  res.json({ message: "Review deleted" });
 };
 
-//UPDATE 
+// UPDATE
 reviewController.updateReview = async (req, res) => {
-    const {comment, rating, idClient} = req.body;
-    await reviewModel.findByIdAndUpdate(
-        req.params.id,
-        {comment, rating, idClient},
-        {new: true}
-    );
-    res.json({message:"review update"});
+  const { qualification, comment, idClient, idProduct, estado } = req.body;
+  await reviewModel.findByIdAndUpdate(
+    req.params.id,
+    { qualification, comment, idClient, idProduct, estado },
+    { new: true }
+  );
+  res.json({ message: "Review updated" });
 };
 
 export default reviewController;
